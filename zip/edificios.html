@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Homes | Premium Properties for Sale</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .property-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .property-card:hover .property-overlay {
+      opacity: 1;
+    }
+    #propertyModal {
+      transition: all 0.3s ease;
+    }
+    .modal-open {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+<!-- Navigation -->
+<nav class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center">
+        <div class="flex-shrink-0 flex items-center">
+          <i class="fas fa-home text-blue-600 text-2xl mr-2"></i>
+          <span class="text-xl font-bold text-gray-800">Grupo IMNOVA</span>
+        </div>
+      </div>
+      <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
+
+        <div class="relative" id="dropdown-container">
+          <button id="dropdown-toggle" class="nav-link text-gray-700 hover:text-blue-500 font-medium flex items-center gap-1 focus:outline-none">
+            Properties
+            <i class="fas fa-chevron-down text-xs mt-[2px]"></i>
+          </button>
+          <div
+            id="dropdown-menu"
+            class="hidden absolute top-full right-0 mt-1 w-48 bg-white shadow-lg rounded-md z-50"
+          >
+            <a href=casas.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Casas</a>
+            <a href=apartamentos.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Apartamentos</a>
+            <a href=oficinas.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Oficinas</a>
+            <a href=edificios.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Edificios</a>
+          </div>
+        </div>
+
+        <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Agents</a>
+        <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">About</a>
+        <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contact</a>
+      </div>
+      <div class="flex items-center md:hidden">
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Edificios a la venta</h1>
+    <p class="text-gray-600">Discover your dream home from our curated collection of luxury properties</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <!-- Location Filter -->
+      <div>
+        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+        <select id="location" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+          <option>All Locations</option>
+          <option>New York</option>
+          <option>Los Angeles</option>
+          <option>Chicago</option>
+          <option>Miami</option>
+          <option>San Francisco</option>
+        </select>
+      </div>
+
+      <!-- Price Filter -->
+      <div>
+        <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+        <select id="price" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+          <option>Any Price</option>
+          <option>$0 - $500,000</option>
+          <option>$500,000 - $1M</option>
+          <option>$1M - $2M</option>
+          <option>$2M+</option>
+        </select>
+      </div>
+
+      <!-- Bedrooms Filter -->
+      <div>
+        <label for="bedrooms" class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+        <select id="bedrooms" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+          <option>Any</option>
+          <option>1+</option>
+          <option>2+</option>
+          <option>3+</option>
+          <option>4+</option>
+          <option>5+</option>
+        </select>
+      </div>
+
+      <!-- Property Type -->
+      <div>
+        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+        <select id="type" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
+          <option>All Types</option>
+          <option>House</option>
+          <option>Apartment</option>
+          <option>Condo</option>
+          <option>Townhouse</option>
+          <option>Villa</option>
+        </select>
+      </div>
+    </div>
+    <div class="mt-4 flex justify-end">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+        Apply Filters
+      </button>
+    </div>
+  </div>
+
+  <!-- Property Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Property 1 -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern luxury villa" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('modern-villa')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
+        <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          NEW
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Modern Luxury Villa</h3>
+        <p class="text-blue-600 font-semibold mb-2">$3,250,000</p>
+        <p class="text-gray-600 text-sm mb-4">Beverly Hills, CA | 5 bed | 4 bath | 4,200 sqft</p>
+        <p class="text-gray-500 text-sm">Stunning contemporary villa with panoramic city views, infinity pool, and smart home technology throughout.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('modern-villa')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.9</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property 2 -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Downtown penthouse" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('downtown-penthouse')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Downtown Penthouse</h3>
+        <p class="text-blue-600 font-semibold mb-2">$1,850,000</p>
+        <p class="text-gray-600 text-sm mb-4">New York, NY | 3 bed | 2.5 bath | 2,100 sqft</p>
+        <p class="text-gray-500 text-sm">Sophisticated penthouse with floor-to-ceiling windows, private terrace, and premium finishes in the heart of Manhattan.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('downtown-penthouse')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property 3 -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Waterfront estate" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('waterfront-estate')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
+        <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          HOT
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Waterfront Estate</h3>
+        <p class="text-blue-600 font-semibold mb-2">$4,750,000</p>
+        <p class="text-gray-600 text-sm mb-4">Miami, FL | 6 bed | 5 bath | 5,800 sqft</p>
+        <p class="text-gray-500 text-sm">Exclusive waterfront property with private dock, infinity pool, and direct beach access in prestigious Coral Gables.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('waterfront-estate')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.9</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property 4 -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern townhouse" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('modern-townhouse')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Modern Townhouse</h3>
+        <p class="text-blue-600 font-semibold mb-2">$1,250,000</p>
+        <p class="text-gray-600 text-sm mb-4">Chicago, IL | 3 bed | 2.5 bath | 2,400 sqft</p>
+        <p class="text-gray-500 text-sm">Chic urban townhouse with rooftop deck, smart home features, and premium finishes in Lincoln Park neighborhood.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('modern-townhouse')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property 5 -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hillside mansion" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('hillside-mansion')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Hillside Mansion</h3>
+        <p class="text-blue-600 font-semibold mb-2">$5,200,000</p>
+        <p class="text-gray-600 text-sm mb-4">San Francisco, CA | 5 bed | 4.5 bath | 6,200 sqft</p>
+        <p class="text-gray-500 text-sm">Architectural masterpiece with sweeping bay views, wine cellar, home theater, and landscaped gardens.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('hillside-mansion')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">5.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property 6 -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Luxury condo" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('luxury-condo')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Luxury Condo</h3>
+        <p class="text-blue-600 font-semibold mb-2">$1,150,000</p>
+        <p class="text-gray-600 text-sm mb-4">Austin, TX | 2 bed | 2 bath | 1,800 sqft</p>
+        <p class="text-gray-500 text-sm">Sophisticated high-rise condo with resort-style amenities, fitness center, and panoramic downtown views.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('luxury-condo')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="mt-12 flex justify-center">
+    <nav class="flex items-center space-x-2">
+      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="px-3 py-1 rounded-md border border-blue-600 bg-blue-600 text-white">1</button>
+      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">2</button>
+      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</button>
+      <span class="px-2 text-gray-500">...</span>
+      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">8</button>
+      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </nav>
+  </div>
+</main>
+
+<!-- Property Modal -->
+<div id="propertyModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+  <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <!-- Background overlay -->
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <!-- Modal content -->
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center border-b pb-4">
+              <h3 class="text-2xl font-bold text-gray-900" id="modalTitle">Modern Luxury Villa</h3>
+              <button onclick="closeModal()" class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="mt-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Property images -->
+                <div>
+                  <div class="relative h-64 rounded-lg overflow-hidden mb-4">
+                    <img id="modalMainImage" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Property" class="w-full h-full object-cover">
+                  </div>
+                  <div class="grid grid-cols-4 gap-2">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
+                    <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
+                    <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
+                  </div>
+                </div>
+
+                <!-- Property details -->
+                <div>
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <p class="text-blue-600 font-semibold text-xl" id="modalPrice">$3,250,000</p>
+                      <p class="text-gray-600 text-sm" id="modalLocation">Beverly Hills, CA</p>
+                    </div>
+                    <div class="flex items-center text-yellow-400">
+                      <i class="fas fa-star"></i>
+                      <span class="text-gray-600 ml-1 text-sm">4.9</span>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                      <p class="text-gray-500 text-xs">Bedrooms</p>
+                      <p class="font-semibold" id="modalBedrooms">5</p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                      <p class="text-gray-500 text-xs">Bathrooms</p>
+                      <p class="font-semibold" id="modalBathrooms">4</p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                      <p class="text-gray-500 text-xs">Square Feet</p>
+                      <p class="font-semibold" id="modalSqft">4,200</p>
+                    </div>
+                  </div>
+
+                  <div class="border-t pt-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Description</h4>
+                    <p class="text-gray-600 text-sm" id="modalDescription">
+                      This stunning contemporary villa offers panoramic city views from its elevated position in Beverly Hills. The property features an infinity pool, smart home technology throughout, and premium finishes. The open floor plan includes a chef's kitchen, home theater, and spacious master suite with walk-in closet and spa-like bathroom. The landscaped grounds include an outdoor kitchen and entertainment area.
+                    </p>
+                  </div>
+
+                  <div class="border-t pt-4 mt-4">
+                    <h4 class="font-semibold text-gray-900 mb-2">Features</h4>
+                    <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                      <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Smart Home System</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Infinity Pool</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Home Theater</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Wine Cellar</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Gated Community</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span>Solar Panels</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Map -->
+              <div class="mt-6 border-t pt-6">
+                <h4 class="font-semibold text-gray-900 mb-4">Location</h4>
+                <div class="bg-gray-200 h-48 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-map-marked-alt text-3xl text-blue-600"></i>
+                  <span class="ml-2 text-gray-700">Map would display here</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+          Contact Agent
+        </button>
+        <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Grupo IMNOVA</h3>
+        <p class="text-gray-300 text-sm">
+          Premium real estate services for discerning clients. We help you find and acquire exceptional properties worldwide.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Home</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Properties</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Agents</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-white text-sm">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Contact</h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <span>1234 Estate Lane, Beverly Hills, CA 90210</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-phone-alt mr-2"></i>
+            <span>(555) 123-4567</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope mr-2"></i>
+            <span>info@grupoimnova.com</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Newsletter</h3>
+        <p class="text-gray-300 text-sm mb-4">
+          Subscribe to our newsletter for the latest property listings and market updates.
+        </p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="px-3 py-2 text-sm rounded-l-md focus:outline-none text-gray-800 w-full">
+          <button class="bg-blue-600 text-white px-3 py-2 text-sm rounded-r-md hover:bg-blue-700 focus:outline-none">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+      <p class="text-gray-400 text-sm">
+        &copy; 2025 DigitalMango. All rights reserved.
+      </p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-gray-400 hover:text-gray-300">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-gray-300">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-gray-300">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-gray-300">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Modal functions
+  function openModal(propertyId) {
+    document.body.classList.add('modal-open');
+    document.getElementById('propertyModal').classList.remove('hidden');
+
+    // In a real app, you would fetch property details based on the ID
+    // For this demo, we'll just show the modal with the first property's details
+  }
+
+  function closeModal() {
+    document.body.classList.remove('modal-open');
+    document.getElementById('propertyModal').classList.add('hidden');
+  }
+
+  function changeMainImage(imgElement) {
+    document.getElementById('modalMainImage').src = imgElement.src;
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('propertyModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+  // Close modal with ESC key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
+
+<script>
+  const toggleBtn = document.getElementById("dropdown-toggle");
+  const menu = document.getElementById("dropdown-menu");
+  const container = document.getElementById("dropdown-container");
+
+  toggleBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    menu.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!container.contains(e.target)) {
+      menu.classList.add("hidden");
+    }
+  });
+</script>
+</body>
+</html>
