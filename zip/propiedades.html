@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Properties | Find Your Dream Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .property-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .category-card:hover {
+      transform: scale(1.03);
+    }
+    .transition-all {
+      transition: all 0.3s ease;
+    }
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+<!-- Header -->
+<header class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <i class="fas fa-home text-blue-600 text-2xl mr-2"></i>
+      <h1 class="text-xl font-bold text-blue-600">Prime Properties</h1>
+    </div>
+    <nav class="hidden md:flex space-x-6">
+      <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-all">Home</a>
+      <a href="#" class="text-gray-700 hover:text-blue-600 transition-all">About</a>
+      <a href="#" class="text-gray-700 hover:text-blue-600 transition-all">Contact</a>
+    </nav>
+    <button class="md:hidden text-gray-700">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero text-white py-20">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Find Your Perfect Property</h1>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">Browse through our exclusive collection of homes, apartments, and commercial spaces.</p>
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-2 flex">
+      <input type="text" placeholder="Search properties..." class="flex-grow px-4 py-2 outline-none text-gray-700">
+      <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-12">
+  <!-- Categories Section (Default View) -->
+  <section id="categories-section">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-gray-800">Property Categories</h2>
+      <div class="flex space-x-2">
+        <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all">
+          <i class="fas fa-th-large mr-2"></i> Grid
+        </button>
+        <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all">
+          <i class="fas fa-list mr-2"></i> List
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Category Cards -->
+      <div class="category-card bg-white rounded-xl shadow-md overflow-hidden transition-all cursor-pointer" onclick="showProperties('residential')">
+        <div class="h-48 bg-blue-100 flex items-center justify-center">
+          <i class="fas fa-home text-blue-600 text-6xl"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Residential</h3>
+          <p class="text-gray-600">Houses, apartments, and condos for families and individuals</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-500">24 properties</span>
+            <button class="text-blue-600 hover:text-blue-800">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card bg-white rounded-xl shadow-md overflow-hidden transition-all cursor-pointer" onclick="showProperties('commercial')">
+        <div class="h-48 bg-green-100 flex items-center justify-center">
+          <i class="fas fa-building text-green-600 text-6xl"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Commercial</h3>
+          <p class="text-gray-600">Office spaces, retail stores, and business properties</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-500">18 properties</span>
+            <button class="text-green-600 hover:text-green-800">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card bg-white rounded-xl shadow-md overflow-hidden transition-all cursor-pointer" onclick="showProperties('vacation')">
+        <div class="h-48 bg-yellow-100 flex items-center justify-center">
+          <i class="fas fa-umbrella-beach text-yellow-600 text-6xl"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Vacation Homes</h3>
+          <p class="text-gray-600">Beautiful getaways for your holidays and retreats</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-500">12 properties</span>
+            <button class="text-yellow-600 hover:text-yellow-800">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card bg-white rounded-xl shadow-md overflow-hidden transition-all cursor-pointer" onclick="showProperties('luxury')">
+        <div class="h-48 bg-purple-100 flex items-center justify-center">
+          <i class="fas fa-gem text-purple-600 text-6xl"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Luxury Estates</h3>
+          <p class="text-gray-600">Premium properties with exceptional amenities</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-500">8 properties</span>
+            <button class="text-purple-600 hover:text-purple-800">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card bg-white rounded-xl shadow-md overflow-hidden transition-all cursor-pointer" onclick="showProperties('land')">
+        <div class="h-48 bg-orange-100 flex items-center justify-center">
+          <i class="fas fa-tree text-orange-600 text-6xl"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Land Plots</h3>
+          <p class="text-gray-600">Vacant land for development or investment</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-500">15 properties</span>
+            <button class="text-orange-600 hover:text-orange-800">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-card bg-white rounded-xl shadow-md overflow-hidden transition-all cursor-pointer" onclick="showProperties('rental')">
+        <div class="h-48 bg-red-100 flex items-center justify-center">
+          <i class="fas fa-key text-red-600 text-6xl"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Rentals</h3>
+          <p class="text-gray-600">Properties available for short or long term rental</p>
+          <div class="mt-4 flex justify-between items-center">
+            <span class="text-sm text-gray-500">32 properties</span>
+            <button class="text-red-600 hover:text-red-800">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Properties Section (Hidden by default) -->
+  <section id="properties-section" class="hidden">
+    <div class="flex justify-between items-center mb-8">
+      <button onclick="showCategories()" class="flex items-center text-blue-600 hover:text-blue-800">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Categories
+      </button>
+      <div class="flex space-x-2">
+        <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all">
+          <i class="fas fa-filter mr-2"></i> Filter
+        </button>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">
+          <i class="fas fa-sort mr-2"></i> Sort
+        </button>
+      </div>
+    </div>
+
+    <h2 id="properties-title" class="text-2xl font-bold text-gray-800 mb-8"></h2>
+
+    <div id="properties-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Properties will be loaded here by JavaScript -->
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Prime Properties</h3>
+        <p class="text-gray-400">Finding your dream home since 2005. We offer the best properties at competitive prices.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white transition-all">Home</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-all">Properties</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-all">Agents</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-all">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Contact Us</h4>
+        <ul class="space-y-2">
+          <li class="flex items-center text-gray-400">
+            <i class="fas fa-map-marker-alt mr-2"></i> 123 Property St, New York
+          </li>
+          <li class="flex items-center text-gray-400">
+            <i class="fas fa-phone mr-2"></i> (123) 456-7890
+          </li>
+          <li class="flex items-center text-gray-400">
+            <i class="fas fa-envelope mr-2"></i> info@primeproperties.com
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Newsletter</h4>
+        <p class="text-gray-400 mb-4">Subscribe to get updates on new properties.</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg w-full text-gray-800">
+          <button class="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-all">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; 2023 Prime Properties. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sample property data
+  const properties = {
+    residential: [
+      {
+        id: 1,
+        title: "Modern Family Home",
+        price: "$450,000",
+        location: "Suburban Neighborhood",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2200,
+        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        featured: true
+      },
+      {
+        id: 2,
+        title: "Downtown Apartment",
+        price: "$320,000",
+        location: "City Center",
+        beds: 2,
+        baths: 1,
+        sqft: 1200,
+        image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      },
+      {
+        id: 3,
+        title: "Cozy Suburban House",
+        price: "$275,000",
+        location: "Quiet Suburb",
+        beds: 3,
+        baths: 2,
+        sqft: 1800,
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      }
+    ],
+    commercial: [
+      {
+        id: 4,
+        title: "Office Space Downtown",
+        price: "$1,200,000",
+        location: "Business District",
+        sqft: 5000,
+        image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80",
+        featured: true
+      },
+      {
+        id: 5,
+        title: "Retail Storefront",
+        price: "$750,000",
+        location: "Shopping Area",
+        sqft: 2500,
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      }
+    ],
+    vacation: [
+      {
+        id: 6,
+        title: "Beachfront Villa",
+        price: "$1,800,000",
+        location: "Coastal Area",
+        beds: 5,
+        baths: 4,
+        sqft: 3500,
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        featured: true
+      },
+      {
+        id: 7,
+        title: "Mountain Cabin",
+        price: "$650,000",
+        location: "Wooded Area",
+        beds: 3,
+        baths: 2,
+        sqft: 1800,
+        image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      }
+    ],
+    luxury: [
+      {
+        id: 8,
+        title: "Waterfront Mansion",
+        price: "$5,200,000",
+        location: "Exclusive Area",
+        beds: 6,
+        baths: 5.5,
+        sqft: 8500,
+        image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        featured: true
+      },
+      {
+        id: 9,
+        title: "Penthouse Suite",
+        price: "$3,750,000",
+        location: "Downtown Highrise",
+        beds: 4,
+        baths: 3.5,
+        sqft: 4500,
+        image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      }
+    ],
+    land: [
+      {
+        id: 10,
+        title: "10 Acre Plot",
+        price: "$350,000",
+        location: "Rural Area",
+        acres: 10,
+        image: "https://images.unsplash.com/photo-1500382018108-a2c6d6014ce6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
+        featured: true
+      },
+      {
+        id: 11,
+        title: "Subdivision Lot",
+        price: "$85,000",
+        location: "Developing Area",
+        acres: 0.5,
+        image: "https://images.unsplash.com/photo-1500382018108-a2c6d6014ce6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80"
+      }
+    ],
+    rental: [
+      {
+        id: 12,
+        title: "Downtown Loft",
+        price: "$2,500/month",
+        location: "Arts District",
+        beds: 1,
+        baths: 1,
+        sqft: 950,
+        image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        featured: true
+      },
+      {
+        id: 13,
+        title: "Suburban House",
+        price: "$1,800/month",
+        location: "Family Neighborhood",
+        beds: 3,
+        baths: 2,
+        sqft: 1600,
+        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      }
+    ]
+  };
+
+  // Category titles
+  const categoryTitles = {
+    residential: "Residential Properties",
+    commercial: "Commercial Properties",
+    vacation: "Vacation Homes",
+    luxury: "Luxury Estates",
+    land: "Land Plots",
+    rental: "Rental Properties"
+  };
+
+  // Show properties for a specific category
+  function showProperties(category) {
+    document.getElementById('categories-section').classList.add('hidden');
+    document.getElementById('properties-section').classList.remove('hidden');
+
+    // Set the title
+    document.getElementById('properties-title').textContent = categoryTitles[category];
+
+    // Clear previous properties
+    const container = document.getElementById('properties-container');
+    container.innerHTML = '';
+
+    // Add properties
+    properties[category].forEach(property => {
+      const propertyCard = document.createElement('div');
+      propertyCard.className = 'property-card bg-white rounded-xl shadow-md overflow-hidden transition-all';
+
+      let propertyHtml = `
+                    <div class="h-48 overflow-hidden">
+                        <img src="${property.image}" alt="${property.title}" class="w-full h-full object-cover">
+                        ${property.featured ? '<div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-semibold">Featured</div>' : ''}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-gray-800">${property.title}</h3>
+                            <span class="text-lg font-bold text-blue-600">${property.price}</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i> ${property.location}
+                        </p>
+                        <div class="flex justify-between border-t border-gray-200 pt-4">
+                `;
+
+      if (property.beds) {
+        propertyHtml += `
+                        <span class="text-gray-600 flex items-center">
+                            <i class="fas fa-bed mr-2 text-gray-400"></i> ${property.beds} Beds
+                        </span>
+                    `;
+      }
+
+      if (property.baths) {
+        propertyHtml += `
+                        <span class="text-gray-600 flex items-center">
+                            <i class="fas fa-bath mr-2 text-gray-400"></i> ${property.baths} Baths
+                        </span>
+                    `;
+      }
+
+      if (property.sqft) {
+        propertyHtml += `
+                        <span class="text-gray-600 flex items-center">
+                            <i class="fas fa-ruler-combined mr-2 text-gray-400"></i> ${property.sqft} sqft
+                        </span>
+                    `;
+      }
+
+      if (property.acres) {
+        propertyHtml += `
+                        <span class="text-gray-600 flex items-center">
+                            <i class="fas fa-mountain mr-2 text-gray-400"></i> ${property.acres} acres
+                        </span>
+                    `;
+      }
+
+      propertyHtml += `
+                        </div>
+                        <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all">
+                            View Details
+                        </button>
+                    </div>
+                `;
+
+      propertyCard.innerHTML = propertyHtml;
+      container.appendChild(propertyCard);
+    });
+  }
+
+  // Show categories view
+  function showCategories() {
+    document.getElementById('categories-section').classList.remove('hidden');
+    document.getElementById('properties-section').classList.add('hidden');
+  }
+</script>
+</body>
+</html>
