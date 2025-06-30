@@ -77,6 +77,36 @@
     .delay-300 {
       animation-delay: 0.3s;
     }
+
+    /* Modal styles */
+    .modal-open {
+      overflow: hidden;
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Search results modal */
+    #searchResultsModal {
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -144,38 +174,47 @@
   <div class="search-box absolute -bottom-12 left-0 right-0 mx-auto w-11/12 md:w-3/4 lg:w-2/3 p-6 rounded-lg shadow-xl animate-fade-in delay-300">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <div>
-        <label class="block text-gray-700 text-sm font-bold mb-2">Location</label>
-        <select class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Locations</option>
-          <option>Downtown</option>
-          <option>Suburbs</option>
-          <option>Waterfront</option>
-          <option>Countryside</option>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Ubicación</label>
+        <select id="searchLocation" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">Todas las ubicaciones</option>
+          <option value="San Salvador">San Salvador</option>
+          <option value="Santa Elena">Santa Elena</option>
+          <option value="Santa Tecla">Santa Tecla</option>
+          <option value="Col. Maquilishuat">Col. Maquilishuat</option>
+          <option value="Col. Escalón">Col. Escalón</option>
+          <option value="Centro Histórico">Centro Histórico</option>
+          <option value="Sonsonate">Sonsonate</option>
+          <option value="Zona Premium">Zona Premium</option>
         </select>
       </div>
       <div>
-        <label class="block text-gray-700 text-sm font-bold mb-2">Property Type</label>
-        <select class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Types</option>
-          <option>Apartment</option>
-          <option>House</option>
-          <option>Villa</option>
-          <option>Commercial</option>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de Propiedad</label>
+        <select id="searchType" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">Todos los tipos</option>
+          <option value="Casa">Casa</option>
+          <option value="Apartamento">Apartamento</option>
+          <option value="Oficina">Oficina</option>
+          <option value="Edificio">Edificio</option>
+          <option value="Local">Local Comercial</option>
+          <option value="Terreno">Terreno</option>
+          <option value="Finca">Finca</option>
         </select>
       </div>
       <div>
-        <label class="block text-gray-700 text-sm font-bold mb-2">Price Range</label>
-        <select class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>Any Price</option>
-          <option>$100k - $300k</option>
-          <option>$300k - $600k</option>
-          <option>$600k - $1M</option>
-          <option>$1M+</option>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Rango de Precio</label>
+        <select id="searchPrice" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">Cualquier precio</option>
+          <option value="0-200000">$0 - $200,000</option>
+          <option value="200000-400000">$200,000 - $400,000</option>
+          <option value="400000-600000">$400,000 - $600,000</option>
+          <option value="600000-1000000">$600,000 - $1,000,000</option>
+          <option value="1000000+">$1,000,000+</option>
+          <option value="rent">Solo Alquiler</option>
         </select>
       </div>
       <div class="flex items-end">
-        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-          Search <i class="fas fa-search ml-2"></i>
+        <button onclick="searchProperties()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+          Buscar <i class="fas fa-search ml-2"></i>
         </button>
       </div>
     </div>
@@ -191,71 +230,71 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Property 1 -->
+      <!-- Inmueble en Col. Maquilishuat -->
       <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern House" class="w-full h-64 object-cover">
-          <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">For Sale</div>
-          <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$850,000</div>
+          <img src="img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg" alt="Inmueble en Col. Maquilishuat" class="w-full h-64 object-cover">
+          <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">En Venta</div>
+          <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$1,200,000</div>
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Modern Luxury Villa</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Inmueble en Col. Maquilishuat</h3>
           <p class="text-gray-600 mb-4 flex items-center">
-            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 123 Palm Avenue, Miami
+            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> Col. Maquilishuat, San Salvador
           </p>
           <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-4">
-            <span class="flex items-center"><i class="fas fa-bed text-blue-500 mr-1"></i> 4 Beds</span>
-            <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> 3 Baths</span>
-            <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 3200 sqft</span>
+            <span class="flex items-center"><i class="fas fa-home text-blue-500 mr-1"></i> 2 casas + 2 aptos</span>
+            <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> Múltiples</span>
+            <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 1,638.95v²</span>
           </div>
-          <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
-            View Details
+          <button onclick="openModal('casa-maquilishuat')" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+            Ver Detalles
           </button>
         </div>
       </div>
 
-      <!-- Property 2 -->
+      <!-- Apartamento en Residencial Privado -->
       <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Downtown Apartment" class="w-full h-64 object-cover">
-          <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">For Rent</div>
-          <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$3,200/mo</div>
+          <img src="img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg" alt="Apartamento en Residencial Privado" class="w-full h-64 object-cover">
+          <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">En Alquiler</div>
+          <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$1,200/mes</div>
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Downtown Luxury Apartment</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Apartamento en Residencial Privado</h3>
           <p class="text-gray-600 mb-4 flex items-center">
-            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 456 Urban Street, New York
+            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> Santa Elena
           </p>
           <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-4">
-            <span class="flex items-center"><i class="fas fa-bed text-blue-500 mr-1"></i> 2 Beds</span>
-            <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> 2 Baths</span>
-            <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 1200 sqft</span>
+            <span class="flex items-center"><i class="fas fa-bed text-blue-500 mr-1"></i> 3 Habitaciones</span>
+            <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> 2 Baños</span>
+            <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 85m²</span>
           </div>
-          <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
-            View Details
+          <button onclick="openModal('apartamento-santa-elena')" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+            Ver Detalles
           </button>
         </div>
       </div>
 
-      <!-- Property 3 -->
+      <!-- Inmueble Premium -->
       <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg">
         <div class="relative">
-          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Countryside Home" class="w-full h-64 object-cover">
-          <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">For Sale</div>
-          <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$650,000</div>
+          <img src="img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg" alt="Inmueble Premium" class="w-full h-64 object-cover">
+          <div class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">En Venta</div>
+          <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$2,300,000</div>
         </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Countryside Family Home</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Inmueble Premium sobre Paseo Escalón</h3>
           <p class="text-gray-600 mb-4 flex items-center">
-            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 789 Green Valley, Vermont
+            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> Paseo Escalón, San Salvador
           </p>
           <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-4">
-            <span class="flex items-center"><i class="fas fa-bed text-blue-500 mr-1"></i> 3 Beds</span>
-            <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> 2 Baths</span>
-            <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 2400 sqft</span>
+            <span class="flex items-center"><i class="fas fa-building text-blue-500 mr-1"></i> Comercial</span>
+            <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> Múltiples</span>
+            <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 1,569.44v²</span>
           </div>
-          <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
-            View Details
+          <button onclick="openModal('inmueble-premium')" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+            Ver Detalles
           </button>
         </div>
       </div>
@@ -266,6 +305,9 @@
         Mostrar todas las propiedades <i class="fas fa-arrow-right ml-2"></i>
       </a>
     </div>
+  </div>
+</section>
+
 <!-- Property Categories -->
 <section class="py-16 bg-white">
   <div class="container mx-auto px-4">
@@ -371,17 +413,17 @@
 <section id="testimonials" class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Client <span class="text-blue-500">Testimonials</span></h2>
-      <p class="text-gray-600 max-w-2xl mx-auto">Hear what our clients say about their experience working with us</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Testimonios de <span class="text-blue-500">Nuestros Clientes</span></h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Escucha lo que nuestros clientes dicen sobre su experiencia trabajando con nosotros</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Testimonial 1 -->
       <div class="testimonial-card bg-gray-50 p-8 rounded-xl">
         <div class="flex items-center mb-6">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <h4 class="font-semibold text-gray-800">Michael Thompson</h4>
+            <h4 class="font-semibold text-gray-800">Carlos Mendoza</h4>
             <div class="flex text-yellow-400 text-sm">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -392,16 +434,16 @@
           </div>
         </div>
         <p class="text-gray-600 italic">
-          "Sarah made the entire home buying process seamless. Her attention to detail and negotiation skills got us our dream home at a great price. Highly recommend her services!"
+          "Evelyn hizo que todo el proceso de compra de mi casa fuera muy sencillo. Su atención al detalle y habilidades de negociación nos consiguieron nuestra casa soñada a un excelente precio. ¡Altamente recomendados!"
         </p>
       </div>
 
       <!-- Testimonial 2 -->
       <div class="testimonial-card bg-gray-50 p-8 rounded-xl">
         <div class="flex items-center mb-6">
-          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <h4 class="font-semibold text-gray-800">Jennifer Lopez</h4>
+            <h4 class="font-semibold text-gray-800">María Elena Rodríguez</h4>
             <div class="flex text-yellow-400 text-sm">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -412,16 +454,16 @@
           </div>
         </div>
         <p class="text-gray-600 italic">
-          "As a first-time home buyer, I was nervous about the process. Sarah patiently guided me through every step and found me the perfect condo in my budget. Couldn't be happier!"
+          "Como compradora primeriza, estaba nerviosa por el proceso. Evelyn me guió pacientemente en cada paso y encontró el apartamento perfecto dentro de mi presupuesto. ¡No podría estar más feliz!"
         </p>
       </div>
 
       <!-- Testimonial 3 -->
       <div class="testimonial-card bg-gray-50 p-8 rounded-xl">
         <div class="flex items-center mb-6">
-          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <h4 class="font-semibold text-gray-800">Robert Chen</h4>
+            <h4 class="font-semibold text-gray-800">Roberto Chinchilla</h4>
             <div class="flex text-yellow-400 text-sm">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -432,7 +474,7 @@
           </div>
         </div>
         <p class="text-gray-600 italic">
-          "We worked with Sarah to sell our family home and purchase a new one. Her market knowledge and professionalism resulted in a quick sale above asking price. Exceptional service!"
+          "Trabajamos con Evelyn para vender nuestra casa familiar y comprar una nueva. Su conocimiento del mercado y profesionalismo resultaron en una venta rápida por encima del precio solicitado. ¡Servicio excepcional!"
         </p>
       </div>
     </div>
@@ -445,54 +487,54 @@
     <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
       <div class="md:flex">
         <div class="md:w-1/2 bg-blue-500 text-white p-12">
-          <h2 class="text-3xl font-bold mb-6"></h2>
+          <h2 class="text-3xl font-bold mb-6">¿Listo para encontrar tu propiedad ideal?</h2>
           <p class="mb-8">
-            Ready to start your property journey? Contact us today for a free consultation.
+            Contáctanos hoy para una consulta gratuita y descubre cómo podemos ayudarte a encontrar el inmueble perfecto.
           </p>
           <div class="mb-6 flex items-center">
             <i class="fas fa-phone-alt mr-4 text-xl"></i>
             <div>
-              <h4 class="font-semibold">Phone</h4>
-              <p>(555) 123-4567</p>
+              <h4 class="font-semibold">Teléfono</h4>
+              <p>(503) 7870-2954</p>
             </div>
           </div>
           <div class="mb-6 flex items-center">
             <i class="fas fa-envelope mr-4 text-xl"></i>
             <div>
-              <h4 class="font-semibold">Email</h4>
-              <p>sarah@horizonrealty.com</p>
+              <h4 class="font-semibold">Correo Electrónico</h4>
+              <p>info@grupoimnova.com</p>
             </div>
           </div>
           <div class="flex items-center">
             <i class="fas fa-map-marker-alt mr-4 text-xl"></i>
             <div>
-              <h4 class="font-semibold">Office</h4>
-              <p>123 Main Street, Suite 400<br>New York, NY 10001</p>
+              <h4 class="font-semibold">Oficina</h4>
+              <p>Av. Las Palmas #123, Col. San Benito<br>San Salvador, El Salvador</p>
             </div>
           </div>
         </div>
 
         <div class="md:w-1/2 p-12">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Envíanos un Mensaje</h3>
           <form>
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
-              <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="name" type="text" placeholder="Your Name">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nombre</label>
+              <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="name" type="text" placeholder="Tu Nombre">
             </div>
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-              <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" type="email" placeholder="Your Email">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Correo Electrónico</label>
+              <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" type="email" placeholder="Tu Correo">
             </div>
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Phone</label>
-              <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="phone" type="tel" placeholder="Your Phone">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Teléfono</label>
+              <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="phone" type="tel" placeholder="Tu Teléfono">
             </div>
             <div class="mb-6">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
-              <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="message" rows="4" placeholder="How can we help you?"></textarea>
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Mensaje</label>
+              <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="message" rows="4" placeholder="¿Cómo podemos ayudarte?"></textarea>
             </div>
             <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-              Send Message <i class="fas fa-paper-plane ml-2"></i>
+              Enviar Mensaje <i class="fas fa-paper-plane ml-2"></i>
             </button>
           </form>
         </div>
@@ -504,12 +546,12 @@
 <!-- Newsletter -->
 <section class="py-16 bg-blue-500 text-white">
   <div class="container mx-auto px-4 text-center">
-    <h2 class="text-2xl md:text-3xl font-bold mb-4">Stay Updated With Our Latest Listings</h2>
-    <p class="max-w-2xl mx-auto mb-8">Subscribe to our newsletter for exclusive property updates and market insights</p>
+    <h2 class="text-2xl md:text-3xl font-bold mb-4">Mantente Actualizado con Nuestras Últimas Propiedades</h2>
+    <p class="max-w-2xl mx-auto mb-8">Suscríbete a nuestro newsletter para recibir actualizaciones exclusivas de propiedades e información del mercado</p>
     <div class="max-w-md mx-auto flex">
-      <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800">
+      <input type="email" placeholder="Tu dirección de correo" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800">
       <button class="bg-blue-700 hover:bg-blue-800 px-6 py-3 rounded-r-lg font-medium transition duration-300">
-        Subscribe
+        Suscribirse
       </button>
     </div>
   </div>
@@ -590,6 +632,25 @@
   </div>
 </footer>
 
+<!-- Property Modal -->
+<div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+  <div class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-4">
+          <h2 id="modalTitle" class="text-2xl font-bold text-gray-900"></h2>
+          <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="modalContent">
+          <!-- Content will be dynamically loaded -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   // Mobile menu toggle
@@ -644,6 +705,463 @@
   document.addEventListener("click", function (e) {
     if (!container.contains(e.target)) {
       menu.classList.add("hidden");
+    }
+  });
+</script>
+
+<script>
+  // Property data for featured properties
+  const featuredProperties = {
+    'casa-maquilishuat': {
+      title: 'Inmueble en Col. Maquilishuat',
+      price: '$1,200,000',
+      location: 'Col. Maquilishuat, San Salvador',
+      bedrooms: '2 casas + 2 aptos',
+      bathrooms: 'Múltiples',
+      area: '1,638.95v²',
+      description: 'Inmueble en venta en Col. Maquilishuat con 1,638.95v² y 25 metros de frente. Consta de 2 casas y 2 apartamentos adentro alquilados. Zona tranquila, cerca del parque. Excelente para complejo habitacional o townhouses. Precio según valúo, negociable.',
+      features: [
+        '1,638.95v² de terreno',
+        '25 metros de frente',
+        '2 casas habitacionales',
+        '2 apartamentos alquilados',
+        'Zona tranquila y segura',
+        'Cerca del parque',
+        'Ideal para complejo habitacional',
+        'Perfecto para townhouses',
+        'Ingresos por alquileres actuales'
+      ],
+      images: [
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0024.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0025.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0026.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0027.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0028.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0029.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0030.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0031.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0032.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0033.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0034.jpg',
+        'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0035.jpg'
+      ]
+    },
+    'apartamento-santa-elena': {
+      title: 'Apartamento en Residencial Privado Santa Elena',
+      price: '$1,200/mes',
+      location: 'Santa Elena',
+      bedrooms: '3',
+      bathrooms: '2',
+      area: '85m²',
+      description: 'Lindo apartamento en alquiler en residencial privado en Santa Elena, construido adyacente a residencia con su entrada privada. Incluye vigilancia y servicio de agua.',
+      features: [
+        'Cochera eléctrica para un vehículo',
+        '3 habitaciones (2 junior comparten baño)',
+        'Aires acondicionados en todas las habitaciones',
+        'Cocina/comedor con línea blanca',
+        'Cortinas black out',
+        'Residencial con vigilancia 24/7',
+        'Parque privado en residencial',
+        'Cerca de supermercados, restaurantes, farmacias',
+        'Zona segura y tranquila',
+        'Incluye vigilancia y servicio de agua'
+      ],
+      images: [
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0064.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0065.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0066.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0068.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0069.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0070.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0071.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0072.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0073.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0074.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0075.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0076.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0077.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0078.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0079.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0080.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0081.jpg'
+      ]
+    },
+    'inmueble-premium': {
+      title: 'Inmueble Premium sobre Paseo Escalón',
+      price: '$2,300,000',
+      location: 'Paseo Escalón, San Salvador',
+      bedrooms: 'N/A',
+      bathrooms: 'Múltiples',
+      area: '1,569.44v²',
+      description: 'Inmueble Premium sobre el Paseo Escalón, parte alta, zona de gran movimiento comercial y alta plusvalía. Con 1,569.44v² y 1,070.04m² construidos. Excelente para restaurante, bancos u otros usos comerciales.',
+      features: [
+        '1,569.44v² de terreno',
+        '1,070.04m² construidos',
+        'Amplios salones de usos múltiples',
+        'Excelente para restaurante, bancos u otros usos comerciales',
+        'Parqueo sin techo para más de 20 carros',
+        'Ubicación premium sobre Paseo Escalón',
+        'Alta plusvalía',
+        'Gran movimiento comercial',
+        'Precio negociable'
+      ],
+      images: [
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0093.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0094.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0095.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0096.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0097.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0098.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0099.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0100.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0101.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0106.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0108.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0109.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0110.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0111.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0112.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0113.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0114.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0115.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0116.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0117.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0118.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0119.jpg'
+      ]
+    }
+  };
+
+  // All properties data for search functionality
+  const allProperties = [
+    {
+      id: 'casa-maquilishuat',
+      title: 'Inmueble en Col. Maquilishuat',
+      price: 1200000,
+      priceDisplay: '$1,200,000',
+      location: 'Col. Maquilishuat',
+      type: 'Casa',
+      bedrooms: 4,
+      bathrooms: 4,
+      area: '1,638.95v²',
+      image: 'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg',
+      page: 'casas.html'
+    },
+    {
+      id: 'apartamento-santa-elena',
+      title: 'Apartamento en Residencial Privado Santa Elena',
+      price: 0,
+      priceDisplay: '$1,200/mes',
+      location: 'Santa Elena',
+      type: 'Apartamento',
+      bedrooms: 3,
+      bathrooms: 2,
+      area: '85m²',
+      image: 'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg',
+      page: 'apartamentos.html',
+      isRent: true
+    },
+    {
+      id: 'inmueble-premium',
+      title: 'Inmueble Premium sobre Paseo Escalón',
+      price: 2300000,
+      priceDisplay: '$2,300,000',
+      location: 'Paseo Escalón',
+      type: 'Oficina',
+      bedrooms: 0,
+      bathrooms: 0,
+      area: '1,569.44v²',
+      image: 'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg',
+      page: 'oficinas.html'
+    },
+    {
+      id: 'casa-moderna-rabida',
+      title: 'Casa Habitacional Col. La Rábida',
+      price: 350000,
+      priceDisplay: '$350,000',
+      location: 'Col. La Rábida, San Salvador',
+      type: 'Casa',
+      bedrooms: 8,
+      bathrooms: 8,
+      area: '222m²',
+      image: 'img/propiedades/moderna casa habitacional/img/IMG-20250628-WA0036.jpg',
+      page: 'casas.html'
+    },
+    {
+      id: 'finca-cafe-santiago',
+      title: 'Finca de Café Santiago de María',
+      price: 525000,
+      priceDisplay: '$525,000',
+      location: 'Santiago de María',
+      type: 'Finca',
+      bedrooms: 0,
+      bathrooms: 0,
+      area: '106 manzanas',
+      image: 'img/propiedades/finca de café/img/IMG-20250628-WA0027.jpg',
+      page: 'casas.html'
+    },
+    {
+      id: 'terreno-escalon-carmen',
+      title: 'Terreno en Col. Escalón - Cantón El Carmen',
+      price: 1065000,
+      priceDisplay: '$1,065,000',
+      location: 'Col. Escalón',
+      type: 'Terreno',
+      bedrooms: 0,
+      bathrooms: 0,
+      area: '2,972.75m²',
+      image: 'img/propiedades/terreno en Col. Escalón, ubicado en Cantón El Carmen/img/IMG-20250628-WA0091.jpg',
+      page: 'casas.html'
+    },
+    {
+      id: 'local-antiguo-cuscatlan',
+      title: 'Local Comercial Antiguo Cuscatlán',
+      price: 0,
+      priceDisplay: '$850/mes',
+      location: 'Antiguo Cuscatlán',
+      type: 'Local',
+      bedrooms: 0,
+      bathrooms: 1,
+      area: '30m²',
+      image: 'img/propiedades/Local disponibles para alquiler/img/IMG-20250628-WA0120.jpg',
+      page: 'oficinas.html',
+      isRent: true
+    },
+    {
+      id: 'edificio-centro-historico',
+      title: 'Edificio Centro Histórico San Salvador',
+      price: 1200000,
+      priceDisplay: '$1,200,000',
+      location: 'Centro Histórico',
+      type: 'Edificio',
+      bedrooms: 0,
+      bathrooms: 0,
+      area: '189.80m²',
+      image: 'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0082.jpg',
+      page: 'edificios.html'
+    },
+    {
+      id: 'edificio-sonsonate',
+      title: 'Edificio de 3 Niveles Sonsonate',
+      price: 0,
+      priceDisplay: '$8,000/mes',
+      location: 'Sonsonate',
+      type: 'Edificio',
+      bedrooms: 0,
+      bathrooms: 0,
+      area: '348.47v²',
+      image: 'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0125.jpg',
+      page: 'edificios.html',
+      isRent: true
+    }
+  ];
+
+  function openModal(propertyId) {
+    const property = featuredProperties[propertyId];
+    if (!property) return;
+
+    document.getElementById('modalTitle').textContent = property.title;
+    
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = `
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+          <img src="${property.images[0]}" alt="${property.title}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <div class="image-gallery grid grid-cols-4 gap-2">
+            ${property.images.slice(1, 5).map(img => `
+              <img src="${img}" alt="${property.title}" class="w-full h-20 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" onclick="changeMainImage('${img}')">
+            `).join('')}
+          </div>
+        </div>
+        <div>
+          <div class="mb-4">
+            <h3 class="text-3xl font-bold text-blue-600 mb-2">${property.price}</h3>
+            <p class="text-gray-600 mb-4">
+              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>${property.location}
+            </p>
+            <div class="flex space-x-4 text-sm text-gray-600 mb-4">
+              <span><i class="fas fa-bed text-blue-500 mr-1"></i>${property.bedrooms} habitaciones</span>
+              <span><i class="fas fa-bath text-blue-500 mr-1"></i>${property.bathrooms} baños</span>
+              <span><i class="fas fa-vector-square text-blue-500 mr-1"></i>${property.area}</span>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-800 mb-2">Descripción</h4>
+            <p class="text-gray-600">${property.description}</p>
+          </div>
+          
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-800 mb-2">Características</h4>
+            <ul class="grid grid-cols-1 gap-2">
+              ${property.features.map(feature => `
+                <li class="flex items-center text-gray-600">
+                  <i class="fas fa-check text-green-500 mr-2"></i>${feature}
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          
+          <div class="flex space-x-4">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+              <i class="fas fa-phone mr-2"></i>Contactar
+            </button>
+            <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
+              <i class="fas fa-heart mr-2"></i>Favorito
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('propertyModal').classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    document.getElementById('propertyModal').classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  }
+
+  function changeMainImage(src) {
+    const mainImage = document.querySelector('#modalContent img');
+    if (mainImage) {
+      mainImage.src = src;
+    }
+  }
+
+  function searchProperties() {
+    const location = document.getElementById('searchLocation').value;
+    const type = document.getElementById('searchType').value;
+    const priceRange = document.getElementById('searchPrice').value;
+
+    // Filter properties based on search criteria
+    let filteredProperties = allProperties.filter(property => {
+      let matches = true;
+
+      // Location filter
+      if (location && property.location !== location) {
+        matches = false;
+      }
+
+      // Type filter
+      if (type && property.type !== type) {
+        matches = false;
+      }
+
+      // Price filter
+      if (priceRange) {
+        if (priceRange === 'rent') {
+          if (!property.isRent) {
+            matches = false;
+          }
+        } else {
+          const [min, max] = priceRange.split('-').map(Number);
+          if (property.isRent || property.price < min || (max && property.price > max)) {
+            matches = false;
+          }
+        }
+      }
+
+      return matches;
+    });
+
+    // Show search results
+    showSearchResults(filteredProperties);
+  }
+
+  function showSearchResults(properties) {
+    // Create a modal to show search results
+    const modalContent = `
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">Resultados de Búsqueda (${properties.length})</h2>
+          <button onclick="closeSearchResults()" class="text-gray-400 hover:text-gray-600 text-2xl">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        ${properties.length === 0 ? 
+          '<p class="text-gray-600 text-center py-8">No se encontraron propiedades que coincidan con tus criterios de búsqueda.</p>' :
+          `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${properties.map(property => `
+              <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="${property.image}" alt="${property.title}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-2">${property.title}</h3>
+                  <p class="text-blue-600 font-semibold mb-2">${property.priceDisplay}</p>
+                  <p class="text-gray-600 text-sm mb-2">
+                    <i class="fas fa-map-marker-alt text-blue-500 mr-1"></i>${property.location}
+                  </p>
+                  <div class="flex justify-between text-sm text-gray-500 mb-3">
+                    <span><i class="fas fa-bed text-blue-500 mr-1"></i>${property.bedrooms}</span>
+                    <span><i class="fas fa-bath text-blue-500 mr-1"></i>${property.bathrooms}</span>
+                    <span><i class="fas fa-vector-square text-blue-500 mr-1"></i>${property.area}</span>
+                  </div>
+                  <div class="flex space-x-2">
+                    <button onclick="openModal('${property.id}')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded transition duration-300">
+                      Ver Detalles
+                    </button>
+                    <a href="${property.page}" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm py-2 px-3 rounded text-center transition duration-300">
+                      Ver Más
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>`
+        }
+      </div>
+    `;
+
+    // Create or update search results modal
+    let searchModal = document.getElementById('searchResultsModal');
+    if (!searchModal) {
+      searchModal = document.createElement('div');
+      searchModal.id = 'searchResultsModal';
+      searchModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+      document.body.appendChild(searchModal);
+    }
+
+    searchModal.innerHTML = `
+      <div class="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+        ${modalContent}
+      </div>
+    `;
+    
+    searchModal.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeSearchResults() {
+    const searchModal = document.getElementById('searchResultsModal');
+    if (searchModal) {
+      searchModal.classList.add('hidden');
+    }
+    document.body.classList.remove('modal-open');
+  }
+
+  // Close modals when clicking outside
+  document.addEventListener('click', function(e) {
+    const propertyModal = document.getElementById('propertyModal');
+    const searchModal = document.getElementById('searchResultsModal');
+    
+    if (e.target === propertyModal) {
+      closeModal();
+    }
+    if (e.target === searchModal) {
+      closeSearchResults();
+    }
+  });
+
+  // Close modals with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeSearchResults();
     }
   });
 </script>
