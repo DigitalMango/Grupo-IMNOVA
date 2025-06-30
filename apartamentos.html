@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link id="dynamic-favicon" rel="icon" type="image/gif" href="img/favicon/houser.gif">
-  <title>Grupo IMNOVA</title>
+  <title>Apartamentos - Grupo IMNOVA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -20,6 +20,23 @@
     }
     .modal-open {
       overflow: hidden;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery-image:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -39,17 +56,17 @@
 
         <div class="relative" id="dropdown-container">
           <button id="dropdown-toggle" class="nav-link text-gray-700 hover:text-blue-500 font-medium flex items-center gap-1 focus:outline-none">
-            Properties
+            Propiedades
             <i class="fas fa-chevron-down text-xs mt-[2px]"></i>
           </button>
           <div
             id="dropdown-menu"
             class="hidden absolute top-full right-0 mt-1 w-48 bg-white shadow-lg rounded-md z-50"
           >
-            <a href=casas.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Casas</a>
-            <a href=apartamentos.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Apartamentos</a>
-            <a href=oficinas.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Oficinas</a>
-            <a href=edificios.html class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Edificios</a>
+            <a href="casas.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Casas</a>
+            <a href="apartamentos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Apartamentos</a>
+            <a href="oficinas.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Oficinas</a>
+            <a href="edificios.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Edificios</a>
           </div>
         </div>
 
@@ -70,8 +87,8 @@
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <!-- Page Header -->
   <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Premium Appartments for Sale</h1>
-    <p class="text-gray-600">Discover your dream home from our curated collection of luxury properties</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Apartamentos Disponibles</h1>
+    <p class="text-gray-600">Descubre tu apartamento ideal en las mejores ubicaciones de El Salvador</p>
   </div>
 
   <!-- Filters -->
@@ -79,84 +96,110 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <!-- Location Filter -->
       <div>
-        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Ubicación</label>
         <select id="location" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>All Locations</option>
-          <option>New York</option>
-          <option>Los Angeles</option>
-          <option>Chicago</option>
-          <option>Miami</option>
-          <option>San Francisco</option>
+          <option>Todas las ubicaciones</option>
+          <option>Santa Elena</option>
+          <option>San Salvador</option>
+          <option>Santa Tecla</option>
+          <option>Antiguo Cuscatlán</option>
         </select>
       </div>
 
       <!-- Price Filter -->
       <div>
-        <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+        <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Rango de Precio</label>
         <select id="price" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>Any Price</option>
-          <option>$0 - $500,000</option>
-          <option>$500,000 - $1M</option>
-          <option>$1M - $2M</option>
-          <option>$2M+</option>
+          <option>Cualquier precio</option>
+          <option>$0 - $200,000</option>
+          <option>$200,000 - $400,000</option>
+          <option>$400,000 - $600,000</option>
+          <option>$600,000+</option>
         </select>
       </div>
 
       <!-- Bedrooms Filter -->
       <div>
-        <label for="bedrooms" class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+        <label for="bedrooms" class="block text-sm font-medium text-gray-700 mb-1">Habitaciones</label>
         <select id="bedrooms" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>Any</option>
+          <option>Cualquiera</option>
           <option>1+</option>
           <option>2+</option>
           <option>3+</option>
           <option>4+</option>
-          <option>5+</option>
         </select>
       </div>
 
       <!-- Property Type -->
       <div>
-        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Propiedad</label>
         <select id="type" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>All Types</option>
-          <option>House</option>
-          <option>Apartment</option>
-          <option>Condo</option>
-          <option>Townhouse</option>
-          <option>Villa</option>
+          <option>Todos los tipos</option>
+          <option>Apartamento</option>
+          <option>Penthouse</option>
+          <option>Estudio</option>
         </select>
       </div>
     </div>
     <div class="mt-4 flex justify-end">
       <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-        Apply Filters
+        Aplicar Filtros
       </button>
     </div>
   </div>
 
   <!-- Property Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Property 1 -->
+    <!-- Apartamento en Residencial Privado Santa Elena -->
     <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
       <div class="relative">
-        <img src="img/propiedades/apartamentos/apartamento1/img6.jpg" alt="Apartamento Lujoso" class="w-full h-64 object-cover">
+        <img src="img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg" alt="Apartamento en Residencial Privado Santa Elena" class="w-full h-64 object-cover">
         <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('modern-villa')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+          <button onclick="openModal('apartamento-santa-elena')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
             Ver detalles
           </button>
         </div>
-        <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full"> <!-- badge -->
-        NUEVO  
+        <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          NUEVO
         </div>
       </div>
       <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">Apartamento Lujoso</h3>
-        <p class="text-blue-600 font-semibold mb-2">$2300</p>
-        <p class="text-gray-600 text-sm mb-4">Sepa, Judas | 3 habitaciones | 2 baños? | 20m<sup>2</sup></p>
-        <p class="text-gray-500 text-sm">Stunning contemporary villa with panoramic city views, infinity pool, and smart home technology throughout.</p>
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Apartamento en Residencial Privado</h3>
+        <p class="text-blue-600 font-semibold mb-2">$1,200/mes</p>
+        <p class="text-gray-600 text-sm mb-4">Santa Elena | 3 habitaciones | 2 baños | 85m²</p>
+        <p class="text-gray-500 text-sm">Lindo apartamento en alquiler en residencial privado en Santa Elena, construido adyacente a residencia con su entrada privada. Incluye vigilancia y servicio de agua.</p>
         <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('modern-villa')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+          <button onclick="openModal('apartamento-santa-elena')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            Más detalles <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apartamento Premium -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg" alt="Apartamento Premium" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('apartamento-premium')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            Ver detalles
+          </button>
+        </div>
+        <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          DISPONIBLE
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Apartamento Premium</h3>
+        <p class="text-blue-600 font-semibold mb-2">$220,000</p>
+        <p class="text-gray-600 text-sm mb-4">San Salvador | 3 habitaciones | 2.5 baños | 120m²</p>
+        <p class="text-gray-500 text-sm">Apartamento de lujo con acabados premium, vista panorámica y amenidades de primera clase. Ubicado en zona exclusiva de San Salvador.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('apartamento-premium')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
             Más detalles <i class="fas fa-arrow-right ml-1"></i>
           </button>
           <div class="flex items-center text-yellow-400">
@@ -167,135 +210,27 @@
       </div>
     </div>
 
-    <!-- Property 2 -->
+    <!-- Edificio Centro Histórico -->
     <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
       <div class="relative">
-        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Downtown penthouse" class="w-full h-64 object-cover">
+        <img src="img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0082.jpg" alt="Edificio Centro Histórico" class="w-full h-64 object-cover">
         <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('downtown-penthouse')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            View Details
+          <button onclick="openModal('edificio-centro-historico')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            Ver detalles
           </button>
+        </div>
+        <div class="absolute top-4 right-4 bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          EN VENTA
         </div>
       </div>
       <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">Downtown Penthouse</h3>
-        <p class="text-blue-600 font-semibold mb-2">$1,850,000</p>
-        <p class="text-gray-600 text-sm mb-4">New York, NY | 3 bed | 2.5 bath | 2,100 sqft</p>
-        <p class="text-gray-500 text-sm">Sophisticated penthouse with floor-to-ceiling windows, private terrace, and premium finishes in the heart of Manhattan.</p>
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Edificio Centro Histórico</h3>
+        <p class="text-blue-600 font-semibold mb-2">$150,000</p>
+        <p class="text-gray-600 text-sm mb-4">Centro Histórico | 2 habitaciones | 1 baño | 75m²</p>
+        <p class="text-gray-500 text-sm">Apartamento en edificio histórico del centro de la ciudad. Perfecto para inversión o vivienda, con excelente ubicación y potencial de renta.</p>
         <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('downtown-penthouse')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            More Details <i class="fas fa-arrow-right ml-1"></i>
-          </button>
-          <div class="flex items-center text-yellow-400">
-            <i class="fas fa-star"></i>
-            <span class="text-gray-600 ml-1 text-sm">4.7</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Property 3 -->
-    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Waterfront estate" class="w-full h-64 object-cover">
-        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('waterfront-estate')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            View Details
-          </button>
-        </div>
-        <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-          HOT
-        </div>
-      </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">Waterfront Estate</h3>
-        <p class="text-blue-600 font-semibold mb-2">$4,750,000</p>
-        <p class="text-gray-600 text-sm mb-4">Miami, FL | 6 bed | 5 bath | 5,800 sqft</p>
-        <p class="text-gray-500 text-sm">Exclusive waterfront property with private dock, infinity pool, and direct beach access in prestigious Coral Gables.</p>
-        <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('waterfront-estate')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            More Details <i class="fas fa-arrow-right ml-1"></i>
-          </button>
-          <div class="flex items-center text-yellow-400">
-            <i class="fas fa-star"></i>
-            <span class="text-gray-600 ml-1 text-sm">4.9</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Property 4 -->
-    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern townhouse" class="w-full h-64 object-cover">
-        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('modern-townhouse')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            View Details
-          </button>
-        </div>
-      </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">Modern Townhouse</h3>
-        <p class="text-blue-600 font-semibold mb-2">$1,250,000</p>
-        <p class="text-gray-600 text-sm mb-4">Chicago, IL | 3 bed | 2.5 bath | 2,400 sqft</p>
-        <p class="text-gray-500 text-sm">Chic urban townhouse with rooftop deck, smart home features, and premium finishes in Lincoln Park neighborhood.</p>
-        <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('modern-townhouse')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            More Details <i class="fas fa-arrow-right ml-1"></i>
-          </button>
-          <div class="flex items-center text-yellow-400">
-            <i class="fas fa-star"></i>
-            <span class="text-gray-600 ml-1 text-sm">4.5</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Property 5 -->
-    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hillside mansion" class="w-full h-64 object-cover">
-        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('hillside-mansion')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            View Details
-          </button>
-        </div>
-      </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">Hillside Mansion</h3>
-        <p class="text-blue-600 font-semibold mb-2">$5,200,000</p>
-        <p class="text-gray-600 text-sm mb-4">San Francisco, CA | 5 bed | 4.5 bath | 6,200 sqft</p>
-        <p class="text-gray-500 text-sm">Architectural masterpiece with sweeping bay views, wine cellar, home theater, and landscaped gardens.</p>
-        <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('hillside-mansion')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            More Details <i class="fas fa-arrow-right ml-1"></i>
-          </button>
-          <div class="flex items-center text-yellow-400">
-            <i class="fas fa-star"></i>
-            <span class="text-gray-600 ml-1 text-sm">5.0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Property 6 -->
-    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Luxury condo" class="w-full h-64 object-cover">
-        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('luxury-condo')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            View Details
-          </button>
-        </div>
-      </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">Luxury Condo</h3>
-        <p class="text-blue-600 font-semibold mb-2">$1,150,000</p>
-        <p class="text-gray-600 text-sm mb-4">Austin, TX | 2 bed | 2 bath | 1,800 sqft</p>
-        <p class="text-gray-500 text-sm">Sophisticated high-rise condo with resort-style amenities, fitness center, and panoramic downtown views.</p>
-        <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('luxury-condo')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            More Details <i class="fas fa-arrow-right ml-1"></i>
+          <button onclick="openModal('edificio-centro-historico')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            Más detalles <i class="fas fa-arrow-right ml-1"></i>
           </button>
           <div class="flex items-center text-yellow-400">
             <i class="fas fa-star"></i>
@@ -304,277 +239,305 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Pagination -->
-  <div class="mt-12 flex justify-center">
-    <nav class="flex items-center space-x-2">
-      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="px-3 py-1 rounded-md border border-blue-600 bg-blue-600 text-white">1</button>
-      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">2</button>
-      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</button>
-      <span class="px-2 text-gray-500">...</span>
-      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">8</button>
-      <button class="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </nav>
-  </div>
-</main>
-
-<!-- Apartamento1 Modal -->
-<div id="propertyModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
-  <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-    <!-- Background overlay -->
-    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-    </div>
-
-    <!-- Modal content -->
-    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        <div class="sm:flex sm:items-start">
-          <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-            <!-- Modal header -->
-            <div class="flex justify-between items-center border-b pb-4">
-              <h3 class="text-2xl font-bold text-gray-900" id="modalTitle">Apartamento Lujoso</h3>
-              <button onclick="closeModal()" class="text-gray-400 hover:text-gray-500">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="mt-4">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Property images -->
-                <div>
-                  <div class="relative h-64 rounded-lg overflow-hidden mb-4">
-                    <img id="modalMainImage" src="img/propiedades/apartamentos/apartamento1/img4.jpg" alt="Ha ocurrido un error al cargar la imagen" class="w-full h-full object-cover">
-                  </div>
-                  <div class="grid grid-cols-4 gap-2">
-                    <img src="img/propiedades/apartamentos/apartamento1/img3.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                    <img src="img/propiedades/apartamentos/apartamento1/img1.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                    <img src="img/propiedades/apartamentos/apartamento1/img5.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                    <img src="img/propiedades/apartamentos/apartamento1/img7.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                    <img src="img/propiedades/apartamentos/apartamento1/img2.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                    <img src="img/propiedades/apartamentos/apartamento1/img6.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                    <img src="img/propiedades/apartamentos/apartamento1/img8.jpg" alt="Thumbnail" class="h-16 object-cover cursor-pointer hover:opacity-75" onclick="changeMainImage(this)">
-                  </div>
-                </div>
-
-                <!-- Property details -->
-                <div>
-                  <div class="flex justify-between items-start mb-4">
-                    <div>
-                      <p class="text-blue-600 font-semibold text-xl" id="modalPrice">$2300</p>
-                      <p class="text-gray-600 text-sm" id="modalLocation">Soyacity, sufrcity</p>
-                    </div>
-                    <div class="flex items-center text-yellow-400">
-                      <i class="fas fa-star"></i>
-                      <span class="text-gray-600 ml-1 text-sm">4.9</span>
-                    </div>
-                  </div>
-
-                  <div class="grid grid-cols-3 gap-4 mb-6">
-                    <div class="bg-gray-50 p-3 rounded-lg text-center">
-                      <p class="text-gray-500 text-xs">Dormitorios</p>
-                      <p class="font-semibold" id="modalBedrooms">3</p>
-                    </div>
-                    <div class="bg-gray-50 p-3 rounded-lg text-center">
-                      <p class="text-gray-500 text-xs">Baños</p>
-                      <p class="font-semibold" id="modalBathrooms">2</p>
-                    </div>
-                    <div class="bg-gray-50 p-3 rounded-lg text-center">
-                      <p class="text-gray-500 text-xs">Metros Cuadrados</p>
-                      <p class="font-semibold" id="modalSqft">20</p>
-                    </div>
-                  </div>
-
-                  <div class="border-t pt-4">
-                    <h4 class="font-semibold text-gray-900 mb-2">Descripción</h4>
-                    <p class="text-gray-600 text-sm" id="modalDescription">
-                      Este apartamento destaca por su diseño moderno y funcional, con espacios luminosos y bien distribuidos. Cuenta con acabados de calidad como pisos de cerámica brillante, azulejos en tonos claros en el baño y una iluminación que resalta el estilo contemporáneo de cada área. Las zonas sociales están integradas, creando un ambiente acogedor y fluido, ideal para disfrutar en familia o con amigos.
-                    </p>
-                  </div>
-
-                  <div class="border-t pt-4 mt-4">
-                    <h4 class="font-semibold text-gray-900 mb-2">Caracteristicas</h4>
-                    <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                      <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span>Area de servicio completa</span>
-                      </div>
-                      <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span>Terraza</span>
-                      </div>
-                      <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span>Amenidades completas</span>
-                      </div>
-                      <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span>2do Nivel</span>
-                      </div>
-                      <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span>Completamente amueblada</span>
-                      </div>
-                      <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        <span>Buena iluminacion</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Map -->
-              <div class="mt-6 border-t pt-6">
-                <h4 class="font-semibold text-gray-900 mb-4">Location</h4>
-                <div class="bg-gray-200 h-48 rounded-lg flex items-center justify-center">
-                  <i class="fas fa-map-marked-alt text-3xl text-blue-600"></i>
-                  <span class="ml-2 text-gray-700">Map would display here</span>
-                </div>
-              </div>
-            </div>
+    <!-- Alquiler en Sonsonate -->
+    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+      <div class="relative">
+        <img src="img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0125.jpg" alt="Alquiler en Sonsonate" class="w-full h-64 object-cover">
+        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+          <button onclick="openModal('alquiler-sonsonate')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+            Ver detalles
+          </button>
+        </div>
+        <div class="absolute top-4 right-4 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          ALQUILER
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">Apartamento en Sonsonate</h3>
+        <p class="text-blue-600 font-semibold mb-2">$800/mes</p>
+        <p class="text-gray-600 text-sm mb-4">Sonsonate | 2 habitaciones | 1 baño | 80m²</p>
+        <p class="text-gray-500 text-sm">Apartamento disponible para alquiler en edificio de 3 niveles en Sonsonate. Ubicación céntrica y cómoda para familias.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <button onclick="openModal('alquiler-sonsonate')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            Más detalles <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+          <div class="flex items-center text-yellow-400">
+            <i class="fas fa-star"></i>
+            <span class="text-gray-600 ml-1 text-sm">4.5</span>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Modal footer -->
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
-          Ponerse en contacto
-        </button>
-        <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-          Cerrar
-        </button>
+  <!-- View All Properties Button -->
+  <div class="text-center mt-12">
+    <a href="view_all.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
+      Ver todas las propiedades <i class="fas fa-arrow-right ml-2"></i>
+    </a>
+  </div>
+</main>
+
+<!-- Property Modal -->
+<div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+  <div class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-4">
+          <h2 id="modalTitle" class="text-2xl font-bold text-gray-900"></h2>
+          <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div id="modalContent">
+          <!-- Content will be dynamically loaded -->
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Footer -->
-<footer class="bg-gray-800 text-white mt-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">GRUPO IMNOVA</h3>
-        <p class="text-gray-300 text-sm">
-          Servicios inmobiliarios premium para clientes exigentes. Le ayudamos a encontrar y adquirir propiedades excepcionales en todo el pais.
-        </p>
-      </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Accesos</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Inicio</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Propiedades</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Agentes</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white text-sm">Sobre nosotros</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Contactos</h3>
-        <ul class="space-y-2 text-gray-300 text-sm">
-          <li class="flex items-center">
-            <i class="fas fa-map-marker-alt mr-2"></i>
-            <span>1234 Estate Lane, Beverly Hills, CA 90210</span>
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-phone-alt mr-2"></i>
-            <span>(503) 123-4567</span>
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-envelope mr-2"></i>
-            <span>info@grupoimnova.com</span>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Newsletter</h3>
-        <p class="text-gray-300 text-sm mb-4">
-          Subscribe to our newsletter for the latest property listings and market updates.
-        </p>
-        <div class="flex">
-          <input type="email" placeholder="Your email" class="px-3 py-2 text-sm rounded-l-md focus:outline-none text-gray-800 w-full">
-          <button class="bg-blue-600 text-white px-3 py-2 text-sm rounded-r-md hover:bg-blue-700 focus:outline-none">
-            Subscribe
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
-      <p class="text-gray-400 text-sm">
-        &copy; 2023 LuxuryHomes. All rights reserved.
-      </p>
-      <div class="flex space-x-6 mt-4 md:mt-0">
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
-
 <script>
-  // Modal functions
-  function openModal(propertyId) {
-    document.body.classList.add('modal-open');
-    document.getElementById('propertyModal').classList.remove('hidden');
-
-    // In a real app, you would fetch property details based on the ID
-    // For this demo, we'll just show the modal with the first property's details
-  }
-
-  function closeModal() {
-    document.body.classList.remove('modal-open');
-    document.getElementById('propertyModal').classList.add('hidden');
-  }
-
-  function changeMainImage(imgElement) {
-    document.getElementById('modalMainImage').src = imgElement.src;
-  }
-
-  // Close modal when clicking outside
-  window.onclick = function(event) {
-    const modal = document.getElementById('propertyModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  }
-
-  // Close modal with ESC key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
+  // Mobile menu toggle
+  document.getElementById('menu-btn')?.addEventListener('click', function() {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
   });
-</script>
-<script>
+
+  // Dropdown menu functionality
   const toggleBtn = document.getElementById("dropdown-toggle");
   const menu = document.getElementById("dropdown-menu");
   const container = document.getElementById("dropdown-container");
 
-  toggleBtn.addEventListener("click", function (e) {
+  toggleBtn?.addEventListener("click", function (e) {
     e.stopPropagation();
     menu.classList.toggle("hidden");
   });
 
   document.addEventListener("click", function (e) {
-    if (!container.contains(e.target)) {
-      menu.classList.add("hidden");
+    if (!container?.contains(e.target)) {
+      menu?.classList.add("hidden");
+    }
+  });
+
+  // Property data
+  const properties = {
+    'apartamento-santa-elena': {
+      title: 'Apartamento en Residencial Privado Santa Elena',
+      price: '$1,200/mes',
+      location: 'Santa Elena',
+      bedrooms: '3',
+      bathrooms: '2',
+      area: '85m²',
+      description: 'Lindo apartamento en alquiler en residencial privado en Santa Elena, construido adyacente a residencia con su entrada privada. Incluye vigilancia y servicio de agua.',
+      features: [
+        'Cochera eléctrica para un vehículo',
+        '3 habitaciones (2 junior comparten baño)',
+        'Aires acondicionados en todas las habitaciones',
+        'Cocina/comedor con línea blanca',
+        'Cortinas black out',
+        'Residencial con vigilancia 24/7',
+        'Parque privado en residencial',
+        'Cerca de supermercados, restaurantes, farmacias',
+        'Zona segura y tranquila',
+        'Incluye vigilancia y servicio de agua'
+      ],
+      images: [
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0064.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0065.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0066.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0068.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0069.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0070.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0071.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0072.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0073.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0074.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0075.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0076.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0077.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0078.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0079.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0080.jpg',
+        'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0081.jpg'
+      ]
+    },
+    'apartamento-premium': {
+      title: 'Apartamento Premium',
+      price: '$220,000',
+      location: 'San Salvador',
+      bedrooms: '3',
+      bathrooms: '2.5',
+      area: '120m²',
+      description: 'Apartamento de lujo con acabados premium, vista panorámica y amenidades de primera clase. Ubicado en zona exclusiva de San Salvador.',
+      features: [
+        'Acabados premium',
+        'Vista panorámica',
+        'Cocina gourmet',
+        'Terraza privada',
+        'Estacionamiento doble',
+        'Amenidades de lujo'
+      ],
+      images: [
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0093.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0094.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0095.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0096.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0097.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0098.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0099.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0100.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0101.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0106.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0108.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0109.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0110.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0111.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0112.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0113.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0114.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0115.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0116.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0117.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0118.jpg',
+        'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0119.jpg'
+      ]
+    },
+    'edificio-centro-historico': {
+      title: 'Edificio Centro Histórico',
+      price: '$150,000',
+      location: 'Centro Histórico',
+      bedrooms: '2',
+      bathrooms: '1',
+      area: '75m²',
+      description: 'Apartamento en edificio histórico del centro de la ciudad. Perfecto para inversión o vivienda, con excelente ubicación y potencial de renta.',
+      features: [
+        'Histórico',
+        'Excelente ubicación',
+        'Potencial de renta',
+        'Cocina equipada',
+        'Balcón privado',
+        'Ubicación céntrica'
+      ],
+      images: [
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0082.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0083.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0084.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0085.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0086.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0087.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0088.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0089.jpg',
+        'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0090.jpg'
+      ]
+    },
+    'alquiler-sonsonate': {
+      title: 'Apartamento en Sonsonate',
+      price: '$800/mes',
+      location: 'Sonsonate',
+      bedrooms: '2',
+      bathrooms: '1',
+      area: '80m²',
+      description: 'Apartamento disponible para alquiler en edificio de 3 niveles en Sonsonate. Ubicación céntrica y cómoda para familias.',
+      features: [
+        'Alquiler',
+        'Edificio de 3 niveles',
+        'Ubicación céntrica',
+        'Cocina equipada',
+        'Balcón privado',
+        'Ideal para familias'
+      ],
+      images: [
+        'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0125.jpg',
+        'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0128.jpg',
+        'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0129.jpg',
+        'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0130.jpg',
+        'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0131.jpg'
+      ]
+    }
+  };
+
+  function openModal(propertyId) {
+    const property = properties[propertyId];
+    if (!property) return;
+
+    document.getElementById('modalTitle').textContent = property.title;
+    
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = `
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+          <img src="${property.images[0]}" alt="${property.title}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <div class="image-gallery">
+            ${property.images.slice(1, 5).map(img => `
+              <img src="${img}" alt="${property.title}" class="gallery-image" onclick="changeMainImage('${img}')">
+            `).join('')}
+          </div>
+        </div>
+        <div>
+          <div class="mb-4">
+            <h3 class="text-3xl font-bold text-blue-600 mb-2">${property.price}</h3>
+            <p class="text-gray-600 mb-4">
+              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>${property.location}
+            </p>
+            <div class="flex space-x-4 text-sm text-gray-600 mb-4">
+              <span><i class="fas fa-bed text-blue-500 mr-1"></i>${property.bedrooms} habitaciones</span>
+              <span><i class="fas fa-bath text-blue-500 mr-1"></i>${property.bathrooms} baños</span>
+              <span><i class="fas fa-vector-square text-blue-500 mr-1"></i>${property.area}</span>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-800 mb-2">Descripción</h4>
+            <p class="text-gray-600">${property.description}</p>
+          </div>
+          
+          <div class="mb-6">
+            <h4 class="font-semibold text-gray-800 mb-2">Características</h4>
+            <ul class="grid grid-cols-1 gap-2">
+              ${property.features.map(feature => `
+                <li class="flex items-center text-gray-600">
+                  <i class="fas fa-check text-green-500 mr-2"></i>${feature}
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          
+          <div class="flex space-x-4">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+              <i class="fas fa-phone mr-2"></i>Contactar
+            </button>
+            <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
+              <i class="fas fa-heart mr-2"></i>Favorito
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('propertyModal').classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    document.getElementById('propertyModal').classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  }
+
+  function changeMainImage(src) {
+    const mainImage = document.querySelector('#modalContent img');
+    if (mainImage) {
+      mainImage.src = src;
+    }
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('propertyModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
     }
   });
 </script>
