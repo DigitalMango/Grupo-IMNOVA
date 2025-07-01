@@ -8,25 +8,277 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .property-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --primary-blue: #3b82f6;
+      --primary-blue-dark: #2563eb;
+      --primary-blue-light: #60a5fa;
+      --accent-blue: #1d4ed8;
+      --text-dark: #1f2937;
+      --text-light: #6b7280;
+      --bg-light: #f9fafb;
+      --bg-white: #ffffff;
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Modern Glassmorphism Effects */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Enhanced Navigation */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-light));
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-blue);
+      transform: translateY(-2px);
+    }
+
+    /* Sticky Navigation with Blur */
+    .sticky-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    /* Enhanced Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+      border: none;
+      border-radius: 50px;
+      padding: 12px 30px;
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Advanced Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animation Classes */
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .animate-fade-in-left {
+      animation: fadeInLeft 0.8s ease forwards;
+    }
+
+    .animate-fade-in-right {
+      animation: fadeInRight 0.8s ease forwards;
+    }
+
+    .animate-scale-in {
+      animation: scaleIn 0.6s ease forwards;
+    }
+
+    .animate-slide-up {
+      animation: slideInFromBottom 0.8s ease forwards;
+    }
+
+    /* Staggered Animation Delays */
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-600 { animation-delay: 0.6s; }
+
+    /* Floating Elements Animation */
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-light));
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+
+    /* Property Cards Enhancement */
+    .property-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-white);
+      border-radius: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .property-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .property-card:hover::before {
+      left: 100%;
+    }
+
+    .property-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .property-card img {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .property-card:hover img {
+      transform: scale(1.1);
+    }
+
     .property-card:hover .property-overlay {
       opacity: 1;
     }
+
     #propertyModal {
       transition: all 0.3s ease;
     }
+
     .modal-open {
       overflow: hidden;
     }
+
     .image-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 10px;
       margin-top: 20px;
     }
+
     .gallery-image {
       width: 100%;
       height: 150px;
@@ -35,53 +287,184 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
+
     .gallery-image:hover {
       transform: scale(1.05);
+    }
+
+    /* Responsive Enhancements */
+    @media (max-width: 768px) {
+      .fab {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+      
+      .back-to-top {
+        bottom: 80px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body class="bg-gray-50 font-sans">
-<!-- Navigation -->
-<nav class="bg-white shadow-sm">
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Modern Navigation with Glassmorphism -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
-      <div class="flex items-center">
-        <div class="flex-shrink-0 flex items-center">
-          <i class="fas fa-home text-blue-600 text-2xl mr-2"></i>
-          <span class="text-xl font-bold text-gray-800">Grupo IMNOVA</span>
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex items-center animate-fade-in-left">
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+              <i class="fas fa-home text-white text-xl"></i>
+            </div>
+            <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+          </div>
+          <div>
+            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Grupo IMNOVA</span>
+            <p class="text-xs text-gray-500 -mt-1">Inmobiliaria Premium</p>
+          </div>
         </div>
       </div>
-      <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-        <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Inicio</a>
 
-        <div class="relative" id="dropdown-container">
-          <button id="dropdown-toggle" class="nav-link text-gray-700 hover:text-blue-500 font-medium flex items-center gap-1 focus:outline-none">
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-8 animate-fade-in-right">
+        <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
+          <i class="fas fa-home mr-2"></i>Inicio
+        </a>
+
+        <!-- Enhanced Dropdown -->
+        <div class="relative group" id="dropdown-container">
+          <button id="dropdown-toggle" class="nav-link text-gray-700 hover:text-blue-600 font-medium flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 hover:bg-blue-50 focus:outline-none">
+            <i class="fas fa-building mr-1"></i>
             Propiedades
-            <i class="fas fa-chevron-down text-xs mt-[2px]"></i>
+            <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
           </button>
-          <div
-            id="dropdown-menu"
-            class="hidden absolute top-full right-0 mt-1 w-48 bg-white shadow-lg rounded-md z-50"
-          >
-            <a href="casas.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Casas</a>
-            <a href="apartamentos.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Apartamentos</a>
-            <a href="oficinas.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Oficinas</a>
-            <a href="edificios.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100">Edificios</a>
+          <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 glass rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+            <div class="p-2">
+              <a href="casas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                <i class="fas fa-home text-blue-500 mr-3"></i>
+                <div>
+                  <div class="font-medium">Casas</div>
+                  <div class="text-xs text-gray-500">Propiedades residenciales</div>
+                </div>
+              </a>
+              <a href="apartamentos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                <i class="fas fa-building text-blue-500 mr-3"></i>
+                <div>
+                  <div class="font-medium">Apartamentos</div>
+                  <div class="text-xs text-gray-500">Viviendas modernas</div>
+                </div>
+              </a>
+              <a href="oficinas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                <i class="fas fa-briefcase text-blue-500 mr-3"></i>
+                <div>
+                  <div class="font-medium">Oficinas</div>
+                  <div class="text-xs text-gray-500">Espacios comerciales</div>
+                </div>
+              </a>
+              <a href="edificios.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                <i class="fas fa-city text-blue-500 mr-3"></i>
+                <div>
+                  <div class="font-medium">Edificios</div>
+                  <div class="text-xs text-gray-500">Desarrollos completos</div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
-        <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Sobre Nosotros</a>
-        <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Testimonios</a>
-        <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contacto</a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
+          <i class="fas fa-info-circle mr-2"></i>Sobre Nosotros
+        </a>
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
+          <i class="fas fa-star mr-2"></i>Testimonios
+        </a>
+
       </div>
-      <div class="flex items-center md:hidden">
-        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
-          <i class="fas fa-bars"></i>
+
+      <!-- CTA Button -->
+      <div class="hidden lg:flex items-center animate-fade-in-right delay-200">
+        <button class="btn-primary flex items-center space-x-2">
+          <i class="fas fa-phone"></i>
+          <span>Contactar</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="lg:hidden flex items-center">
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden glass-dark fixed inset-0 z-40 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+      <div class="flex justify-between items-center p-6 border-b border-white/20">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+            <i class="fas fa-home text-white"></i>
+          </div>
+          <span class="text-xl font-bold text-white">Grupo IMNOVA</span>
+        </div>
+        <button id="mobile-menu-close" class="p-2 rounded-lg text-white hover:bg-white/20 transition-all duration-300">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      
+      <div class="flex-1 p-6 space-y-4">
+        <a href="index.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
+          <i class="fas fa-home mr-3"></i>Inicio
+        </a>
+        
+        <div class="space-y-2">
+          <div class="px-4 py-2 text-white/70 text-sm font-medium">Propiedades</div>
+          <a href="casas.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
+            <i class="fas fa-home mr-3"></i>Casas
+          </a>
+          <a href="apartamentos.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
+            <i class="fas fa-building mr-3"></i>Apartamentos
+          </a>
+          <a href="oficinas.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
+            <i class="fas fa-briefcase mr-3"></i>Oficinas
+          </a>
+          <a href="edificios.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
+            <i class="fas fa-city mr-3"></i>Edificios
+          </a>
+        </div>
+        
+        <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
+          <i class="fas fa-info-circle mr-3"></i>Sobre Nosotros
+        </a>
+        <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
+          <i class="fas fa-star mr-3"></i>Testimonios
+        </a>
+
+      </div>
+      
+      <div class="p-6 border-t border-white/20">
+        <button class="w-full btn-primary">
+          <i class="fas fa-phone mr-2"></i>Contactar Ahora
         </button>
       </div>
     </div>
   </div>
 </nav>
+
+<!-- Spacer for fixed navbar -->
+<div class="h-20"></div>
 
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -473,6 +856,190 @@
     if (e.target === this) {
       closeModal();
     }
+  });
+
+  // Modern Navbar JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const scrollProgress = document.getElementById('scrollProgress');
+
+    // Sticky navbar with glassmorphism effect
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Add sticky class and glassmorphism effect
+      if (scrollTop > 50) {
+        navbar.classList.add('sticky-nav');
+        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
+        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.classList.remove('sticky-nav');
+        navbar.style.background = 'transparent';
+        navbar.style.backdropFilter = 'none';
+        navbar.style.borderBottom = 'none';
+        navbar.style.boxShadow = 'none';
+      }
+
+      // Update scroll progress bar
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / windowHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+
+    // Mobile menu functionality
+    mobileMenuBtn?.addEventListener('click', function() {
+      mobileMenu.classList.remove('translate-x-full');
+      mobileMenu.classList.add('translate-x-0');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileMenuClose?.addEventListener('click', function() {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenu.classList.remove('translate-x-0');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close mobile menu when clicking on links
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    // Enhanced dropdown functionality
+    const dropdownContainer = document.getElementById('dropdown-container');
+    const dropdownToggle = document.getElementById('dropdown-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    if (dropdownToggle && dropdownMenu) {
+      dropdownToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('opacity-0');
+        dropdownMenu.classList.toggle('invisible');
+        dropdownMenu.classList.toggle('scale-95');
+        dropdownMenu.classList.toggle('scale-100');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!dropdownContainer.contains(e.target)) {
+          dropdownMenu.classList.add('opacity-0', 'invisible', 'scale-95');
+          dropdownMenu.classList.remove('scale-100');
+        }
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add animation classes to elements when they come into view
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe property cards for animation
+    document.querySelectorAll('.property-card').forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    // Add floating animation to logo
+    const logo = document.querySelector('.animate-fade-in-left');
+    if (logo) {
+      setTimeout(() => {
+        logo.classList.add('floating');
+      }, 1000);
+    }
+
+    // Enhanced button interactions
+    document.querySelectorAll('.btn-primary').forEach(button => {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.02)';
+      });
+
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Add CSS for ripple effect
+    const style = document.createElement('style');
+    style.textContent = `
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+      
+      button {
+        position: relative;
+        overflow: hidden;
+      }
+    `;
+    document.head.appendChild(style);
+
+    console.log('🚀 Modern Navbar initialized successfully!');
   });
 </script>
 </body>
