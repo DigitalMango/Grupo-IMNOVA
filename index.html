@@ -48,10 +48,13 @@
 
     /* Enhanced Hero Section with Parallax */
     .hero {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(29, 78, 216, 0.4));
+      background: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
       height: 100vh;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero::before {
@@ -61,13 +64,78 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(29, 78, 216, 0.1));
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
       z-index: 1;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      /* Quitar fondo glassmorphism y bordes */
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      max-width: 900px;
+      margin: auto;
+      backdrop-filter: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero h1 {
+      color: #23272f;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .hero h1 span {
+      color: #6366f1;
+      background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: #374151;
+      font-size: 1.35rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .btn-hero {
+      background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 18px 48px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 24px rgba(99, 102, 241, 0.15);
+      transition: background 0.3s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-hero:hover {
+      background: linear-gradient(90deg, #60a5fa 0%, #6366f1 100%);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
     }
 
     /* Floating Elements Animation */
@@ -624,6 +692,8 @@
 
 <!-- Modern Navigation with Glassmorphism -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <!-- Barra de progreso justo debajo del navbar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
       <!-- Logo -->
@@ -637,7 +707,7 @@
           </div>
           <div>
             <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Grupo IMNOVA</span>
-            <p class="text-xs text-gray-500 -mt-1">Inmobiliaria Premium</p>
+            <p class="text-xs text-gray-500 -mt-1"></p>
           </div>
         </div>
       </div>
@@ -689,10 +759,10 @@
           </div>
         </div>
 
-        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
+        <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
           <i class="fas fa-info-circle mr-2"></i>Sobre Nosotros
         </a>
-        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
+        <a href="#testimonials" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
           <i class="fas fa-star mr-2"></i>Testimonios
         </a>
         <!-- Eliminar el enlace de Contacto aquí -->
@@ -700,10 +770,10 @@
 
       <!-- CTA Button -->
       <div class="hidden lg:flex items-center animate-fade-in-right delay-200">
-        <button class="btn-primary flex items-center space-x-2">
+        <a href="#contact" class="btn-primary flex items-center space-x-2">
           <i class="fas fa-phone"></i>
           <span>Contactar</span>
-        </button>
+        </a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -751,19 +821,19 @@
           </a>
         </div>
         
-        <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
+        <a href="#about" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
           <i class="fas fa-info-circle mr-3"></i>Sobre Nosotros
         </a>
-        <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
+        <a href="#testimonials" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
           <i class="fas fa-star mr-3"></i>Testimonios
         </a>
         <!-- Eliminar el enlace de Contacto aquí -->
       </div>
       
       <div class="p-6 border-t border-white/20">
-        <button class="w-full btn-primary">
+        <a href="#contact" class="w-full btn-primary flex items-center justify-center">
           <i class="fas fa-phone mr-2"></i>Contactar Ahora
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -773,43 +843,25 @@
 <div class="h-20"></div>
 
 <!-- Hero Section -->
-<section id="home" class="hero flex items-center justify-center text-white relative">
-  <div class="hero-content container mx-auto px-4 text-center">
-    <div class="animate-fade-in-up delay-100">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
-        Encuentra <span class="text-blue-200 bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">Tu Propiedad Ideal</span>
+<section id="home" class="hero flex items-center justify-center relative" style="min-height: 90vh; background: #fff;">
+  <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 gap-0 md:gap-16 lg:gap-32" style="z-index:2;">
+    <!-- Columna Izquierda: Texto y botones -->
+    <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center gap-6 md:pl-0 lg:pl-0">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 animate-fade-in-up delay-100 text-center">
+        Encuentra <span class="text-indigo-600">tu propiedad ideal</span>
       </h1>
-  </div>
-
-    <div class="animate-fade-in-up delay-200">
-      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-white opacity-95">
-        Descubre propiedades exclusivas que se adaptan a tu estilo de vida con la asesoría experta de nuestro equipo
+      <p class="text-lg md:text-xl text-gray-500 animate-fade-in-up delay-200 text-center max-w-lg">
+        Descubre una cuidada selección de hogares de ensueño a tu alcance.
       </p>
+      <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-300 w-full justify-center">
+        <a href="#properties" class="btn-hero bg-gradient-to-r from-indigo-500 to-blue-400 hover:from-blue-600 hover:to-indigo-600 text-white font-bold py-4 px-10 rounded-full flex items-center gap-2 transition-all duration-300 shadow-lg text-lg mx-auto">
+          <i class="fas fa-home"></i>Explorar Propiedades
+        </a>
+      </div>
     </div>
-    
-    <div class="animate-fade-in-up delay-300">
-      <a href="#properties" class="btn-primary text-lg px-10 py-4 pulse-animation">
-        <i class="fas fa-home mr-2"></i>Explorar Propiedades
-      </a>
-    </div>
-  </div>
-
-
-
-  <!-- Floating Elements -->
-  <div class="absolute top-20 left-10 hidden lg:block">
-    <div class="glass rounded-full p-4 floating">
-      <i class="fas fa-home text-2xl text-white"></i>
-    </div>
-  </div>
-  <div class="absolute top-40 right-20 hidden lg:block">
-    <div class="glass rounded-full p-4 floating" style="animation-delay: 1s;">
-      <i class="fas fa-key text-2xl text-white"></i>
-    </div>
-  </div>
-  <div class="absolute bottom-40 left-20 hidden lg:block">
-    <div class="glass rounded-full p-4 floating" style="animation-delay: 2s;">
-      <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+    <!-- Columna Derecha: Imagen -->
+    <div class="w-full md:w-1/2 flex justify-end items-start mb-8 md:mb-0 animate-fade-in-up delay-200 relative" style="min-height: 400px; overflow: visible;">
+      <img src="img/hero/casaa_hero.png" alt="Casa moderna" class="w-full max-w-lg md:max-w-xl lg:max-w-2xl h-auto object-contain drop-shadow-2xl absolute md:static top-[-40px] right-[-80px] md:top-0 md:right-[-80px]" style="background: none; max-width: 560px;"/>
     </div>
   </div>
 </section>
