@@ -57,17 +57,9 @@
       justify-content: center;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255,255,255,0.18);
-      backdrop-filter: blur(10px);
-      z-index: 1;
-    }
+
+
+
 
     .hero-content {
       position: relative;
@@ -87,7 +79,7 @@
     }
 
     .hero h1 {
-      color: #23272f;
+      color: #2563eb;
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 1.5rem;
@@ -755,6 +747,13 @@
                   <div class="text-xs text-gray-500">Desarrollos completos</div>
                 </div>
               </a>
+              <a href="terrenos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                <i class="fas fa-map-marked-alt text-blue-500 mr-3"></i>
+                <div>
+                  <div class="font-medium">Terrenos y más</div>
+                  <div class="text-xs text-gray-500">Lotes y propiedades especiales</div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -819,6 +818,9 @@
           <a href="edificios.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
             <i class="fas fa-city mr-3"></i>Edificios
           </a>
+          <a href="terrenos.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
+            <i class="fas fa-map-marked-alt mr-3"></i>Terrenos y más
+          </a>
         </div>
         
         <a href="#about" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
@@ -843,25 +845,24 @@
 <div class="h-20"></div>
 
 <!-- Hero Section -->
-<section id="home" class="hero flex items-center justify-center relative" style="min-height: 90vh; background: #fff;">
-  <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 gap-0 md:gap-16 lg:gap-32" style="z-index:2;">
-    <!-- Columna Izquierda: Texto y botones -->
-    <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center gap-6 md:pl-0 lg:pl-0">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 animate-fade-in-up delay-100 text-center">
-        Encuentra <span class="text-indigo-600">tu propiedad ideal</span>
+<section id="home" class="hero flex items-center justify-center relative" style="min-height: 90vh;">
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="vid/Video imnova.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+  </video>
+  
+  <!-- Contenido centrado -->
+  <div class="container mx-auto flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 relative z-20 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-blue-500 animate-fade-in-up delay-100 text-center mb-8 drop-shadow-2xl">
+        Encuentra tu propiedad ideal
       </h1>
-      <p class="text-lg md:text-xl text-gray-500 animate-fade-in-up delay-200 text-center max-w-lg">
-        Descubre una cuidada selección de hogares de ensueño a tu alcance.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-300 w-full justify-center">
-        <a href="#properties" class="btn-hero bg-gradient-to-r from-indigo-500 to-blue-400 hover:from-blue-600 hover:to-indigo-600 text-white font-bold py-4 px-10 rounded-full flex items-center gap-2 transition-all duration-300 shadow-lg text-lg mx-auto">
+      <div class="flex justify-center animate-fade-in-up delay-300">
+        <a href="#properties" class="btn-hero bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-4 px-10 rounded-full flex items-center gap-2 transition-all duration-300 shadow-lg text-lg">
           <i class="fas fa-home"></i>Explorar Propiedades
         </a>
       </div>
-    </div>
-    <!-- Columna Derecha: Imagen -->
-    <div class="w-full md:w-1/2 flex justify-end items-start mb-8 md:mb-0 animate-fade-in-up delay-200 relative" style="min-height: 400px; overflow: visible;">
-      <img src="img/hero/casaa_hero.png" alt="Casa moderna" class="w-full max-w-lg md:max-w-xl lg:max-w-2xl h-auto object-contain drop-shadow-2xl absolute md:static top-[-40px] right-[-80px] md:top-0 md:right-[-80px]" style="background: none; max-width: 560px;"/>
     </div>
   </div>
 </section>
@@ -1096,7 +1097,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
       <!-- Apartamentos -->
       <a href="apartamentos.html" class="category-card p-8 text-center animate-fade-in-up delay-300 group">
         <div class="category-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -1140,6 +1141,18 @@
         </div>
         <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">Edificios</h3>
         <p class="text-gray-600 text-lg font-medium">9 Propiedades</p>
+        <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <i class="fas fa-arrow-right text-blue-500 text-lg"></i>
+        </div>
+      </a>
+
+      <!-- Terrenos y más -->
+      <a href="terrenos.html" class="category-card p-8 text-center animate-fade-in-up delay-700 group md:col-span-3 lg:col-span-1">
+        <div class="category-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+          <i class="fas fa-map-marked-alt text-blue-500 text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">Terrenos y más</h3>
+        <p class="text-gray-600 text-lg font-medium">5 Propiedades</p>
         <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <i class="fas fa-arrow-right text-blue-500 text-lg"></i>
         </div>
@@ -2366,6 +2379,16 @@
     if (e.key === 'Escape') {
       closeModal();
       closeSearchResults();
+    }
+  });
+
+  // Simple video initialization
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.hero video');
+    if (video) {
+      video.play().catch(function(error) {
+        console.log('Video autoplay failed:', error);
+      });
     }
   });
 </script>
