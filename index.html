@@ -676,6 +676,52 @@
         box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
       }
     }
+
+    /* Ajustes para simetría y orden en el navbar */
+    #navbar .btn-primary {
+      min-width: 40px;
+      justify-content: center;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    #navbar .btn-primary span {
+      display: none;
+    }
+    #navbar .btn-primary i {
+      margin-right: 0;
+    }
+    #navbar .nav-link {
+      min-width: 120px;
+      text-align: center;
+    }
+    @media (min-width: 1024px) {
+      #navbar .flex-1 {
+        flex: 1 1 0%;
+        justify-content: center;
+      }
+    }
+    #loginBtn {
+      min-width: unset !important;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border-radius: 9999px;
+      background: #fff;
+      border: 1.5px solid #bfdbfe;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.08);
+      color: #2563eb;
+      font-size: 1.25rem;
+      transition: all 0.2s;
+      margin-left: 0.5rem;
+    }
+    #loginBtn:hover {
+      background: #e0e7ff;
+      color: #1d4ed8;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.15);
+    }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -686,93 +732,93 @@
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <!-- Barra de progreso justo debajo del navbar -->
   <div class="scroll-progress" id="scrollProgress"></div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-      <!-- Logo -->
-      <div class="flex items-center animate-fade-in-left">
-        <div class="flex items-center space-x-3">
-          <div class="relative">
+  <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo y nombre -->
+      <div class="flex items-center space-x-3 animate-fade-in-left flex-shrink-0 mr-2" style="min-width:220px;">
+        <div class="flex items-center space-x-2">
+          <div class="relative flex items-center justify-center">
             <div class="w-12 h-12 flex items-center justify-center">
               <img src="img/random/logoNuevo .jpg" alt="Logo Grupo Imnova Nuevo" class="w-full h-full object-contain rounded-xl shadow-lg">
             </div>
             <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
           </div>
-          <div>
-            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Grupo IMNOVA</span>
-            <p class="text-xs text-gray-500 -mt-1"></p>
+          <div class="flex flex-col justify-center">
+            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent leading-tight">Grupo IMNOVA</span>
           </div>
         </div>
       </div>
 
-        <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center space-x-8 animate-fade-in-right">
-        <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
-          <i class="fas fa-home mr-2"></i>Inicio
-        </a>
-
-        <!-- Enhanced Dropdown -->
-        <div class="relative group" id="dropdown-container">
-          <button id="dropdown-toggle" class="nav-link text-gray-700 hover:text-blue-600 font-medium flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 hover:bg-blue-50 focus:outline-none">
-            <i class="fas fa-building mr-1"></i>
-            Propiedades
-            <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
-          </button>
-          <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 glass rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-            <div class="p-2">
-              <a href="casas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
-                <i class="fas fa-home text-blue-500 mr-3"></i>
-                <div>
-                  <div class="font-medium">Casas</div>
-                  <div class="text-xs text-gray-500">Propiedades residenciales</div>
-                </div>
-              </a>
-              <a href="apartamentos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
-                <i class="fas fa-building text-blue-500 mr-3"></i>
-                <div>
-                  <div class="font-medium">Apartamentos</div>
-                  <div class="text-xs text-gray-500">Viviendas modernas</div>
-                </div>
-              </a>
-              <a href="oficinas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
-                <i class="fas fa-briefcase text-blue-500 mr-3"></i>
-                <div>
-                  <div class="font-medium">Oficinas</div>
-                  <div class="text-xs text-gray-500">Espacios comerciales</div>
-                </div>
-              </a>
-              <a href="edificios.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
-                <i class="fas fa-city text-blue-500 mr-3"></i>
-                <div>
-                  <div class="font-medium">Edificios</div>
-                  <div class="text-xs text-gray-500">Desarrollos completos</div>
-                </div>
-              </a>
-              <a href="terrenos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
-                <i class="fas fa-map-marked-alt text-blue-500 mr-3"></i>
-                <div>
-                  <div class="font-medium">Terrenos y más</div>
-                  <div class="text-xs text-gray-500">Lotes y propiedades especiales</div>
-                </div>
-              </a>
+      <!-- Desktop Navigation -->
+      <div class="flex-1 flex justify-center items-center animate-fade-in-right">
+        <div class="flex space-x-8">
+          <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50 flex items-center justify-center">
+            <i class="fas fa-home mr-2"></i>Inicio
+          </a>
+          <!-- Enhanced Dropdown -->
+          <div class="relative group" id="dropdown-container">
+            <button id="dropdown-toggle" class="nav-link text-gray-700 hover:text-blue-600 font-medium flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 hover:bg-blue-50 focus:outline-none">
+              <i class="fas fa-building mr-1"></i>
+              Propiedades
+              <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+            </button>
+            <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 glass rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+              <div class="p-2">
+                <a href="casas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                  <i class="fas fa-home text-blue-500 mr-3"></i>
+                  <div>
+                    <div class="font-medium">Casas</div>
+                    <div class="text-xs text-gray-500">Propiedades residenciales</div>
+                  </div>
+                </a>
+                <a href="apartamentos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                  <i class="fas fa-building text-blue-500 mr-3"></i>
+                  <div>
+                    <div class="font-medium">Apartamentos</div>
+                    <div class="text-xs text-gray-500">Viviendas modernas</div>
+                  </div>
+                </a>
+                <a href="oficinas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                  <i class="fas fa-briefcase text-blue-500 mr-3"></i>
+                  <div>
+                    <div class="font-medium">Oficinas</div>
+                    <div class="text-xs text-gray-500">Espacios comerciales</div>
+                  </div>
+                </a>
+                <a href="edificios.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                  <i class="fas fa-city text-blue-500 mr-3"></i>
+                  <div>
+                    <div class="font-medium">Edificios</div>
+                    <div class="text-xs text-gray-500">Desarrollos completos</div>
+                  </div>
+                </a>
+                <a href="terrenos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
+                  <i class="fas fa-map-marked-alt text-blue-500 mr-3"></i>
+                  <div>
+                    <div class="font-medium">Terrenos y más</div>
+                    <div class="text-xs text-gray-500">Lotes y propiedades especiales</div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
+          <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50 flex items-center justify-center">
+            <i class="fas fa-info-circle mr-2"></i>Sobre Nosotros
+          </a>
+          <a href="#testimonials" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50 flex items-center justify-center">
+            <i class="fas fa-star mr-2"></i>Testimonios
+          </a>
         </div>
-
-        <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
-          <i class="fas fa-info-circle mr-2"></i>Sobre Nosotros
-        </a>
-        <a href="#testimonials" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
-          <i class="fas fa-star mr-2"></i>Testimonios
-        </a>
-        <!-- Eliminar el enlace de Contacto aquí -->
       </div>
 
-      <!-- CTA Button -->
-      <div class="hidden lg:flex items-center animate-fade-in-right delay-200">
-        <a href="#contact" class="btn-primary flex items-center space-x-2">
+      <!-- CTA y Login Buttons -->
+      <div class="hidden lg:flex items-center space-x-4 animate-fade-in-right delay-200 ml-2">
+        <a href="#contact" class="btn-primary flex items-center justify-center px-5 py-2 text-base min-w-0" style="border-radius: 2rem;">
           <i class="fas fa-phone"></i>
-          <span>Contactar</span>
         </a>
+        <button id="loginBtn" class="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-blue-200 shadow hover:bg-blue-50 transition-all duration-300 text-blue-600 text-xl ml-2">
+          <i class="fas fa-user"></i>
+        </button>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -780,62 +826,6 @@
         <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300">
           <i class="fas fa-bars text-xl"></i>
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="lg:hidden glass-dark fixed inset-0 z-40 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-      <div class="flex justify-between items-center p-6 border-b border-white/20">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-            <i class="fas fa-home text-white"></i>
-          </div>
-          <span class="text-xl font-bold text-white">Grupo IMNOVA</span>
-        </div>
-        <button id="mobile-menu-close" class="p-2 rounded-lg text-white hover:bg-white/20 transition-all duration-300">
-          <i class="fas fa-times text-xl"></i>
-        </button>
-      </div>
-      
-      <div class="flex-1 p-6 space-y-4">
-        <a href="index.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
-          <i class="fas fa-home mr-3"></i>Inicio
-        </a>
-        
-        <div class="space-y-2">
-          <div class="px-4 py-2 text-white/70 text-sm font-medium">Propiedades</div>
-          <a href="casas.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
-            <i class="fas fa-home mr-3"></i>Casas
-          </a>
-          <a href="apartamentos.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
-            <i class="fas fa-building mr-3"></i>Apartamentos
-          </a>
-          <a href="oficinas.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
-            <i class="fas fa-briefcase mr-3"></i>Oficinas
-          </a>
-          <a href="edificios.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
-            <i class="fas fa-city mr-3"></i>Edificios
-          </a>
-          <a href="terrenos.html" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300 ml-4">
-            <i class="fas fa-map-marked-alt mr-3"></i>Terrenos y más
-          </a>
-        </div>
-        
-        <a href="#about" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
-          <i class="fas fa-info-circle mr-3"></i>Sobre Nosotros
-        </a>
-        <a href="#testimonials" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
-          <i class="fas fa-star mr-3"></i>Testimonios
-        </a>
-        <!-- Eliminar el enlace de Contacto aquí -->
-      </div>
-      
-      <div class="p-6 border-t border-white/20">
-        <a href="#contact" class="w-full btn-primary flex items-center justify-center">
-          <i class="fas fa-phone mr-2"></i>Contactar Ahora
-        </a>
       </div>
     </div>
   </div>
@@ -1544,6 +1534,86 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
     </div>
   </div>
 </div>
+
+<!-- Formulario de Login Modal (solo HTML, oculto por defecto) -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+  <div class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-lg max-w-md w-full p-8 shadow-lg">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Iniciar Sesión</h2>
+        <button id="closeLoginModal" class="text-gray-400 hover:text-gray-600 text-2xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="loginEmail">Correo Electrónico</label>
+          <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="loginEmail" type="email" placeholder="Tu correo" required>
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="loginPassword">Contraseña</label>
+          <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="loginPassword" type="password" placeholder="Tu contraseña" required>
+        </div>
+        <!-- Mensaje de error -->
+        <div id="loginError" class="mb-4 text-red-600 text-sm font-semibold hidden">Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.</div>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="firebase-config.js"></script>
+<script src="login.js" type="module"></script>
+
+<!-- FIREBASE LOGIN -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyB0U75g6quPZIss7oK8Dyb3J3847iOeyKU",
+    authDomain: "grupo-imnova.firebaseapp.com",
+    projectId: "grupo-imnova",
+    storageBucket: "grupo-imnova.firebasestorage.app",
+    messagingSenderId: "94521506018",
+    appId: "1:94521506018:web:70e3856b23f7e818d346bb",
+    measurementId: "G-WC1NG06J19"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+
+// login.js
+import { auth } from "./firebase-config.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+document.getElementById("login-btn").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMessage = document.getElementById("error-message");
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log("Login exitoso:", user.email);
+    window.location.href = "dashboard.html"; // Redirige al panel o página interna
+  } catch (error) {
+    errorMessage.textContent = "Credenciales incorrectas o usuario no registrado.";
+    console.error("Error en login:", error);
+  }
+});
+
+
+</script>
 
 <script>
   // Enhanced Mobile menu toggle with animation
@@ -2383,6 +2453,40 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
   });
 
   
+</script>
+
+<script>
+  // Mostrar y ocultar el modal de login
+  document.addEventListener('DOMContentLoaded', function() {
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeLoginModal = document.getElementById('closeLoginModal');
+
+    if (loginBtn && loginModal && closeLoginModal) {
+      loginBtn.addEventListener('click', function() {
+        loginModal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+      });
+      closeLoginModal.addEventListener('click', function() {
+        loginModal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+      });
+      // Cerrar modal al hacer click fuera del contenido
+      loginModal.addEventListener('click', function(e) {
+        if (e.target === loginModal) {
+          loginModal.classList.add('hidden');
+          document.body.classList.remove('modal-open');
+        }
+      });
+      // Cerrar modal con Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          loginModal.classList.add('hidden');
+          document.body.classList.remove('modal-open');
+        }
+      });
+    }
+  });
 </script>
 </body>
 </html>
