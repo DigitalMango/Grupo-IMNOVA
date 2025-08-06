@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imnova.Homes Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#002F6C',
+                        terracotta: '#E65F5C',
+                        lightGray: '#F5F7FA',
+                        darkGray: '#4A5568',
+                        mediumGray: '#A0AEC0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .property-card {
+            transition: all 0.3s ease;
+        }
+        .property-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .archived {
+            opacity: 0.7;
+            filter: grayscale(100%);
+        }
+        .image-preview {
+            background-size: cover;
+            background-position: center;
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-lightGray">
+    <!-- Header -->
+    <header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl shadow-lg border-b border-white/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo y nombre -->
+        <div class="flex items-center space-x-3 animate-fade-in-left flex-shrink-0" style="min-width:220px;">
+          <div class="flex items-center space-x-2">
+            <div class="relative flex items-center justify-center">
+              <div class="w-12 h-12 flex items-center justify-center">
+                <img src="img/random/logoNuevo .jpg" alt="Logo Grupo Imnova Nuevo" class="w-full h-full object-contain rounded-xl shadow-lg">
+              </div>
+              <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+            </div>
+            <div class="flex flex-col justify-center">
+              <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent leading-tight">Grupo IMNOVA</span>
+            </div>
+          </div>
+        </div>
+        <!-- Botón de Logout -->
+        <div class="flex items-center space-x-4 animate-fade-in-right delay-200">
+          <button id="logoutBtn" class="bg-terracotta hover:bg-opacity-90 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+            <i class="fas fa-sign-out-alt mr-2"></i> Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Spacer for fixed navbar -->
+  <div class="h-20"></div>
+</header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-4 md:p-6">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Left Form Section -->
+            <div class="w-full lg:w-1/3 bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-navy text-xl font-bold mb-6">Agregar nueva propiedad</h2>
+                <form id="propertyForm" class="space-y-4">
+                    <div>
+                        <label class="block text-darkGray text-sm font-medium mb-1">Título de la propiedad</label>
+                        <input type="text" class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" placeholder="Apartamento moderno en el centro">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-darkGray text-sm font-medium mb-1">Descripción</label>
+                        <textarea class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" rows="3" placeholder="Hermoso apartamento moderno con vistas a la ciudad..."></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-darkGray text-sm font-medium mb-1">Precio ($)</label>
+                            <input type="number" class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" placeholder="500000">
+                        </div>
+                        <div>
+                            <label class="block text-darkGray text-sm font-medium mb-1">Tipo de propiedad</label>
+                            <select class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy">
+                                <option>Apartamento</option>
+                                <option>Casa</option>
+                                <option>Condominio</option>
+                                <option>Townhouse</option>
+                                <option>Villa</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-darkGray text-sm font-medium mb-1">Ubicación</label>
+                        <input type="text" class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" placeholder="San Salvador, El Salvador">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-darkGray text-sm font-medium mb-1">Imagen de la propiedad</label>
+                        <div class="border-2 border-dashed border-mediumGray rounded-lg p-6 text-center cursor-pointer hover:border-navy transition-colors" id="imageUploadArea">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-mediumGray mb-2"></i>
+                            <p class="text-mediumGray">Haz clic para subir o arrastra la imagen aquí</p>
+                            <p class="text-xs text-mediumGray mt-1">PNG, JPG hasta 5MB</p>
+                            <input type="file" class="hidden" id="imageUpload" accept="image/*">
+                        </div>
+                        <div id="imagePreview" class="mt-3 hidden">
+                            <div class="relative">
+                                <img id="previewImg" class="w-full h-40 object-cover rounded-lg" src="" alt="Vista previa">
+                                <button type="button" id="removeImage" class="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
+                                    <i class="fas fa-times text-darkGray"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-navy hover:bg-opacity-90 text-white py-3 rounded-md font-medium flex items-center justify-center">
+                        <i class="fas fa-plus mr-2"></i> Agregar propiedad
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Right Properties List -->
+            <div class="w-full lg:w-2/3">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-navy text-xl font-bold">Propiedades</h2>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 bg-white border border-mediumGray rounded-md text-darkGray text-sm font-medium hover:bg-gray-50">
+                            <i class="fas fa-filter mr-1"></i> Filtrar
+                        </button>
+                        <button class="px-4 py-2 bg-white border border-mediumGray rounded-md text-darkGray text-sm font-medium hover:bg-gray-50">
+                            <i class="fas fa-sort mr-1"></i> Ordenar
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="propertiesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Las tarjetas serán generadas dinámicamente por JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-xl w-11/12 max-w-md p-6">
+            <div class="text-center">
+                <div class="mx-auto bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-navy mb-2">Eliminar propiedad</h3>
+                <p class="text-darkGray mb-6">¿Estás seguro de que deseas eliminar esta propiedad? Esta acción no se puede deshacer.</p>
+                <div class="flex space-x-3">
+                    <button id="cancelDelete" class="flex-1 bg-gray-200 hover:bg-gray-300 text-darkGray py-3 rounded-md font-medium">
+                        Cancelar
+                    </button>
+                    <button id="confirmDelete" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-3 rounded-md font-medium">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Image upload preview functionality
+        const imageUploadArea = document.getElementById('imageUploadArea');
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const removeImage = document.getElementById('removeImage');
+        
+        imageUploadArea.addEventListener('click', () => {
+            imageUpload.click();
+        });
+        
+        imageUpload.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        removeImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+            imageUpload.value = '';
+            imagePreview.classList.add('hidden');
+        });
+        
+        // Delete confirmation modal
+        const deleteModal = document.getElementById('deleteModal');
+        const cancelDelete = document.getElementById('cancelDelete');
+        const confirmDelete = document.getElementById('confirmDelete');
+        
+        // Sample delete buttons (in a real app, these would be dynamically generated)
+        const deleteButtons = document.querySelectorAll('.property-card button:last-child');
+        
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                deleteModal.classList.remove('hidden');
+            });
+        });
+        
+        cancelDelete.addEventListener('click', function() {
+            deleteModal.classList.add('hidden');
+        });
+        
+        confirmDelete.addEventListener('click', function() {
+            // In a real app, this would delete the property
+            alert('¡Propiedad eliminada exitosamente!');
+            deleteModal.classList.add('hidden');
+        });
+        
+        // Form submission
+        const propertyForm = document.getElementById('propertyForm');
+        
+        propertyForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real app, this would submit the form data
+            alert('¡Propiedad agregada exitosamente!');
+            propertyForm.reset();
+            imagePreview.classList.add('hidden');
+        });
+        
+        // Archive button functionality
+        const archiveButtons = document.querySelectorAll('.property-card button:nth-child(2)');
+        
+        archiveButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.property-card');
+                const statusSpan = card.querySelector('span');
+                
+                if (card.classList.contains('archived')) {
+                    card.classList.remove('archived');
+                    statusSpan.textContent = 'Activo';
+                    statusSpan.classList.remove('bg-gray-100', 'text-gray-800');
+                    statusSpan.classList.add('bg-green-100', 'text-green-800');
+                    this.innerHTML = '<i class="fas fa-archive mr-1"></i> Archivar';
+                    this.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    this.classList.add('bg-terracotta', 'hover:bg-opacity-90');
+                } else {
+                    card.classList.add('archived');
+                    statusSpan.textContent = 'Archivada';
+                    statusSpan.classList.remove('bg-green-100', 'text-green-800');
+                    statusSpan.classList.add('bg-gray-100', 'text-gray-800');
+                    this.innerHTML = '<i class="fas fa-redo mr-1"></i> Restaurar';
+                    this.classList.remove('bg-terracotta', 'hover:bg-opacity-90');
+                    this.classList.add('bg-green-500', 'hover:bg-green-600');
+                }
+            });
+        });
+    </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function() {
+        if (typeof firebase === 'undefined' || !firebase.auth) {
+          window.location.href = 'index.html';
+          return;
+        }
+        firebase.auth().signOut().then(function() {
+          window.location.href = 'index.html';
+        }).catch(function(error) {
+          alert('Error al cerrar sesión.');
+        });
+      });
+    }
+  });
+</script>
+<script>
+// Datos reales de propiedades (copiados de index.html)
+const allProperties = [
+  {
+    id: 'casa-maquilishuat',
+    title: 'Inmueble en Col. Maquilishuat',
+    price: 1200000,
+    priceDisplay: '$1,200,000',
+    location: 'Col. Maquilishuat',
+    type: 'Casa',
+    bedrooms: 4,
+    bathrooms: 4,
+    area: '1,638.95v²',
+    image: 'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg',
+    page: 'casas.html'
+  },
+  {
+    id: 'apartamento-santa-elena',
+    title: 'Apartamento en Residencial Privado Santa Elena',
+    price: 0,
+    priceDisplay: '$1,200/mes',
+    location: 'Santa Elena',
+    type: 'Apartamento',
+    bedrooms: 3,
+    bathrooms: 2,
+    area: '85m²',
+    image: 'img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg',
+    page: 'apartamentos.html',
+    isRent: true
+  },
+  {
+    id: 'inmueble-premium',
+    title: 'Inmueble Premium sobre Paseo Escalón',
+    price: 2300000,
+    priceDisplay: '$2,300,000',
+    location: 'Paseo Escalón',
+    type: 'Oficina',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: '1,569.44v²',
+    image: 'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg',
+    page: 'oficinas.html'
+  },
+  {
+    id: 'casa-moderna-rabida',
+    title: 'Casa Habitacional Col. La Rábida',
+    price: 350000,
+    priceDisplay: '$350,000',
+    location: 'Col. La Rábida, San Salvador',
+    type: 'Casa',
+    bedrooms: 8,
+    bathrooms: 8,
+    area: '222m²',
+    image: 'img/propiedades/moderna casa habitacional/img/IMG-20250628-WA0036.jpg',
+    page: 'casas.html'
+  },
+  {
+    id: 'finca-cafe-santiago',
+    title: 'Finca de Café Santiago de María',
+    price: 525000,
+    priceDisplay: '$525,000',
+    location: 'Santiago de María',
+    type: 'Finca',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: '106 manzanas',
+    image: 'img/propiedades/finca de café/img/IMG-20250628-WA0027.jpg',
+    page: 'casas.html'
+  },
+  {
+    id: 'terreno-escalon-carmen',
+    title: 'Terreno en Col. Escalón - Cantón El Carmen',
+    price: 1065000,
+    priceDisplay: '$1,065,000',
+    location: 'Col. Escalón',
+    type: 'Terreno',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: '2,972.75m²',
+    image: 'img/propiedades/terreno en Col. Escalón, ubicado en Cantón El Carmen/img/IMG-20250628-WA0091.jpg',
+    page: 'casas.html'
+  },
+  {
+    id: 'local-antiguo-cuscatlan',
+    title: 'Local Comercial Antiguo Cuscatlán',
+    price: 0,
+    priceDisplay: '$850/mes',
+    location: 'Antiguo Cuscatlán',
+    type: 'Local',
+    bedrooms: 0,
+    bathrooms: 1,
+    area: '30m²',
+    image: 'img/propiedades/Local disponibles para alquiler/img/IMG-20250628-WA0120.jpg',
+    page: 'oficinas.html',
+    isRent: true
+  },
+  {
+    id: 'edificio-centro-historico',
+    title: 'Edificio Centro Histórico San Salvador',
+    price: 1200000,
+    priceDisplay: '$1,200,000',
+    location: 'Centro Histórico',
+    type: 'Edificio',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: '189.80m²',
+    image: 'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0082.jpg',
+    page: 'edificios.html'
+  },
+  {
+    id: 'edificio-sonsonate',
+    title: 'Edificio de 3 Niveles Sonsonate',
+    price: 0,
+    priceDisplay: '$8,000/mes',
+    location: 'Sonsonate',
+    type: 'Edificio',
+    bedrooms: 0,
+    bathrooms: 0,
+    area: '348.47v²',
+    image: 'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0125.jpg',
+    page: 'edificios.html',
+    isRent: true
+  }
+];
+
+// Estado de archivado por propiedad (en memoria)
+const archivedState = {};
+
+function renderProperties() {
+  const container = document.getElementById('propertiesContainer');
+  if (!container) return;
+  container.innerHTML = '';
+  allProperties.forEach((property, idx) => {
+    const isArchived = archivedState[property.id] === true;
+    container.innerHTML += `
+      <div class="property-card${isArchived ? ' archived' : ''} bg-white rounded-xl shadow-md overflow-hidden" data-id="${property.id}">
+        <div class="h-40 bg-gray-200 image-preview" style="background-image: url('${property.image}')"></div>
+        <div class="p-5">
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-navy font-bold text-lg">${property.title}</h3>
+              <p class="text-terracotta font-bold text-xl mt-1">${property.priceDisplay}</p>
+            </div>
+            <span class="${isArchived ? 'bg-gray-100 text-gray-800' : 'bg-green-100 text-green-800'} text-xs font-medium px-2.5 py-0.5 rounded">${isArchived ? 'Archivada' : 'Activo'}</span>
+          </div>
+          <div class="flex justify-between mt-4 text-sm text-darkGray">
+            <div>
+              <p><i class="fas fa-home text-mediumGray mr-1"></i> ${property.type}</p>
+              <p class="mt-1"><i class="fas fa-map-marker-alt text-mediumGray mr-1"></i> ${property.location}</p>
+            </div>
+            <div class="text-right">
+              <p><i class="fas fa-bed text-mediumGray mr-1"></i> ${property.bedrooms ? property.bedrooms + ' Habitaciones' : 'N/A'}</p>
+              <p class="mt-1"><i class="fas fa-bath text-mediumGray mr-1"></i> ${property.bathrooms ? property.bathrooms + ' Baños' : 'N/A'}</p>
+            </div>
+          </div>
+          <div class="flex space-x-3 mt-5">
+            <button class="flex-1 bg-navy hover:bg-opacity-90 text-white py-2 rounded-md text-sm font-medium btn-editar" data-idx="${idx}">
+              <i class="fas fa-edit mr-1"></i> Editar
+            </button>
+            <button class="flex-1 ${isArchived ? 'bg-green-500 hover:bg-green-600' : 'bg-terracotta hover:bg-opacity-90'} text-white py-2 rounded-md text-sm font-medium btn-archivar" data-id="${property.id}">
+              <i class="fas ${isArchived ? 'fa-redo' : 'fa-archive'} mr-1"></i> ${isArchived ? 'Restaurar' : 'Archivar'}
+            </button>
+            <button class="flex-1 bg-gray-200 hover:bg-gray-300 text-darkGray py-2 rounded-md text-sm font-medium btn-eliminar" data-id="${property.id}">
+              <i class="fas fa-trash mr-1"></i> Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Asignar eventos a los botones
+  document.querySelectorAll('.btn-eliminar').forEach(btn => {
+    btn.onclick = function() {
+      const id = this.getAttribute('data-id');
+      const idx = allProperties.findIndex(p => p.id === id);
+      if (idx !== -1) {
+        if (confirm('¿Estás seguro de eliminar esta propiedad?')) {
+          allProperties.splice(idx, 1);
+          renderProperties();
+        }
+      }
+    };
+  });
+
+  document.querySelectorAll('.btn-archivar').forEach(btn => {
+    btn.onclick = function() {
+      const id = this.getAttribute('data-id');
+      archivedState[id] = !archivedState[id];
+      renderProperties();
+    };
+  });
+
+  document.querySelectorAll('.btn-editar').forEach(btn => {
+    btn.onclick = function() {
+      const idx = this.getAttribute('data-idx');
+      openEditModal(idx);
+    };
+  });
+}
+
+document.addEventListener('DOMContentLoaded', renderProperties);
+
+// Modal de edición
+function openEditModal(idx) {
+  const property = allProperties[idx];
+  if (!property) return;
+  // Crear modal simple
+  let modal = document.getElementById('editModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'editModal';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+      <div class='bg-white rounded-xl max-w-lg w-full p-8'>
+        <h2 class='text-xl font-bold mb-4 text-navy'>Editar propiedad</h2>
+        <form id='editForm' class='space-y-4'>
+          <input type='hidden' id='editIdx'>
+          <div>
+            <label class='block text-darkGray text-sm font-medium mb-1'>Título</label>
+            <input id='editTitulo' type='text' class='w-full px-4 py-2 border border-mediumGray rounded-md' required>
+          </div>
+          <div>
+            <label class='block text-darkGray text-sm font-medium mb-1'>Precio</label>
+            <input id='editPrecio' type='text' class='w-full px-4 py-2 border border-mediumGray rounded-md' required>
+          </div>
+          <div>
+            <label class='block text-darkGray text-sm font-medium mb-1'>Ubicación</label>
+            <input id='editUbicacion' type='text' class='w-full px-4 py-2 border border-mediumGray rounded-md' required>
+          </div>
+          <div class='flex space-x-3'>
+            <button type='submit' class='flex-1 bg-navy text-white py-2 rounded-md font-medium'>Guardar</button>
+            <button type='button' id='cancelEdit' class='flex-1 bg-gray-200 text-darkGray py-2 rounded-md font-medium'>Cancelar</button>
+          </div>
+        </form>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  // Rellenar datos
+  document.getElementById('editIdx').value = idx;
+  document.getElementById('editTitulo').value = property.title;
+  document.getElementById('editPrecio').value = property.priceDisplay;
+  document.getElementById('editUbicacion').value = property.location;
+  modal.classList.remove('hidden');
+
+  // Guardar cambios
+  document.getElementById('editForm').onsubmit = function(e) {
+    e.preventDefault();
+    const i = document.getElementById('editIdx').value;
+    allProperties[i].title = document.getElementById('editTitulo').value;
+    allProperties[i].priceDisplay = document.getElementById('editPrecio').value;
+    allProperties[i].location = document.getElementById('editUbicacion').value;
+    modal.classList.add('hidden');
+    renderProperties();
+  };
+  document.getElementById('cancelEdit').onclick = function() {
+    modal.classList.add('hidden');
+  };
+}
+</script>
+</body>
+</html> 
