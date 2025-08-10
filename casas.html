@@ -655,28 +655,9 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script src="filter-archived.js"></script>
 <script>
-  // Mobile menu toggle
-  document.getElementById('menu-btn')?.addEventListener('click', function() {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
-  });
-
-  // Dropdown menu functionality
-  const toggleBtn = document.getElementById("dropdown-toggle");
-  const menu = document.getElementById("dropdown-menu");
-  const container = document.getElementById("dropdown-container");
-
-  toggleBtn?.addEventListener("click", function (e) {
-    e.stopPropagation();
-    menu.classList.toggle("hidden");
-  });
-
-  document.addEventListener("click", function (e) {
-    if (!container?.contains(e.target)) {
-      menu?.classList.add("hidden");
-    }
-  });
-
   // Property data
   const properties = {
     'casa-maquilishuat': {
@@ -774,13 +755,14 @@
       description: 'Preciosa finca de café con linda vista en Santiago de María de 106 manzanas de terreno donde 70 manzanas están bien trabajadas con excelente cultivo: Icatu, Borbón, Pacamara, Colombia, Marsellesa, Ana Cafe14. Desde 800 a casi 1,000 metros de altura. A solo 10 min. de distancia de la ciudad de Santiago de María con fácil acceso a la propiedad.',
       features: [
         '106 manzanas de terreno',
-        '70 manzanas con cultivo de café',
+        '70 manzanas bien trabajadas',
+        'Excelente cultivo de café',
         'Variedades: Icatu, Borbón, Pacamara, Colombia, Marsellesa, Ana Cafe14',
-        'Altura: 800-1,000 metros',
-        'A 10 minutos de Santiago de María',
+        'Altura de 800 a 1,000 metros',
+        'A solo 10 min. de Santiago de María',
         'Fácil acceso a la propiedad',
         'Linda vista panorámica',
-        'Cultivo productivo y bien mantenido'
+        'Ideal para inversión agrícola'
       ],
       images: [
         'img/propiedades/finca de café/img/IMG-20250628-WA0027.jpg',
@@ -801,17 +783,15 @@
       bedrooms: 'N/A',
       bathrooms: 'N/A',
       area: '2,972.75m²',
-      description: 'Terreno de 2,972.75m² (4,253.29v²) ubicado en Col. Escalón, Cantón El Carmen, zona Residencial Andalucía. Con factibilidad de agua y luz. Ideal para complejo habitacional, torre de apartamentos, etc. Son 2 terrenos iguales, a la par, pero se pueden vender por separado.',
+      description: 'Terreno en venta en Col. Escalón, Cantón El Carmen, con 2,972.75m². Ubicación premium en zona residencial de alta plusvalía. Ideal para construcción de vivienda unifamiliar o desarrollo inmobiliario.',
       features: [
-        '2,972.75m² (4,253.29v²)',
-        'Ubicado en Cantón El Carmen',
-        'Zona Residencial Andalucía',
-        'Con factibilidad de agua y luz',
-        'Ideal para complejo habitacional',
-        'Perfecto para torre de apartamentos',
-        'Son 2 terrenos iguales, a la par',
-        'Se pueden vender por separado',
-        'Precio: $250.00/v²'
+        '2,972.75m² de terreno',
+        'Ubicación premium en Col. Escalón',
+        'Zona residencial de alta plusvalía',
+        'Ideal para vivienda unifamiliar',
+        'Perfecto para desarrollo inmobiliario',
+        'Acceso fácil y seguro',
+        'Servicios básicos disponibles'
       ],
       images: [
         'img/propiedades/terreno en Col. Escalón, ubicado en Cantón El Carmen/img/IMG-20250628-WA0091.jpg',
@@ -824,66 +804,103 @@
     }
   };
 
-  function openModal(propertyId) {
-    const property = properties[propertyId];
-    if (!property) return;
+  // Usar propiedades filtradas (excluyendo las archivadas)
+  const activeProperties = applyArchiveFilter(properties);
+  
+  // Ocultar tarjetas ya renderizadas si están archivadas (por seguridad)
+  document.addEventListener('DOMContentLoaded', hideArchivedCards);
 
-    document.getElementById('modalTitle').textContent = property.title;
+  function openModal(propertyId) {
+    const property = activeProperties[propertyId];
+    if (!property) return;
     
+    const modal = document.getElementById('propertyModal');
     const modalContent = document.getElementById('modalContent');
-    modalContent.innerHTML = `
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div>
-          <img src="${property.images[0]}" alt="${property.title}" class="w-full h-64 object-cover rounded-lg mb-4">
-          <div class="image-gallery">
-            ${property.images.slice(1, 5).map(img => `
-              <img src="${img}" alt="${property.title}" class="gallery-image" onclick="changeMainImage('${img}')">
-            `).join('')}
-          </div>
-        </div>
-        <div>
-          <div class="mb-4">
-            <h3 class="text-3xl font-bold text-blue-600 mb-2">${property.price}</h3>
-            <p class="text-gray-600 mb-4">
-              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>${property.location}
-            </p>
-            <div class="flex space-x-4 text-sm text-gray-600 mb-4">
-              <span><i class="fas fa-bed text-blue-500 mr-1"></i>${property.bedrooms} habitaciones</span>
-              <span><i class="fas fa-bath text-blue-500 mr-1"></i>${property.bathrooms} baños</span>
-              <span><i class="fas fa-vector-square text-blue-500 mr-1"></i>${property.area}</span>
+    
+    if (modal && modalContent) {
+      modalContent.innerHTML = `
+        <div class="relative">
+          <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors">
+            <i class="fas fa-times text-gray-600"></i>
+          </button>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Image Gallery -->
+            <div class="space-y-4">
+              <div class="relative">
+                <img id="mainImage" src="${property.images[0]}" alt="${property.title}" class="w-full h-96 object-cover rounded-lg shadow-lg">
+              </div>
+              <div class="grid grid-cols-4 gap-2">
+                ${property.images.map((img, index) => `
+                  <img src="${img}" alt="${property.title}" 
+                       onclick="changeMainImage('${img}')" 
+                       class="w-full h-20 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity ${index === 0 ? 'ring-2 ring-blue-500' : ''}">
+                `).join('')}
+              </div>
+            </div>
+            
+            <!-- Property Details -->
+            <div class="space-y-6">
+              <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">${property.title}</h2>
+                <p class="text-2xl font-bold text-blue-600 mb-4">${property.price}</p>
+                <p class="text-gray-600 flex items-center">
+                  <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+                  ${property.location}
+                </p>
+              </div>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <p class="text-sm text-gray-600">Habitaciones</p>
+                  <p class="text-lg font-semibold">${property.bedrooms}</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <p class="text-sm text-gray-600">Baños</p>
+                  <p class="text-lg font-semibold">${property.bathrooms}</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <p class="text-sm text-gray-600">Área</p>
+                  <p class="text-lg font-semibold">${property.area}</p>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Descripción</h3>
+                <p class="text-gray-700 leading-relaxed">${property.description}</p>
+              </div>
+              
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Características</h3>
+                <ul class="space-y-2">
+                  ${property.features.map(feature => `
+                    <li class="flex items-center text-gray-700">
+                      <i class="fas fa-check text-green-500 mr-3"></i>
+                      ${feature}
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+              
+              <div class="flex space-x-4">
+                <button class="btn-primary flex-1">
+                  <i class="fas fa-phone mr-2"></i>
+                  Contactar
+                </button>
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-full font-semibold transition-colors">
+                  <i class="fas fa-heart mr-2"></i>
+                  Favorito
+                </button>
+              </div>
             </div>
           </div>
-          
-          <div class="mb-6">
-            <h4 class="font-semibold text-gray-800 mb-2">Descripción</h4>
-            <p class="text-gray-600">${property.description}</p>
-          </div>
-          
-          <div class="mb-6">
-            <h4 class="font-semibold text-gray-800 mb-2">Características</h4>
-            <ul class="grid grid-cols-1 gap-2">
-              ${property.features.map(feature => `
-                <li class="flex items-center text-gray-600">
-                  <i class="fas fa-check text-green-500 mr-2"></i>${feature}
-                </li>
-              `).join('')}
-            </ul>
-          </div>
-          
-          <div class="flex space-x-4">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
-              <i class="fas fa-phone mr-2"></i>Contactar
-            </button>
-            <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
-              <i class="fas fa-heart mr-2"></i>Favorito
-            </button>
-          </div>
         </div>
-      </div>
-    `;
-    
-    document.getElementById('propertyModal').classList.remove('hidden');
-    document.body.classList.add('modal-open');
+      `;
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('modal-overlay');
+      document.body.classList.add('modal-open');
+    }
   }
 
   function closeModal() {

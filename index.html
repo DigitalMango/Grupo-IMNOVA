@@ -727,6 +727,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
   <script src="firebase-config.js"></script>
+  <script src="filter-archived.js"></script>
 </head>
 <body class="bg-gray-50">
 <!-- Scroll Progress Bar -->
@@ -1911,11 +1912,15 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     toggleBackToTop();
     initializeSearchListeners();
     initModernNavbar();
+    // Ocultar tarjetas archivadas (featured cards)
+    if (typeof hideArchivedCards === 'function') hideArchivedCards();
   });
 
   document.addEventListener('DOMContentLoaded', () => {
     initializeSearchListeners();
     initModernNavbar();
+    // Ocultar tarjetas archivadas (featured cards)
+    if (typeof hideArchivedCards === 'function') hideArchivedCards();
   });
 
   // Close modals when clicking outside
@@ -2285,6 +2290,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     const location = document.getElementById('searchLocation').value;
     const type = document.getElementById('searchType').value;
     const priceRange = document.getElementById('searchPrice').value;
+    const archivedState = (typeof getArchivedState === 'function') ? getArchivedState() : {};
 
     // Show loading state
     const searchButton = document.querySelector('#searchLocation').closest('.search-box').querySelector('button');
@@ -2294,36 +2300,38 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
     // Simulate search delay for better UX
     setTimeout(() => {
-    // Filter properties based on search criteria
-    let filteredProperties = allProperties.filter(property => {
-      let matches = true;
+    // Filter properties based on search criteria (excluding archived)
+    let filteredProperties = allProperties
+      .filter(p => !archivedState[p.id])
+      .filter(property => {
+        let matches = true;
 
-      // Location filter
+        // Location filter
         if (location && !property.location.toLowerCase().includes(location.toLowerCase())) {
-        matches = false;
-      }
+          matches = false;
+        }
 
-      // Type filter
-      if (type && property.type !== type) {
-        matches = false;
-      }
+        // Type filter
+        if (type && property.type !== type) {
+          matches = false;
+        }
 
-      // Price filter
-      if (priceRange) {
-        if (priceRange === 'rent') {
-          if (!property.isRent) {
-            matches = false;
-          }
-        } else {
-          const [min, max] = priceRange.split('-').map(Number);
-          if (property.isRent || property.price < min || (max && property.price > max)) {
-            matches = false;
+        // Price filter
+        if (priceRange) {
+          if (priceRange === 'rent') {
+            if (!property.isRent) {
+              matches = false;
+            }
+          } else {
+            const [min, max] = priceRange.split('-').map(Number);
+            if (property.isRent || property.price < min || (max && property.price > max)) {
+              matches = false;
+            }
           }
         }
-      }
 
-      return matches;
-    });
+        return matches;
+      });
 
       // Reset button
       searchButton.innerHTML = originalText;

@@ -613,6 +613,7 @@
   </div>
 </footer>
 
+<script src="filter-archived.js"></script>
 <script>
 // Catálogo completo de propiedades
 const allProperties = [
@@ -1133,14 +1134,32 @@ function changeMainImage(src) {
 }
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-  renderProperties(allProperties, 1);
+  // Filtrar propiedades archivadas antes de iniciar
+  const archivedState = getArchivedState();
+  function filterArchivedFromArray(arr) {
+    return arr.filter(p => !archivedState[p.id]);
+  }
+  filteredProperties = filterArchivedFromArray(filteredProperties);
+  // Re-render inicial con filtrado
+  renderProperties(filteredProperties, currentPage);
+  hideArchivedCards();
   
-  // Event listeners para filtros automáticos
-  document.getElementById('searchLocation').addEventListener('change', searchProperties);
-  document.getElementById('searchType').addEventListener('change', searchProperties);
-  document.getElementById('searchPrice').addEventListener('change', searchProperties);
-  document.getElementById('searchBedrooms').addEventListener('change', searchProperties);
+  // Ajustar búsqueda para mantener el filtro de archivados
+  const originalSearch = searchProperties;
+  searchProperties = function() {
+    originalSearch();
+    filteredProperties = filterArchivedFromArray(filteredProperties);
+    renderProperties(filteredProperties, currentPage);
+    hideArchivedCards();
+  }
 });
+
+// Reaplicar ocultar después de paginación
+const originalGoToPage = goToPage;
+goToPage = function(page) {
+  originalGoToPage(page);
+  hideArchivedCards();
+}
 
 // Script para dropdown menu
 const toggleBtn = document.getElementById("dropdown-toggle");

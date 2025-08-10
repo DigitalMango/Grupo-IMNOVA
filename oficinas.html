@@ -653,6 +653,7 @@
   </div>
 </div>
 
+<script src="filter-archived.js"></script>
 <script>
   // Mobile menu toggle
   document.getElementById('menu-btn')?.addEventListener('click', function() {
@@ -777,8 +778,14 @@
     }
   };
 
+  // Aplicar filtro de archivados
+  const activeProperties = applyArchiveFilter(properties);
+  
+  // Ocultar tarjetas ya renderizadas si están archivadas (por seguridad)
+  document.addEventListener('DOMContentLoaded', hideArchivedCards);
+
   function openModal(propertyId) {
-    const property = properties[propertyId];
+    const property = activeProperties[propertyId];
     if (!property) return;
 
     document.getElementById('modalTitle').textContent = property.title;

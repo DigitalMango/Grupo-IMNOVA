@@ -422,8 +422,17 @@ const allProperties = [
   }
 ];
 
-// Estado de archivado por propiedad (en memoria)
-const archivedState = {};
+// Estado de archivado por propiedad (persistente en localStorage)
+function getArchivedState() {
+  const saved = localStorage.getItem('archivedProperties');
+  return saved ? JSON.parse(saved) : {};
+}
+
+function setArchivedState(state) {
+  localStorage.setItem('archivedProperties', JSON.stringify(state));
+}
+
+const archivedState = getArchivedState();
 
 function renderProperties() {
   const container = document.getElementById('propertiesContainer');
@@ -476,6 +485,9 @@ function renderProperties() {
       if (idx !== -1) {
         if (confirm('¿Estás seguro de eliminar esta propiedad?')) {
           allProperties.splice(idx, 1);
+          // También eliminar del estado de archivado
+          delete archivedState[id];
+          setArchivedState(archivedState);
           renderProperties();
         }
       }
@@ -486,6 +498,7 @@ function renderProperties() {
     btn.onclick = function() {
       const id = this.getAttribute('data-id');
       archivedState[id] = !archivedState[id];
+      setArchivedState(archivedState);
       renderProperties();
     };
   });
