@@ -613,6 +613,9 @@
   </div>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
 <script src="filter-archived.js"></script>
 <script>
 // Catálogo completo de propiedades
@@ -1134,23 +1137,34 @@ function changeMainImage(src) {
 }
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-  // Filtrar propiedades archivadas antes de iniciar
-  const archivedState = getArchivedState();
-  function filterArchivedFromArray(arr) {
-    return arr.filter(p => !archivedState[p.id]);
+  // Sincronizar estados desde Firestore y aplicar filtros/overrides
+  function applyAllFilters() {
+    const archivedState = getArchivedState();
+    function filterArchivedFromArray(arr) {
+      return arr.filter(p => !archivedState[p.id]);
+    }
+    filteredProperties = filterArchivedFromArray([...allProperties]);
+    applyOverridesToArray(filteredProperties);
+    renderProperties(filteredProperties, currentPage);
+    hideArchivedCards();
+    applyOverridesToStaticCards?.();
   }
-  filteredProperties = filterArchivedFromArray(filteredProperties);
-  // Re-render inicial con filtrado
-  renderProperties(filteredProperties, currentPage);
-  hideArchivedCards();
+  if (typeof syncRemoteState === 'function') {
+    syncRemoteState().then(applyAllFilters).catch(applyAllFilters);
+  } else {
+    applyAllFilters();
+  }
   
   // Ajustar búsqueda para mantener el filtro de archivados
   const originalSearch = searchProperties;
   searchProperties = function() {
     originalSearch();
-    filteredProperties = filterArchivedFromArray(filteredProperties);
+    applyOverridesToArray(filteredProperties);
+    const archivedState = getArchivedState();
+    filteredProperties = filteredProperties.filter(p => !archivedState[p.id]);
     renderProperties(filteredProperties, currentPage);
     hideArchivedCards();
+    applyOverridesToStaticCards?.();
   }
 });
 

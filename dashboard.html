@@ -46,6 +46,11 @@
             transition: opacity 0.3s ease;
         }
     </style>
+    <!-- Firebase (v8) for Auth + Firestore sync -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
 </head>
 <body class="bg-lightGray">
     <!-- Header -->
@@ -422,19 +427,87 @@ const allProperties = [
   }
 ];
 
-// Estado de archivado por propiedad (persistente en localStorage)
-function getArchivedState() {
-  const saved = localStorage.getItem('archivedProperties');
-  return saved ? JSON.parse(saved) : {};
+// Estado de archivado por propiedad (sincronizado con Firestore + localStorage)
+let archivedState = {};
+
+function getArchivedStateLocal() {
+  try {
+    const saved = localStorage.getItem('archivedProperties');
+    return saved ? JSON.parse(saved) : {};
+  } catch (_) { return {}; }
 }
 
-function setArchivedState(state) {
-  localStorage.setItem('archivedProperties', JSON.stringify(state));
+function setArchivedStateLocal(state) {
+  try { localStorage.setItem('archivedProperties', JSON.stringify(state)); } catch (_) {}
 }
 
-const archivedState = getArchivedState();
+async function fetchArchivedRemote() {
+  try {
+    if (typeof firebase === 'undefined' || !firebase.firestore) return null;
+    const db = firebase.firestore();
+    const snap = await db.collection('config').doc('archived').get();
+    const data = snap.exists ? snap.data() : null;
+    return data && data.flags ? data.flags : null;
+  } catch (e) { return null; }
+}
 
-function renderProperties() {
+async function writeArchivedRemote(state) {
+  try {
+    if (typeof firebase === 'undefined' || !firebase.firestore) return;
+    const db = firebase.firestore();
+    await db.collection('config').doc('archived').set({ flags: state, updatedAt: new Date() }, { merge: true });
+  } catch (e) { /* noop */ }
+}
+
+async function initArchivedState() {
+  // Prefiere remoto, cae a local
+  const remote = await fetchArchivedRemote();
+  archivedState = remote || getArchivedStateLocal();
+  setArchivedStateLocal(archivedState);
+}
+
+// ================= Overrides (título/precio/ubicación) =================
+let overridesState = {};
+
+function getOverridesLocal() {
+  try {
+    const saved = localStorage.getItem('propertyOverrides');
+    return saved ? JSON.parse(saved) : {};
+  } catch (_) { return {}; }
+}
+
+function setOverridesLocal(state) {
+  try { localStorage.setItem('propertyOverrides', JSON.stringify(state || {})); } catch (_) {}
+}
+
+async function fetchOverridesRemote() {
+  try {
+    if (typeof firebase === 'undefined' || !firebase.firestore) return null;
+    const db = firebase.firestore();
+    const snap = await db.collection('config').doc('overrides').get();
+    const data = snap.exists ? snap.data() : null;
+    return data && data.data ? data.data : null;
+  } catch (e) { return null; }
+}
+
+async function initOverridesState() {
+  const remote = await fetchOverridesRemote();
+  overridesState = remote || getOverridesLocal();
+  setOverridesLocal(overridesState);
+}
+
+function applyOverridesToAllProperties() {
+  if (!overridesState) return;
+  for (let i = 0; i < allProperties.length; i++) {
+    const prop = allProperties[i];
+    const ov = overridesState[prop.id];
+    if (ov && typeof ov === 'object') {
+      allProperties[i] = { ...prop, ...ov };
+    }
+  }
+}
+
+async function renderProperties() {
   const container = document.getElementById('propertiesContainer');
   if (!container) return;
   container.innerHTML = '';
@@ -487,7 +560,7 @@ function renderProperties() {
           allProperties.splice(idx, 1);
           // También eliminar del estado de archivado
           delete archivedState[id];
-          setArchivedState(archivedState);
+          setArchivedStateLocal(archivedState);
           renderProperties();
         }
       }
@@ -498,8 +571,11 @@ function renderProperties() {
     btn.onclick = function() {
       const id = this.getAttribute('data-id');
       archivedState[id] = !archivedState[id];
-      setArchivedState(archivedState);
+      setArchivedStateLocal(archivedState);
+      // UI inmediata
       renderProperties();
+      // Sincronizar en background
+      writeArchivedRemote(archivedState).catch(() => {});
     };
   });
 
@@ -511,7 +587,12 @@ function renderProperties() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderProperties);
+document.addEventListener('DOMContentLoaded', async () => {
+  await initArchivedState();
+  await initOverridesState();
+  applyOverridesToAllProperties();
+  renderProperties();
+});
 
 // Modal de edición
 function openEditModal(idx) {
@@ -563,6 +644,26 @@ function openEditModal(idx) {
     allProperties[i].title = document.getElementById('editTitulo').value;
     allProperties[i].priceDisplay = document.getElementById('editPrecio').value;
     allProperties[i].location = document.getElementById('editUbicacion').value;
+    // Guardar en localStorage para efecto inmediato
+    try {
+      const id = allProperties[i].id;
+      const saved = localStorage.getItem('propertyOverrides');
+      const ov = saved ? JSON.parse(saved) : {};
+      ov[id] = {
+        title: allProperties[i].title,
+        priceDisplay: allProperties[i].priceDisplay,
+        location: allProperties[i].location
+      };
+      localStorage.setItem('propertyOverrides', JSON.stringify(ov));
+      overridesState = ov;
+      // Sincronizar en background a Firestore
+      if (typeof firebase !== 'undefined' && firebase.firestore) {
+        const db = firebase.firestore();
+        const payload = {};
+        payload[id] = ov[id];
+        db.collection('config').doc('overrides').set({ data: payload, updatedAt: new Date() }, { merge: true }).catch(() => {});
+      }
+    } catch (_) {}
     modal.classList.add('hidden');
     renderProperties();
   };

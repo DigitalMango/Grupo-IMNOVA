@@ -6,6 +6,9 @@
   <link id="dynamic-favicon" rel="icon" type="image/gif" href="img/favicon/houser.gif">
   <title>Oficinas y Locales - Grupo IMNOVA</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
@@ -778,14 +781,32 @@
     }
   };
 
-  // Aplicar filtro de archivados
-  const activeProperties = applyArchiveFilter(properties);
-  
-  // Ocultar tarjetas ya renderizadas si están archivadas (por seguridad)
-  document.addEventListener('DOMContentLoaded', hideArchivedCards);
+  // Sincronizar y aplicar filtros/overrides
+  let activeProperties = applyArchiveFilter(properties);
+  function syncAndApply() {
+    if (typeof syncRemoteState === 'function') {
+      syncRemoteState().then(() => {
+        activeProperties = applyArchiveFilter(properties);
+        applyOverridesToObject(activeProperties);
+        hideArchivedCards();
+        applyOverridesToStaticCards?.();
+      }).catch(() => {
+        activeProperties = applyArchiveFilter(properties);
+        applyOverridesToObject(activeProperties);
+        hideArchivedCards();
+        applyOverridesToStaticCards?.();
+      });
+    } else {
+      activeProperties = applyArchiveFilter(properties);
+      applyOverridesToObject(activeProperties);
+      hideArchivedCards();
+      applyOverridesToStaticCards?.();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', syncAndApply);
 
   function openModal(propertyId) {
-    const property = activeProperties[propertyId];
+    const property = (activeProperties || {})[propertyId];
     if (!property) return;
 
     document.getElementById('modalTitle').textContent = property.title;

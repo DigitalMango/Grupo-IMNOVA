@@ -726,6 +726,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="firebase-config.js"></script>
   <script src="filter-archived.js"></script>
 </head>
@@ -795,13 +796,6 @@
                   <div>
                     <div class="font-medium">Edificios</div>
                     <div class="text-xs text-gray-500">Desarrollos completos</div>
-                  </div>
-                </a>
-                <a href="terrenos.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
-                  <i class="fas fa-map-marked-alt text-blue-500 mr-3"></i>
-                  <div>
-                    <div class="font-medium">Terrenos y más</div>
-                    <div class="text-xs text-gray-500">Lotes y propiedades especiales</div>
                   </div>
                 </a>
               </div>
@@ -1803,7 +1797,10 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   // Enhanced Modal Animation
   function openModal(propertyId) {
     const property = featuredProperties[propertyId];
-    if (!property) return;
+    if (!property) {
+      if (typeof hideArchivedCards === 'function') hideArchivedCards();
+      return;
+    }
 
     document.getElementById('modalTitle').textContent = property.title;
     
@@ -1912,15 +1909,42 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     toggleBackToTop();
     initializeSearchListeners();
     initModernNavbar();
-    // Ocultar tarjetas archivadas (featured cards)
-    if (typeof hideArchivedCards === 'function') hideArchivedCards();
+    // Sincronizar estados remotos y aplicar filtros/overrides
+    if (typeof syncRemoteState === 'function') {
+      syncRemoteState().then(() => {
+        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
+        if (typeof hideArchivedCards === 'function') hideArchivedCards();
+        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
+      }).catch(() => {
+        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
+        if (typeof hideArchivedCards === 'function') hideArchivedCards();
+        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
+      });
+    } else {
+      if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
+      if (typeof hideArchivedCards === 'function') hideArchivedCards();
+      if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
+    }
   });
 
   document.addEventListener('DOMContentLoaded', () => {
     initializeSearchListeners();
     initModernNavbar();
-    // Ocultar tarjetas archivadas (featured cards)
-    if (typeof hideArchivedCards === 'function') hideArchivedCards();
+    if (typeof syncRemoteState === 'function') {
+      syncRemoteState().then(() => {
+        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
+        if (typeof hideArchivedCards === 'function') hideArchivedCards();
+        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
+      }).catch(() => {
+        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
+        if (typeof hideArchivedCards === 'function') hideArchivedCards();
+        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
+      });
+    } else {
+      if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
+      if (typeof hideArchivedCards === 'function') hideArchivedCards();
+      if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
+    }
   });
 
   // Close modals when clicking outside
@@ -2214,7 +2238,10 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
   function openModal(propertyId) {
     const property = featuredProperties[propertyId];
-    if (!property) return;
+    if (!property) {
+      if (typeof hideArchivedCards === 'function') hideArchivedCards();
+      return;
+    }
 
     document.getElementById('modalTitle').textContent = property.title;
     
