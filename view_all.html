@@ -1137,9 +1137,15 @@ function changeMainImage(src) {
 }
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-  // Sincronizar estados desde Firestore y aplicar filtros/overrides
-  function applyAllFilters() {
+  // Sincronizar estados desde Firestore, cargar propiedades remotas y aplicar filtros/overrides
+  async function applyAllFilters() {
     const archivedState = getArchivedState();
+    if (typeof fetchRemoteProperties === 'function' && typeof mergeRemoteIntoArray === 'function') {
+      try {
+        const rem = await fetchRemoteProperties();
+        mergeRemoteIntoArray(allProperties, rem);
+      } catch(_){}
+    }
     function filterArchivedFromArray(arr) {
       return arr.filter(p => !archivedState[p.id]);
     }

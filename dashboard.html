@@ -45,6 +45,229 @@
         .modal {
             transition: opacity 0.3s ease;
         }
+        /* Estilos personalizados para el dashboard */
+        .line-clamp-1 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        
+        .line-clamp-2 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        /* Mejoras para el área de subida de imágenes */
+        #imageUploadArea {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        #imageUploadArea:hover {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+        
+        /* Estilos para las tarjetas de propiedades */
+        .property-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .property-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .property-card.archived {
+            opacity: 0.7;
+        }
+        
+        .property-card.archived:hover {
+            opacity: 0.9;
+        }
+        
+        /* Mejoras para los botones */
+        .btn-editar:hover, .btn-archivar:hover, .btn-eliminar:hover {
+            transform: translateY(-1px);
+        }
+        
+        /* Estilos para el carrusel */
+        #imageCarousel img {
+            transition: transform 0.3s ease;
+        }
+        
+        #imageCarousel img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Estilos para los indicadores del carrusel */
+        #carouselIndicators button {
+            transition: all 0.3s ease;
+        }
+        
+        #carouselIndicators button:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Mejoras para los inputs */
+        input:focus, textarea:focus, select:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Estilos para campos con error */
+        input.border-red-500, textarea.border-red-500, select.border-red-500 {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        /* Estilos para mensajes de error */
+        .error-message {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Indicador de campos obligatorios */
+        .text-red-500 {
+            color: #ef4444;
+        }
+        
+        /* Mejoras para el área de subida cuando hay error */
+        #imageUploadArea.error {
+            border-color: #ef4444;
+            background-color: #fef2f2;
+        }
+        
+        /* Animaciones suaves */
+        .transition-all {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Estilos para el modal de carga */
+        #loadingModal {
+            backdrop-filter: blur(8px);
+        }
+        
+        /* Mejoras para el scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Estilos para el modal de éxito */
+        #successModal .bg-white {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #successModal .bg-white.scale-100 {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        #successModal .bg-white.scale-95 {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        
+        /* Animación de entrada para el icono de éxito */
+        #successModal .w-20 {
+            animation: bounceIn 0.6s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Estilos para el modal de edición */
+        #editModal {
+            backdrop-filter: blur(8px);
+        }
+        
+        #editModal .bg-white {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #editModal .bg-white {
+            animation: slideInUp 0.4s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Estilos para campos con error en el modal de edición */
+        #editForm input.border-red-500, 
+        #editForm textarea.border-red-500, 
+        #editForm select.border-red-500 {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        /* Mejoras para el scroll en el modal de edición */
+        #editModal .overflow-y-auto {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+        
+        #editModal .overflow-y-auto::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #editModal .overflow-y-auto::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        #editModal .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        #editModal .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
     <!-- Firebase (v8) for Auth + Firestore sync -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -89,81 +312,313 @@
     <div class="container mx-auto p-4 md:p-6">
         <div class="flex flex-col lg:flex-row gap-6">
             <!-- Left Form Section -->
-            <div class="w-full lg:w-1/3 bg-white rounded-xl shadow-md p-6">
-                <h2 class="text-navy text-xl font-bold mb-6">Agregar nueva propiedad</h2>
-                <form id="propertyForm" class="space-y-4">
-                    <div>
-                        <label class="block text-darkGray text-sm font-medium mb-1">Título de la propiedad</label>
-                        <input type="text" class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" placeholder="Apartamento moderno en el centro">
+            <div class="w-full lg:w-1/3 bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-navy to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-plus text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-navy text-2xl font-bold">Nueva Propiedad</h2>
+                    <p class="text-darkGray text-sm mt-2">Completa los datos para crear tu propiedad</p>
+                    <div class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                        <p class="text-xs text-blue-700 flex items-center">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <strong>Tip:</strong> Solo haz clic en "Crear Propiedad" cuando estés listo para enviar
+                        </p>
+                    </div>
+                </div>
+                
+                <form id="propertyForm" class="space-y-6" novalidate>
+                    <!-- Título -->
+                    <div class="group">
+                        <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                            <i class="fas fa-home text-navy mr-2"></i>
+                            Título de la propiedad <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <input id="newTitle" type="text" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="Ej: Apartamento moderno en el centro" required>
+                        <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <span>Este campo es obligatorio</span>
+                        </div>
                     </div>
                     
-                    <div>
-                        <label class="block text-darkGray text-sm font-medium mb-1">Descripción</label>
-                        <textarea class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" rows="3" placeholder="Hermoso apartamento moderno con vistas a la ciudad..."></textarea>
+                    <!-- Descripción -->
+                    <div class="group">
+                        <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                            <i class="fas fa-align-left text-navy mr-2"></i>
+                            Descripción <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <textarea id="newDescription" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white resize-none" rows="3" placeholder="Describe las características principales de tu propiedad..." required></textarea>
+                        <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <span>Este campo es obligatorio</span>
+                        </div>
                     </div>
                     
+                    <!-- Precio y Tipo -->
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-darkGray text-sm font-medium mb-1">Precio ($)</label>
-                            <input type="number" class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" placeholder="500000">
+                        <div class="group">
+                            <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                                <i class="fas fa-dollar-sign text-navy mr-2"></i>
+                                Precio ($) <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <input id="newPrice" type="number" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="500000" required min="0">
+                            <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i>
+                                <span>Ingresa un precio válido</span>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-darkGray text-sm font-medium mb-1">Tipo de propiedad</label>
-                            <select class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy">
-                                <option>Apartamento</option>
-                                <option>Casa</option>
-                                <option>Condominio</option>
-                                <option>Townhouse</option>
-                                <option>Villa</option>
+                        <div class="group">
+                            <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                                <i class="fas fa-building text-navy mr-2"></i>
+                                Tipo <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <select id="newType" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer" required>
+                                <option value="">Selecciona un tipo</option>
+                                <option value="Casa">Casa</option>
+                                <option value="Apartamento">Apartamento</option>
+                                <option value="Oficina">Oficina</option>
+                                <option value="Edificio">Edificio</option>
                             </select>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-darkGray text-sm font-medium mb-1">Ubicación</label>
-                        <input type="text" class="w-full px-4 py-2 border border-mediumGray rounded-md focus:outline-none focus:ring-2 focus:ring-navy" placeholder="San Salvador, El Salvador">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-darkGray text-sm font-medium mb-1">Imagen de la propiedad</label>
-                        <div class="border-2 border-dashed border-mediumGray rounded-lg p-6 text-center cursor-pointer hover:border-navy transition-colors" id="imageUploadArea">
-                            <i class="fas fa-cloud-upload-alt text-3xl text-mediumGray mb-2"></i>
-                            <p class="text-mediumGray">Haz clic para subir o arrastra la imagen aquí</p>
-                            <p class="text-xs text-mediumGray mt-1">PNG, JPG hasta 5MB</p>
-                            <input type="file" class="hidden" id="imageUpload" accept="image/*">
-                        </div>
-                        <div id="imagePreview" class="mt-3 hidden">
-                            <div class="relative">
-                                <img id="previewImg" class="w-full h-40 object-cover rounded-lg" src="" alt="Vista previa">
-                                <button type="button" id="removeImage" class="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md hover:bg-gray-100">
-                                    <i class="fas fa-times text-darkGray"></i>
-                                </button>
+                            <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i>
+                                <span>Selecciona un tipo de propiedad</span>
                             </div>
                         </div>
                     </div>
                     
-                    <button type="submit" class="w-full bg-navy hover:bg-opacity-90 text-white py-3 rounded-md font-medium flex items-center justify-center">
-                        <i class="fas fa-plus mr-2"></i> Agregar propiedad
+                    <!-- Características físicas -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="group">
+                            <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                                <i class="fas fa-bed text-navy mr-2"></i>
+                                Habitaciones
+                            </label>
+                            <select id="newBedrooms" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10+</option>
+                            </select>
+                        </div>
+                        <div class="group">
+                            <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                                <i class="fas fa-bath text-navy mr-2"></i>
+                                Baños
+                            </label>
+                            <select id="newBathrooms" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10+</option>
+                            </select>
+                        </div>
+                        <div class="group">
+                            <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                                <i class="fas fa-ruler-combined text-navy mr-2"></i>
+                                Área (m²) <span class="text-red-500 ml-1">*</span>
+                            </label>
+                            <input id="newArea" type="text" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="150" required>
+                            <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i>
+                                <span>Ingresa el área de la propiedad</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Características -->
+                    <div class="group">
+                        <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                            <i class="fas fa-star text-navy mr-2"></i>
+                            Características especiales
+                        </label>
+                        <textarea id="newFeatures" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white resize-none" rows="3" placeholder="Estacionamiento privado&#10;Jardín&#10;Piscina&#10;Seguridad 24/7"></textarea>
+                        <p class="text-xs text-mediumGray mt-2 flex items-center">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Escribe cada característica en una línea separada
+                        </p>
+                    </div>
+                    
+                    <!-- Ubicación -->
+                    <div class="group">
+                        <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                            <i class="fas fa-map-marker-alt text-navy mr-2"></i>
+                            Ubicación <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <input id="newLocation" type="text" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white" placeholder="San Salvador, El Salvador" required>
+                        <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <span>Este campo es obligatorio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Sección de Imágenes -->
+                    <div class="group">
+                        <label class="block text-darkGray text-sm font-semibold mb-3 flex items-center">
+                            <i class="fas fa-images text-navy mr-2"></i>
+                            Imágenes de la propiedad <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        
+                        <!-- Área de subida -->
+                        <div class="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center cursor-pointer hover:border-navy hover:bg-navy hover:bg-opacity-5 transition-all duration-300 group-hover:scale-[1.02]" id="imageUploadArea">
+                            <div class="w-20 h-20 bg-gradient-to-br from-navy to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-cloud-upload-alt text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2 group-hover:text-navy transition-colors">Subir Imágenes</h3>
+                            <p class="text-gray-500 mb-3">Haz clic para subir o arrastra las imágenes aquí</p>
+                            <div class="flex items-center justify-center space-x-4 text-sm text-gray-400">
+                                <span class="flex items-center">
+                                    <i class="fas fa-image mr-1"></i>
+                                    PNG, JPG
+                                </span>
+                                <span class="flex items-center">
+                                    <i class="fas fa-weight-hanging mr-1"></i>
+                                    Máx 5MB
+                                </span>
+                                <span class="flex items-center">
+                                    <i class="fas fa-layer-group mr-1"></i>
+                                    Múltiples
+                                </span>
+                            </div>
+                            <input type="file" class="hidden" id="imageUpload" accept="image/*" multiple>
+                        </div>
+                        
+                        <!-- Mensaje de error para imágenes -->
+                        <div id="imageError" class="error-message hidden text-red-500 text-sm mt-2 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <span>Debes subir al menos una imagen de la propiedad</span>
+                        </div>
+                        
+                        <!-- Mensaje de ayuda para imágenes -->
+                        <div class="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i class="fas fa-lightbulb text-blue-600 text-sm"></i>
+                                </div>
+                                <div class="text-sm text-blue-800">
+                                    <p class="font-semibold mb-2">💡 Consejos para mejores resultados:</p>
+                                    <ul class="space-y-1 text-xs">
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                            La primera imagen será la imagen principal
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                            Usa imágenes de buena calidad (mínimo 800x600px)
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                            Formatos recomendados: JPG, PNG
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                            Puedes subir hasta 10 imágenes por propiedad
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Indicador de límite de imágenes -->
+                        <div id="imageLimitIndicator" class="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-xl hidden">
+                            <div class="flex items-center justify-between text-sm mb-2">
+                                <span class="text-gray-700 font-medium">Límite de imágenes:</span>
+                                <span class="font-bold">
+                                    <span id="currentImageCount" class="text-blue-600">0</span>
+                                    <span class="text-gray-500">/10</span>
+                                </span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                                <div id="imageLimitBar" class="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Carrusel de preview de imágenes -->
+                        <div id="imagePreview" class="mt-6 hidden">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-darkGray text-lg font-semibold flex items-center">
+                                    <i class="fas fa-eye text-navy mr-2"></i>
+                                    Vista previa de imágenes
+                                </h4>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full font-medium" id="imageCounter">0 imágenes</span>
+                                    <button type="button" id="clearAllImages" class="text-sm text-red-500 hover:text-red-700 font-medium bg-red-50 hover:bg-red-100 px-3 py-1 rounded-full transition-colors duration-200">
+                                        <i class="fas fa-trash mr-1"></i>Limpiar todas
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Carrusel principal -->
+                            <div class="relative mb-4">
+                                <div class="overflow-hidden rounded-2xl shadow-lg">
+                                    <div id="imageCarousel" class="flex transition-transform duration-500 ease-out">
+                                        <!-- Las imágenes se insertarán aquí dinámicamente -->
+                                    </div>
+                                </div>
+                                
+                                <!-- Controles del carrusel -->
+                                <button type="button" id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-60 text-white rounded-full p-3 hover:bg-opacity-80 transition-all duration-200 hover:scale-110 hidden">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button type="button" id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-60 text-white rounded-full p-3 hover:bg-opacity-80 transition-all duration-200 hover:scale-110 hidden">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Indicadores del carrusel -->
+                            <div id="carouselIndicators" class="flex justify-center mb-4 space-x-2">
+                                <!-- Los indicadores se insertarán aquí dinámicamente -->
+                            </div>
+                            
+                            <!-- Grid de miniaturas -->
+                            <div class="grid grid-cols-4 md:grid-cols-6 gap-3" id="imageGrid">
+                                <!-- Las miniaturas se mostrarán aquí dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botón de envío -->
+                    <button type="submit" class="submit-btn w-full bg-gradient-to-r from-navy to-blue-600 hover:from-blue-700 hover:to-navy text-white py-4 rounded-2xl font-semibold text-lg flex items-center justify-center transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl shadow-lg">
+                        <i class="fas fa-plus mr-3"></i> 
+                        Crear Propiedad
                     </button>
                 </form>
             </div>
             
             <!-- Right Properties List -->
             <div class="w-full lg:w-2/3">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-navy text-xl font-bold">Propiedades</h2>
-                    <div class="flex space-x-2">
-                        <button class="px-4 py-2 bg-white border border-mediumGray rounded-md text-darkGray text-sm font-medium hover:bg-gray-50">
-                            <i class="fas fa-filter mr-1"></i> Filtrar
-                        </button>
-                        <button class="px-4 py-2 bg-white border border-mediumGray rounded-md text-darkGray text-sm font-medium hover:bg-gray-50">
-                            <i class="fas fa-sort mr-1"></i> Ordenar
-                        </button>
+                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-navy text-2xl font-bold">Propiedades</h2>
+                            <p class="text-darkGray text-sm mt-1">Gestiona todas tus propiedades inmobiliarias</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="px-6 py-3 bg-white border-2 border-gray-200 rounded-xl text-darkGray text-sm font-semibold hover:border-navy hover:text-navy transition-all duration-200 flex items-center">
+                                <i class="fas fa-filter mr-2"></i> Filtrar
+                            </button>
+                            <button class="px-6 py-3 bg-white border-2 border-gray-200 rounded-xl text-darkGray text-sm font-semibold hover:border-navy hover:text-navy transition-all duration-200 flex items-center">
+                                <i class="fas fa-sort mr-2"></i> Ordenar
+                            </button>
+                        </div>
                     </div>
-                </div>
-                
-                <div id="propertiesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <!-- Las tarjetas serán generadas dinámicamente por JS -->
+                    
+                    <div id="propertiesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Las tarjetas serán generadas dinámicamente por JS -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,41 +645,427 @@
         </div>
     </div>
     
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-3xl w-11/12 max-w-md p-8 text-center shadow-2xl">
+            <div class="relative mb-8">
+                <!-- Círculo de carga animado -->
+                <div class="w-24 h-24 mx-auto relative">
+                    <div class="w-full h-full border-4 border-gray-200 rounded-full"></div>
+                    <div class="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-navy rounded-full animate-spin"></div>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <i class="fas fa-home text-navy text-2xl"></i>
+                    </div>
+                </div>
+                <!-- Texto de estado -->
+                <div id="loadingText" class="mt-6 text-navy font-bold text-lg">Creando propiedad...</div>
+            </div>
+            
+            <!-- Barra de progreso moderna -->
+            <div class="w-full bg-gray-200 rounded-full h-3 mb-6 overflow-hidden">
+                <div id="progressBar" class="bg-gradient-to-r from-navy to-blue-600 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+            </div>
+            
+            <!-- Mensaje de progreso -->
+            <div id="progressText" class="text-sm text-gray-600 font-medium">Iniciando...</div>
+            
+            <!-- Indicador de pasos -->
+            <div class="mt-6 flex justify-center space-x-2">
+                <div class="w-2 h-2 bg-navy rounded-full"></div>
+                <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-3xl w-11/12 max-w-md p-8 text-center shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+            <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-white text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">¡Propiedad Eliminada!</h3>
+            <p class="text-gray-600 mb-6">La propiedad ha sido eliminada exitosamente de la base de datos.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105">
+                <i class="fas fa-check mr-2"></i>Entendido
+            </button>
+        </div>
+    </div>
+    
     <script>
-        // Image upload preview functionality
+        // Función para comprimir imágenes
+        function compressImage(base64String, quality = 0.7) {
+          return new Promise((resolve, reject) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = function() {
+              // Calcular nuevas dimensiones manteniendo proporción
+              const maxWidth = 800;
+              const maxHeight = 600;
+              let { width, height } = img;
+              
+              if (width > height) {
+                if (width > maxWidth) {
+                  height = (height * maxWidth) / width;
+                  width = maxWidth;
+                }
+              } else {
+                if (height > maxHeight) {
+                  width = (width * maxHeight) / height;
+                  height = maxHeight;
+                }
+              }
+              
+              canvas.width = width;
+              canvas.height = height;
+              
+              // Dibujar imagen redimensionada
+              ctx.drawImage(img, 0, 0, width, height);
+              
+              // Convertir a base64 con calidad especificada
+              const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+              resolve(compressedBase64);
+            };
+            
+            img.onerror = reject;
+            img.src = base64String;
+          });
+        }
+        
+        // Multiple image upload preview functionality with carousel and drag & drop
         const imageUploadArea = document.getElementById('imageUploadArea');
         const imageUpload = document.getElementById('imageUpload');
         const imagePreview = document.getElementById('imagePreview');
-        const previewImg = document.getElementById('previewImg');
-        const removeImage = document.getElementById('removeImage');
+        const imageGrid = document.getElementById('imageGrid');
+        const imageCarousel = document.getElementById('imageCarousel');
+        const carouselIndicators = document.getElementById('carouselIndicators');
+        const prevImage = document.getElementById('prevImage');
+        const nextImage = document.getElementById('nextImage');
+        const imageCounter = document.getElementById('imageCounter');
+        
+        let uploadedImages = []; // Array para almacenar las imágenes subidas
+        let currentCarouselIndex = 0; // Índice actual del carrusel
+        
+        // Drag & Drop functionality
+        imageUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            imageUploadArea.classList.add('border-navy', 'bg-navy', 'bg-opacity-5');
+        });
+        
+        imageUploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            imageUploadArea.classList.remove('border-navy', 'bg-navy', 'bg-opacity-5');
+        });
+        
+        imageUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            imageUploadArea.classList.remove('border-navy', 'bg-navy', 'bg-opacity-5');
+            
+            const files = Array.from(e.dataTransfer.files);
+            const imageFiles = files.filter(file => file.type.startsWith('image/'));
+            const nonImageFiles = files.filter(file => !file.type.startsWith('image/'));
+            
+            if (nonImageFiles.length > 0) {
+                showImageUploadMessage(`⚠️ Se ignoraron ${nonImageFiles.length} archivo${nonImageFiles.length !== 1 ? 's' : ''} que no son imágenes`, 'error');
+            }
+            
+            if (imageFiles.length > 0) {
+                processImageFiles(imageFiles);
+            }
+        });
         
         imageUploadArea.addEventListener('click', () => {
             imageUpload.click();
         });
         
         imageUpload.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
+            if (this.files && this.files.length > 0) {
+                // Filtrar solo archivos de imagen
+                const imageFiles = Array.from(this.files).filter(file => file.type.startsWith('image/'));
+                const nonImageFiles = Array.from(this.files).filter(file => !file.type.startsWith('image/'));
                 
-                reader.onload = function(e) {
-                    previewImg.src = e.target.result;
-                    imagePreview.classList.remove('hidden');
+                if (nonImageFiles.length > 0) {
+                    showImageUploadMessage(`⚠️ Se ignoraron ${nonImageFiles.length} archivo${nonImageFiles.length !== 1 ? 's' : ''} que no son imágenes`, 'error');
                 }
                 
-                reader.readAsDataURL(this.files[0]);
+                if (imageFiles.length > 0) {
+                    processImageFiles(imageFiles);
+                }
             }
         });
         
-        removeImage.addEventListener('click', function(e) {
-            e.stopPropagation();
-            imageUpload.value = '';
-            imagePreview.classList.add('hidden');
+        // Función para procesar archivos de imagen
+        function processImageFiles(files) {
+            // Verificar límite de imágenes
+            if (uploadedImages.length + files.length > 10) {
+                alert(`Puedes subir máximo 10 imágenes. Ya tienes ${uploadedImages.length} y estás intentando subir ${files.length} más.`);
+                return;
+            }
+            
+            uploadedImages = []; // Resetear array
+            imageGrid.innerHTML = ''; // Limpiar grid
+            imageCarousel.innerHTML = ''; // Limpiar carrusel
+            carouselIndicators.innerHTML = ''; // Limpiar indicadores
+            currentCarouselIndex = 0;
+            
+            files.forEach((file, index) => {
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    alert(`La imagen ${file.name} es demasiado grande. Máximo 5MB por imagen.`);
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    uploadedImages.push(imageData);
+                    
+                    // Crear elemento del carrusel
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = 'w-full flex-shrink-0';
+                    carouselItem.innerHTML = `
+                        <img src="${imageData}" alt="Vista previa ${index + 1}" class="w-full h-64 object-cover rounded-lg">
+                    `;
+                    imageCarousel.appendChild(carouselItem);
+                    
+                    // Crear miniatura con botón de eliminar
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'relative group cursor-pointer';
+                    imageContainer.innerHTML = `
+                        <img src="${imageData}" alt="Vista previa ${index + 1}" class="w-full h-20 object-cover rounded-lg">
+                        <button type="button" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600 remove-image-btn opacity-0 group-hover:opacity-100 transition-opacity" data-index="${index}">
+                            <i class="fas fa-times text-xs"></i>
+                        </button>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all rounded-lg"></div>
+                    `;
+                    
+                    imageGrid.appendChild(imageContainer);
+                    
+                    // Crear indicador del carrusel
+                    const indicator = document.createElement('button');
+                    indicator.type = 'button'; // Evitar envío automático del formulario
+                    indicator.className = 'w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors';
+                    indicator.setAttribute('data-index', index);
+                    indicator.addEventListener('click', () => goToCarouselImage(index));
+                    carouselIndicators.appendChild(indicator);
+                    
+                    // Mostrar preview y actualizar contador
+                    imagePreview.classList.remove('hidden');
+                    updateImageCounter();
+                    updateCarouselControls();
+                    
+                    // Limpiar error de imágenes si existe
+                    clearImageError();
+                    
+                    // Agregar evento para eliminar imagen individual
+                    const removeBtn = imageContainer.querySelector('.remove-image-btn');
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const indexToRemove = parseInt(this.getAttribute('data-index'));
+                        removeImage(indexToRemove);
+                    });
+                    
+                    // Agregar evento para ir a la imagen en el carrusel
+                    imageContainer.addEventListener('click', () => {
+                        goToCarouselImage(index);
+                    });
+                    
+                    // Mostrar mensaje de confirmación
+                    if (index === files.length - 1) {
+                        const successMsg = `✅ Se subieron ${files.length} imagen${files.length !== 1 ? 'es' : ''} exitosamente`;
+                        showImageUploadMessage(successMsg, 'success');
+                    }
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        // Función para eliminar imagen
+        function removeImage(indexToRemove) {
+            const removedImage = uploadedImages[indexToRemove];
+            uploadedImages.splice(indexToRemove, 1);
+            
+            // Actualizar carrusel
+            const carouselItems = imageCarousel.querySelectorAll('.w-full');
+            if (carouselItems[indexToRemove]) {
+                carouselItems[indexToRemove].remove();
+            }
+            
+            // Actualizar grid
+            const gridItems = imageGrid.querySelectorAll('.relative');
+            if (gridItems[indexToRemove]) {
+                gridItems[indexToRemove].remove();
+            }
+            
+            // Actualizar indicadores
+            const indicators = carouselIndicators.querySelectorAll('button');
+            if (indicators[indexToRemove]) {
+                indicators[indexToRemove].remove();
+            }
+            
+            // Si no hay más imágenes, ocultar preview
+            if (uploadedImages.length === 0) {
+                imagePreview.classList.add('hidden');
+                showImageUploadMessage('🗑️ Se eliminaron todas las imágenes', 'info');
+                return;
+            }
+            
+            // Actualizar índices de los botones restantes
+            document.querySelectorAll('.remove-image-btn').forEach((btn, i) => {
+                btn.setAttribute('data-index', i);
+            });
+            
+            // Actualizar contador y controles
+            updateImageCounter();
+            updateCarouselControls();
+            
+            // Ajustar índice del carrusel si es necesario
+            if (currentCarouselIndex >= uploadedImages.length) {
+                currentCarouselIndex = uploadedImages.length - 1;
+            }
+            updateCarouselPosition();
+            
+            // Mostrar mensaje de confirmación
+            showImageUploadMessage('🗑️ Imagen eliminada', 'info');
+        }
+        
+        // Función para ir a una imagen específica del carrusel
+        function goToCarouselImage(index) {
+            currentCarouselIndex = index;
+            updateCarouselPosition();
+            updateCarouselIndicators();
+        }
+        
+        // Función para actualizar la posición del carrusel
+        function updateCarouselPosition() {
+            const translateX = -currentCarouselIndex * 100;
+            imageCarousel.style.transform = `translateX(${translateX}%)`;
+        }
+        
+        // Función para actualizar los indicadores del carrusel
+        function updateCarouselIndicators() {
+            const indicators = carouselIndicators.querySelectorAll('button');
+            indicators.forEach((indicator, index) => {
+                if (index === currentCarouselIndex) {
+                    indicator.classList.remove('bg-gray-300');
+                    indicator.classList.add('bg-navy');
+                } else {
+                    indicator.classList.remove('bg-navy');
+                    indicator.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        // Función para actualizar el contador de imágenes
+        function updateImageCounter() {
+            const count = uploadedImages.length;
+            imageCounter.textContent = `${count} imagen${count !== 1 ? 'es' : ''}`;
+            
+            // Actualizar indicador de límite
+            updateImageLimitIndicator(count);
+        }
+        
+        // Función para actualizar el indicador de límite de imágenes
+        function updateImageLimitIndicator(count) {
+            const indicator = document.getElementById('imageLimitIndicator');
+            const currentCount = document.getElementById('currentImageCount');
+            const limitBar = document.getElementById('imageLimitBar');
+            
+            if (count > 0) {
+                indicator.classList.remove('hidden');
+                currentCount.textContent = count;
+                
+                const percentage = (count / 10) * 100;
+                limitBar.style.width = `${percentage}%`;
+                
+                // Cambiar color según el límite
+                if (count >= 10) {
+                    limitBar.classList.remove('bg-blue-600', 'bg-yellow-500');
+                    limitBar.classList.add('bg-red-500');
+                } else if (count >= 7) {
+                    limitBar.classList.remove('bg-blue-600', 'bg-red-500');
+                    limitBar.classList.add('bg-yellow-500');
+                } else {
+                    limitBar.classList.remove('bg-yellow-500', 'bg-red-500');
+                    limitBar.classList.add('bg-blue-600');
+                }
+            } else {
+                indicator.classList.add('hidden');
+            }
+        }
+        
+        // Función para actualizar los controles del carrusel
+        function updateCarouselControls() {
+            if (uploadedImages.length > 1) {
+                prevImage.classList.remove('hidden');
+                nextImage.classList.remove('hidden');
+            } else {
+                prevImage.classList.add('hidden');
+                nextImage.classList.add('hidden');
+            }
+        }
+        
+        // Eventos de navegación del carrusel
+        prevImage.addEventListener('click', () => {
+            if (currentCarouselIndex > 0) {
+                currentCarouselIndex--;
+                updateCarouselPosition();
+                updateCarouselIndicators();
+            }
+        });
+        
+        nextImage.addEventListener('click', () => {
+            if (currentCarouselIndex < uploadedImages.length - 1) {
+                currentCarouselIndex++;
+                updateCarouselPosition();
+                updateCarouselIndicators();
+            }
+        });
+        
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (!imagePreview.classList.contains('hidden')) {
+                if (e.key === 'ArrowLeft') {
+                    prevImage.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage.click();
+                }
+            }
         });
         
         // Delete confirmation modal
         const deleteModal = document.getElementById('deleteModal');
         const cancelDelete = document.getElementById('cancelDelete');
         const confirmDelete = document.getElementById('confirmDelete');
+        
+        // Loading modal elements
+        const loadingModal = document.getElementById('loadingModal');
+        const loadingText = document.getElementById('loadingText');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+        // Funciones para el modal de carga
+        function showLoadingModal() {
+            loadingModal.classList.remove('hidden');
+            updateProgress(0, 'Iniciando...');
+        }
+        
+        function hideLoadingModal() {
+            loadingModal.classList.add('hidden');
+        }
+        
+        function updateProgress(percentage, message) {
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = message;
+        }
+        
+        function updateLoadingText(text) {
+            loadingText.textContent = text;
+        }
         
         // Sample delete buttons (in a real app, these would be dynamically generated)
         const deleteButtons = document.querySelectorAll('.property-card button:last-child');
@@ -245,18 +1086,335 @@
             deleteModal.classList.add('hidden');
         });
         
-        // Form submission
+        // Form submission -> guarda en Firestore y refleja en UI
         const propertyForm = document.getElementById('propertyForm');
         
-        propertyForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // In a real app, this would submit the form data
-            alert('¡Propiedad agregada exitosamente!');
+        // Función para validar el formulario
+        function validateForm() {
+            let isValid = true;
+            
+            // Limpiar todos los mensajes de error
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.classList.add('hidden');
+            });
+            
+            // Validar título
+            const title = document.getElementById('newTitle').value.trim();
+            if (!title) {
+                showFieldError('newTitle', 'Este campo es obligatorio');
+                isValid = false;
+            }
+            
+            // Validar descripción
+            const description = document.getElementById('newDescription').value.trim();
+            if (!description) {
+                showFieldError('newDescription', 'Este campo es obligatorio');
+                isValid = false;
+            }
+            
+            // Validar precio
+            const price = document.getElementById('newPrice').value;
+            if (!price || price <= 0) {
+                showFieldError('newPrice', 'Ingresa un precio válido');
+                isValid = false;
+            }
+            
+            // Validar tipo
+            const type = document.getElementById('newType').value;
+            if (!type) {
+                showFieldError('newType', 'Selecciona un tipo de propiedad');
+                isValid = false;
+            }
+            
+            // Validar área
+            const area = document.getElementById('newArea').value.trim();
+            if (!area) {
+                showFieldError('newArea', 'Ingresa el área de la propiedad');
+                isValid = false;
+            }
+            
+            // Validar ubicación
+            const location = document.getElementById('newLocation').value.trim();
+            if (!location) {
+                showFieldError('newLocation', 'Este campo es obligatorio');
+                isValid = false;
+            }
+            
+            // Validar imágenes
+            if (uploadedImages.length === 0) {
+                document.getElementById('imageError').classList.remove('hidden');
+                // Marcar visualmente el área de subida
+                document.getElementById('imageUploadArea').classList.add('error');
+                isValid = false;
+            } else {
+                // Limpiar marca de error del área de subida
+                document.getElementById('imageUploadArea').classList.remove('error');
+            }
+            
+            return isValid;
+        }
+        
+        // Función para mostrar error en un campo específico
+        function showFieldError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = field.parentNode.querySelector('.error-message');
+            if (errorDiv) {
+                errorDiv.querySelector('span').textContent = message;
+                errorDiv.classList.remove('hidden');
+            }
+            
+            // Agregar borde rojo al campo
+            field.classList.add('border-red-500');
+            field.classList.remove('border-gray-200');
+        }
+        
+        // Función para limpiar error de un campo
+        function clearFieldError(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = field.parentNode.querySelector('.error-message');
+            if (errorDiv) {
+                errorDiv.classList.add('hidden');
+            }
+            
+            // Restaurar borde normal
+            field.classList.remove('border-red-500');
+            field.classList.add('border-gray-200');
+        }
+        
+        // Event listeners para limpiar errores al escribir
+        document.getElementById('newTitle').addEventListener('input', () => clearFieldError('newTitle'));
+        document.getElementById('newDescription').addEventListener('input', () => clearFieldError('newDescription'));
+        document.getElementById('newPrice').addEventListener('input', () => clearFieldError('newPrice'));
+        document.getElementById('newType').addEventListener('change', () => clearFieldError('newType'));
+        document.getElementById('newArea').addEventListener('input', () => clearFieldError('newArea'));
+        document.getElementById('newLocation').addEventListener('input', () => clearFieldError('newLocation'));
+        
+        // Event listener para limpiar error de imágenes cuando se suban
+        function clearImageError() {
+            document.getElementById('imageError').classList.add('hidden');
+            document.getElementById('imageUploadArea').classList.remove('error');
+        }
+        
+        propertyForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevenir envío automático
+            
+            // Verificar que el envío venga del botón correcto
+            const submitter = e.submitter;
+            if (!submitter || !submitter.classList.contains('submit-btn')) {
+                console.log('❌ Envío no autorizado, bloqueado');
+                return;
+            }
+            
+            console.log('🚀 Formulario enviado, procesando...');
+            
+            // Validar formulario antes de continuar
+            if (!validateForm()) {
+                console.log('❌ Validación fallida, formulario no enviado');
+                // Hacer scroll al primer error
+                const firstError = document.querySelector('.error-message:not(.hidden)');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+            
+            console.log('✅ Validación exitosa, continuando...');
+            
+            // Mostrar modal de carga
+            showLoadingModal();
+            updateProgress(10, 'Validando datos...');
+            
+            const title = document.getElementById('newTitle').value.trim();
+            const description = document.getElementById('newDescription').value.trim();
+            const priceNum = Number(document.getElementById('newPrice').value || 0);
+            const type = document.getElementById('newType').value;
+            const location = document.getElementById('newLocation').value.trim();
+            // imagePath ya no se usa, se maneja en la sección de imágenes múltiples
+            const bedrooms = Number(document.getElementById('newBedrooms').value || 0);
+            const bathrooms = Number(document.getElementById('newBathrooms').value || 0);
+            const area = document.getElementById('newArea').value.trim();
+            const featuresText = document.getElementById('newFeatures').value.trim();
+            
+            console.log('📝 Campos del formulario:', {
+                title, description, priceNum, type, location, 
+                bedrooms, bathrooms, area, featuresText
+            });
+            
+            if (!title || !location) { alert('Completa Título y Ubicación'); return; }
+            
+            // Validar que se hayan subido imágenes
+            if (uploadedImages.length === 0) {
+                alert('Por favor, sube al menos una imagen de la propiedad');
+                return;
+            }
+            
+            // COMPRIMIR MÚLTIPLES IMÁGENES si se subieron archivos
+            let finalImages = [];
+            
+            console.log('🔍 Verificando imágenes para comprimir...');
+            console.log('🔍 uploadedImages existe:', !!uploadedImages);
+            console.log('🔍 uploadedImages longitud:', uploadedImages.length);
+            
+            // Procesar imágenes subidas
+            if (uploadedImages && uploadedImages.length > 0) {
+              console.log('🔄 Comprimiendo', uploadedImages.length, 'imágenes...');
+              updateProgress(15, `Comprimiendo ${uploadedImages.length} imágenes...`);
+              
+              for (let i = 0; i < uploadedImages.length; i++) {
+                const originalImage = uploadedImages[i];
+                const imageSize = Math.ceil((originalImage.length * 3) / 4);
+                console.log(`📸 Imagen ${i + 1} - Tamaño original:`, imageSize, 'bytes');
+                updateProgress(15 + (i * 10), `Comprimiendo imagen ${i + 1} de ${uploadedImages.length}...`);
+                
+                try {
+                  let compressedImage = await compressImage(originalImage, 0.5); // Comprimir al 50%
+                  let compressedSize = Math.ceil((compressedImage.length * 3) / 4);
+                  console.log(`📸 Imagen ${i + 1} - Tamaño comprimida:`, compressedSize, 'bytes');
+                  
+                  if (compressedSize > 800000) {
+                    console.log(`⚠️ Imagen ${i + 1} sigue siendo muy grande, comprimiendo más...`);
+                    updateProgress(15 + (i * 10) + 5, `Comprimiendo imagen ${i + 1} más...`);
+                    compressedImage = await compressImage(originalImage, 0.3); // Comprimir al 30%
+                    compressedSize = Math.ceil((compressedImage.length * 3) / 4);
+                    console.log(`📸 Imagen ${i + 1} - Tamaño final:`, compressedSize, 'bytes');
+                    
+                    if (compressedSize > 800000) {
+                      alert(`La imagen ${i + 1} es demasiado grande incluso después de la compresión. Usa imágenes más pequeñas.`);
+                      return;
+                    }
+                  }
+                  
+                  finalImages.push(compressedImage);
+                  console.log(`✅ Imagen ${i + 1} comprimida exitosamente`);
+                  
+                } catch (err) {
+                  console.error(`❌ Error comprimiendo imagen ${i + 1}:`, err);
+                  alert(`Error comprimiendo la imagen ${i + 1}. Usa imágenes más pequeñas.`);
+                  return;
+                }
+              }
+              
+              updateProgress(25, 'Imágenes comprimidas exitosamente');
+            }
+            
+            // Combinar imágenes comprimidas (ya no hay rutas de imágenes)
+            const allImages = [...finalImages];
+            console.log('📸 Total de imágenes:', allImages.length);
+            const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+            const id = slug || `prop-${Date.now()}`;
+            const priceDisplay = priceNum > 0 ? `$${priceNum.toLocaleString('en-US')}` : '$0';
+            // Mapea tipo -> página
+            let page = 'oficinas.html';
+            if (type === 'Casa') page = 'casas.html';
+            else if (type === 'Apartamento') page = 'apartamentos.html';
+            else if (type === 'Edificio') page = 'edificios.html';
+            // Procesar características (dividir por líneas y filtrar vacías)
+            const features = featuresText ? featuresText.split('\n').map(f => f.trim()).filter(f => f.length > 0) : [];
+            
+                        const property = {
+              id,
+              title,
+              description,
+              price: priceNum,
+              priceDisplay,
+              location,
+              type,
+              bedrooms,
+              bathrooms,
+              area,
+              image: allImages.length > 0 ? allImages[0] : '',
+              images: allImages,
+              page,
+              features
+            };
+            // Validar que tenga todos los campos necesarios
+            if (!property.type || !property.page) {
+                console.error('Propiedad incompleta:', property);
+                alert('Error: La propiedad no tiene tipo o página asignada');
+                return;
+            }
+            console.log('🏠 Objeto property creado:', property);
+            updateProgress(30, 'Conectando con base de datos...');
+            updateLoadingText('Guardando en Firestore...');
+            
+                        console.log('🔥 Intentando guardar en Firestore...');
+            console.log('🔍 Firebase disponible:', typeof firebase !== 'undefined');
+            console.log('🔍 Firestore disponible:', typeof firebase !== 'undefined' && firebase.firestore);
+            console.log('🔍 Firebase object:', firebase);
+            
+            try {
+              if (typeof firebase !== 'undefined' && firebase.firestore) {
+                console.log('✅ Firebase disponible, creando conexión...');
+                updateProgress(50, 'Guardando propiedad...');
+                const db = firebase.firestore();
+                console.log('📡 Base de datos obtenida:', db);
+                console.log('📡 Guardando en collection properties...');
+                console.log('📡 ID del documento:', id);
+                console.log('📡 Datos a guardar:', property);
+                
+                const result = await db.collection('properties').doc(id).set(property, { merge: true });
+                console.log('✅ Propiedad guardada en Firestore con ID:', id);
+                console.log('✅ Resultado de Firestore:', result);
+                updateProgress(80, 'Propiedad guardada exitosamente');
+              } else {
+                console.error('❌ Firebase no disponible');
+                updateProgress(60, 'Guardando localmente...');
+                throw new Error('Firestore no disponible');
+              }
+            } catch (err) {
+                console.error('❌ Error al guardar en Firestore:', err);
+                console.log('💾 Guardando localmente como respaldo...');
+                updateProgress(60, 'Guardando localmente...');
+                const local = getCreatedLocal();
+                local.push(property);
+                setCreatedLocal(local);
+                console.warn('⚠️ Guardado local porque Firestore falló:', err?.message || err);
+                updateProgress(80, 'Guardado localmente');
+            }
+                        // Reflejar en UI inmediata
+            updateProgress(90, 'Actualizando interfaz...');
+            updateLoadingText('Finalizando...');
+            
+            console.log('🔄 Agregando propiedad a allProperties...');
+            console.log('📊 allProperties antes:', allProperties.length);
+            allProperties.unshift(property);
+            console.log('📊 allProperties después:', allProperties.length);
+            console.log('🔍 IDs en allProperties:', allProperties.map(p => p.id));
+            
+            console.log('🎨 Llamando a renderProperties...');
+            renderProperties();
+            console.log('✅ renderProperties completado');
+            
+            // Completar progreso y ocultar modal
+            updateProgress(100, '¡Completado!');
+            updateLoadingText('Propiedad creada exitosamente');
+            
+            // Esperar un momento para que el usuario vea el 100%
+            setTimeout(() => {
+              hideLoadingModal();
+              console.log('🎉 Modal de carga ocultado');
+              
+              // Mostrar modal de éxito en lugar del alert
+              const imageCount = allImages.length;
+              const successMessage = `¡Propiedad Creada!`;
+              const successDescription = `Se ha creado exitosamente una nueva propiedad con ${imageCount} imagen${imageCount !== 1 ? 'es' : ''}. La propiedad ya está disponible en ${page}.`;
+              
+              showSuccessModal(successMessage, successDescription);
+              console.log('🎉 Modal de éxito mostrado');
+            }, 800);
+            
+            console.log('🧹 Limpiando formulario...');
             propertyForm.reset();
             imagePreview.classList.add('hidden');
-        });
-        
-        // Archive button functionality
+            imageGrid.innerHTML = '';
+            imageCarousel.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+            uploadedImages = [];
+            currentCarouselIndex = 0;
+            console.log('🎉 Proceso de creación completado');
+  });
+  
+  // Archive button functionality
         const archiveButtons = document.querySelectorAll('.property-card button:nth-child(2)');
         
         archiveButtons.forEach(button => {
@@ -507,65 +1665,260 @@ function applyOverridesToAllProperties() {
   }
 }
 
+// ================= Propiedades remotas (Firestore) y locales creadas =================
+const LOCAL_CREATED_KEY = 'createdProperties';
+
+function getCreatedLocal() {
+  try {
+    const saved = localStorage.getItem(LOCAL_CREATED_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch (_) { return []; }
+}
+
+function setCreatedLocal(list) {
+  try { localStorage.setItem(LOCAL_CREATED_KEY, JSON.stringify(list || [])); } catch (_) {}
+}
+
+async function fetchRemotePropertiesDashboard() {
+  try {
+    if (typeof firebase === 'undefined' || !firebase.firestore) return [];
+    const db = firebase.firestore();
+    const snap = await db.collection('properties').get();
+    const res = [];
+    snap.forEach(doc => { const p = doc.data(); if (p && p.id) res.push(p); });
+    return res;
+  } catch (_) { return []; }
+}
+
+function mergeRemoteIntoAll(remoteList) {
+  if (!Array.isArray(remoteList)) return;
+  const existing = new Set(allProperties.map(p => p.id));
+  remoteList.forEach(p => { if (p && p.id && !existing.has(p.id)) { allProperties.push(p); existing.add(p.id); } });
+}
+
 async function renderProperties() {
+  console.log('🎨 renderProperties iniciado');
+  console.log('📊 allProperties en renderProperties:', allProperties.length);
+  
   const container = document.getElementById('propertiesContainer');
-  if (!container) return;
+  if (!container) {
+    console.error('❌ No se encontró propertiesContainer');
+    return;
+  }
+  console.log('🏗️ Limpiando contenedor...');
   container.innerHTML = '';
+  console.log('🏗️ Renderizando propiedades...');
+  
   allProperties.forEach((property, idx) => {
+    console.log(`🏠 Propiedad ${idx}:`, { id: property.id, title: property.title });
     const isArchived = archivedState[property.id] === true;
     container.innerHTML += `
-      <div class="property-card${isArchived ? ' archived' : ''} bg-white rounded-xl shadow-md overflow-hidden" data-id="${property.id}">
-        <div class="h-40 bg-gray-200 image-preview" style="background-image: url('${property.image}')"></div>
-        <div class="p-5">
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="text-navy font-bold text-lg">${property.title}</h3>
-              <p class="text-terracotta font-bold text-xl mt-1">${property.priceDisplay}</p>
-            </div>
-            <span class="${isArchived ? 'bg-gray-100 text-gray-800' : 'bg-green-100 text-green-800'} text-xs font-medium px-2.5 py-0.5 rounded">${isArchived ? 'Archivada' : 'Activo'}</span>
+      <div class="property-card${isArchived ? ' archived' : ''} bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-id="${property.id}">
+        <div class="h-48 bg-gray-200 image-preview relative overflow-hidden" style="background-image: url('${property.image}')">
+          <div class="absolute top-4 right-4">
+            <span class="${isArchived ? 'bg-gray-600 text-white' : 'bg-green-500 text-white'} text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+              ${isArchived ? 'Archivada' : 'Activo'}
+            </span>
           </div>
-          <div class="flex justify-between mt-4 text-sm text-darkGray">
-            <div>
-              <p><i class="fas fa-home text-mediumGray mr-1"></i> ${property.type}</p>
-              <p class="mt-1"><i class="fas fa-map-marker-alt text-mediumGray mr-1"></i> ${property.location}</p>
+        </div>
+        <div class="p-6">
+          <div class="mb-4">
+            <h3 class="text-navy font-bold text-xl mb-2 line-clamp-2">${property.title}</h3>
+            <p class="text-terracotta font-bold text-2xl">${property.priceDisplay}</p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 mb-6 text-sm text-darkGray">
+            <div class="flex items-center">
+              <i class="fas fa-home text-navy mr-2 w-4"></i>
+              <span>${property.type}</span>
             </div>
-            <div class="text-right">
-              <p><i class="fas fa-bed text-mediumGray mr-1"></i> ${property.bedrooms ? property.bedrooms + ' Habitaciones' : 'N/A'}</p>
-              <p class="mt-1"><i class="fas fa-bath text-mediumGray mr-1"></i> ${property.bathrooms ? property.bathrooms + ' Baños' : 'N/A'}</p>
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt text-navy mr-2 w-4"></i>
+              <span class="line-clamp-1">${property.location}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-bed text-navy mr-2 w-4"></i>
+              <span>${property.bedrooms ? property.bedrooms + ' Hab' : 'N/A'}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-bath text-navy mr-2 w-4"></i>
+              <span>${property.bathrooms ? property.bathrooms + ' Baños' : 'N/A'}</span>
             </div>
           </div>
-          <div class="flex space-x-3 mt-5">
-            <button class="flex-1 bg-navy hover:bg-opacity-90 text-white py-2 rounded-md text-sm font-medium btn-editar" data-idx="${idx}">
-              <i class="fas fa-edit mr-1"></i> Editar
+          
+          <div class="flex space-x-3">
+            <button class="flex-1 bg-navy hover:bg-blue-700 text-white py-3 rounded-xl text-sm font-semibold btn-editar transition-all duration-200 transform hover:scale-105" data-idx="${idx}">
+              <i class="fas fa-edit mr-2"></i> Editar
             </button>
-            <button class="flex-1 ${isArchived ? 'bg-green-500 hover:bg-green-600' : 'bg-terracotta hover:bg-opacity-90'} text-white py-2 rounded-md text-sm font-medium btn-archivar" data-id="${property.id}">
-              <i class="fas ${isArchived ? 'fa-redo' : 'fa-archive'} mr-1"></i> ${isArchived ? 'Restaurar' : 'Archivar'}
+            <button class="flex-1 ${isArchived ? 'bg-green-500 hover:bg-green-600' : 'bg-terracotta hover:bg-red-600'} text-white py-3 rounded-xl text-sm font-semibold btn-archivar transition-all duration-200 transform hover:scale-105" data-id="${property.id}">
+              <i class="fas ${isArchived ? 'fa-redo' : 'fa-archive'} mr-2"></i> ${isArchived ? 'Restaurar' : 'Archivar'}
             </button>
-            <button class="flex-1 bg-gray-200 hover:bg-gray-300 text-darkGray py-2 rounded-md text-sm font-medium btn-eliminar" data-id="${property.id}">
-              <i class="fas fa-trash mr-1"></i> Eliminar
+            <button class="flex-1 bg-gray-200 hover:bg-gray-300 text-darkGray py-3 rounded-xl text-sm font-semibold btn-eliminar transition-all duration-200 transform hover:scale-105" data-id="${property.id}">
+              <i class="fas fa-trash mr-2"></i> Eliminar
             </button>
           </div>
         </div>
       </div>
     `;
   });
+  
+  console.log('✅ renderProperties completado completamente');
 
   // Asignar eventos a los botones
-  document.querySelectorAll('.btn-eliminar').forEach(btn => {
-    btn.onclick = function() {
+  const eliminarButtons = document.querySelectorAll('.btn-eliminar');
+  console.log('🔍 Botones eliminar encontrados:', eliminarButtons.length);
+  
+  eliminarButtons.forEach(btn => {
+    console.log('🔧 Asignando evento al botón:', btn);
+    btn.onclick = async function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('🔘 Botón eliminar clickeado');
       const id = this.getAttribute('data-id');
+      console.log('🗑️ Intentando eliminar propiedad:', id);
+      console.log('🔍 Atributos del botón:', this.attributes);
+      
       const idx = allProperties.findIndex(p => p.id === id);
+      console.log('🔍 Índice encontrado:', idx);
+      
       if (idx !== -1) {
-        if (confirm('¿Estás seguro de eliminar esta propiedad?')) {
-          allProperties.splice(idx, 1);
-          // También eliminar del estado de archivado
-          delete archivedState[id];
-          setArchivedStateLocal(archivedState);
-          renderProperties();
-        }
+        console.log('✅ Índice válido, mostrando confirmación...');
+        showDeleteConfirmation(id, idx);
       }
     };
   });
+  
+  // Modal de confirmación de eliminación
+  let deleteModal = null;
+  let currentDeleteId = null;
+  let currentDeleteIdx = null;
+  
+  function showDeleteConfirmation(id, idx) {
+    currentDeleteId = id;
+    currentDeleteIdx = idx;
+    
+    // Crear modal si no existe
+    if (!deleteModal) {
+      console.log('🏗️ Creando modal de confirmación...');
+      deleteModal = document.createElement('div');
+      deleteModal.id = 'deleteConfirmModal';
+      deleteModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+      
+      deleteModal.innerHTML = `
+        <div class='bg-white rounded-xl max-w-md w-full p-8 mx-4'>
+          <div class='text-center'>
+            <div class='mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4'>
+              <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+            </div>
+            <h3 class='text-lg font-medium text-gray-900 mb-2'>¿Eliminar propiedad?</h3>
+            <p class='text-sm text-gray-500 mb-6'>Esta acción no se puede deshacer. La propiedad se eliminará permanentemente.</p>
+            <div class='flex space-x-3'>
+              <button id='cancelDelete' class='flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded-md text-sm font-medium transition duration-200'>
+                Cancelar
+              </button>
+              <button id='confirmDelete' class='flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-200'>
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(deleteModal);
+      
+      // Asignar eventos UNA SOLA VEZ
+      const cancelBtn = deleteModal.querySelector('#cancelDelete');
+      const confirmBtn = deleteModal.querySelector('#confirmDelete');
+      
+      console.log('🔧 Botón cancelar encontrado:', cancelBtn);
+      console.log('🔧 Botón confirmar encontrado:', confirmBtn);
+      
+      // Función para cerrar modal
+      const closeModal = () => {
+        console.log('🔒 Función closeModal ejecutada');
+        deleteModal.style.display = 'none';
+        console.log('🔒 Modal cerrado, display:', deleteModal.style.display);
+      };
+      
+      // Asignar eventos usando addEventListener
+      console.log('🔧 Asignando evento al botón cancelar...');
+      cancelBtn.addEventListener('click', (e) => {
+        console.log('🔘 Botón cancelar clickeado');
+        console.log('❌ Usuario canceló eliminación');
+        closeModal();
+      });
+      
+      console.log('🔧 Asignando evento al botón confirmar...');
+      confirmBtn.addEventListener('click', async (e) => {
+        console.log('🔘 Botón confirmar clickeado');
+        console.log('✅ Usuario confirmó eliminación');
+        closeModal();
+        await deleteProperty(currentDeleteId, currentDeleteIdx);
+      });
+      
+      console.log('🔧 Eventos asignados correctamente');
+      
+      // Cerrar al hacer clic fuera
+      deleteModal.onclick = (e) => {
+        if (e.target === deleteModal) {
+          console.log('❌ Usuario cerró modal haciendo clic fuera');
+          closeModal();
+        }
+      };
+    }
+    
+    // Mostrar modal
+    console.log('📱 Mostrando modal...');
+    deleteModal.style.display = 'flex';
+    console.log('📱 Modal mostrado, display:', deleteModal.style.display);
+  }
+  
+  // Función para eliminar la propiedad
+  async function deleteProperty(id, idx) {
+    console.log('🗑️ Eliminando propiedad:', id);
+    
+    try {
+      // Eliminar de Firestore si está disponible
+      if (typeof firebase !== 'undefined' && firebase.firestore) {
+        const db = firebase.firestore();
+        await db.collection('properties').doc(id).delete();
+        console.log('✅ Propiedad eliminada de Firestore:', id);
+      }
+    } catch (err) {
+      console.error('❌ Error eliminando de Firestore:', err);
+    }
+    
+    // Eliminar localmente
+    allProperties.splice(idx, 1);
+    
+    // También eliminar del estado de archivado
+    delete archivedState[id];
+    
+    // Eliminar de las propiedades creadas localmente
+    const localCreated = getCreatedLocal();
+    const localIdx = localCreated.findIndex(p => p.id === id);
+    if (localIdx !== -1) {
+      localCreated.splice(localIdx, 1);
+      setCreatedLocal(localCreated);
+    }
+    
+    // Guardar en localStorage
+    localStorage.setItem('archivedState', JSON.stringify(archivedState));
+    
+    // Sincronizar con Firestore
+    try {
+      if (typeof firebase !== 'undefined' && firebase.firestore) {
+        const db = firebase.firestore();
+        await db.collection('config').doc('archived').set(archivedState);
+      }
+    } catch (err) {
+      console.error('❌ Error sincronizando estado de archivado:', err);
+    }
+    
+    renderProperties();
+    showSuccessModal('¡Propiedad Eliminada!', 'La propiedad ha sido eliminada exitosamente de la base de datos.');
+    console.log('🎉 Modal de éxito mostrado');
+  }
 
   document.querySelectorAll('.btn-archivar').forEach(btn => {
     btn.onclick = function() {
@@ -585,92 +1938,817 @@ async function renderProperties() {
       openEditModal(idx);
     };
   });
+  
+  // Botones para ver propiedades
+  document.querySelectorAll('.btn-ver').forEach(btn => {
+    btn.onclick = function() {
+      const id = this.getAttribute('data-id');
+      openViewModal(id);
+    };
+  });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
   await initArchivedState();
   await initOverridesState();
+  // Traer del backend y del local las propiedades creadas
+  try {
+    const remote = await fetchRemotePropertiesDashboard();
+    mergeRemoteIntoAll(remote);
+  } catch (_) {}
+  try {
+    const localCreated = getCreatedLocal();
+    mergeRemoteIntoAll(localCreated);
+  } catch (_) {}
   applyOverridesToAllProperties();
   renderProperties();
 });
 
-// Modal de edición
+// Modal de edición completo y moderno
 function openEditModal(idx) {
   const property = allProperties[idx];
   if (!property) return;
-  // Crear modal simple
+  
   let modal = document.getElementById('editModal');
   if (!modal) {
     modal = document.createElement('div');
     modal.id = 'editModal';
-    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-    modal.innerHTML = `
-      <div class='bg-white rounded-xl max-w-lg w-full p-8'>
-        <h2 class='text-xl font-bold mb-4 text-navy'>Editar propiedad</h2>
-        <form id='editForm' class='space-y-4'>
-          <input type='hidden' id='editIdx'>
-          <div>
-            <label class='block text-darkGray text-sm font-medium mb-1'>Título</label>
-            <input id='editTitulo' type='text' class='w-full px-4 py-2 border border-mediumGray rounded-md' required>
+    modal.className = 'fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50';
+    document.body.appendChild(modal);
+  }
+  
+  // Crear contenido del modal de edición
+  modal.innerHTML = `
+    <div class='bg-white rounded-3xl max-w-4xl w-full h-[90vh] flex flex-col mx-4 overflow-hidden'>
+      <!-- Header del modal -->
+      <div class='bg-gradient-to-r from-navy to-blue-600 text-white p-6 rounded-t-3xl'>
+        <div class='flex justify-between items-center'>
+          <div class='flex items-center'>
+            <div class='w-12 h-12 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mr-4'>
+              <i class="fas fa-edit text-2xl"></i>
+            </div>
+            <div>
+              <h2 class='text-2xl font-bold'>Editar Propiedad</h2>
+              <p class='text-blue-100 text-sm'>Modifica los datos de tu propiedad</p>
+            </div>
           </div>
-          <div>
-            <label class='block text-darkGray text-sm font-medium mb-1'>Precio</label>
-            <input id='editPrecio' type='text' class='w-full px-4 py-2 border border-mediumGray rounded-md' required>
+          <button type="button" onclick="closeEditModal()" class='text-white hover:text-blue-200 text-2xl transition-colors'>
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Contenido del formulario -->
+      <div class='flex-1 overflow-y-auto p-6'>
+        <form id='editForm' class='space-y-6' novalidate>
+          <input type='hidden' id='editIdx' value="${idx}">
+          
+          <!-- Título -->
+          <div class='group'>
+            <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+              <i class="fas fa-home text-navy mr-2"></i>
+              Título de la propiedad <span class="text-red-500 ml-1">*</span>
+            </label>
+            <input id='editTitle' type='text' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white' placeholder="Ej: Apartamento moderno en el centro" required>
+            <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+              <i class="fas fa-exclamation-circle mr-1"></i>
+              <span>Este campo es obligatorio</span>
+            </div>
           </div>
-          <div>
-            <label class='block text-darkGray text-sm font-medium mb-1'>Ubicación</label>
-            <input id='editUbicacion' type='text' class='w-full px-4 py-2 border border-mediumGray rounded-md' required>
+          
+          <!-- Descripción -->
+          <div class='group'>
+            <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+              <i class="fas fa-align-left text-navy mr-2"></i>
+              Descripción <span class="text-red-500 ml-1">*</span>
+            </label>
+            <textarea id='editDescription' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white resize-none' rows="3" placeholder="Describe las características principales de tu propiedad..." required></textarea>
+            <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+              <i class="fas fa-exclamation-circle mr-1"></i>
+              <span>Este campo es obligatorio</span>
+            </div>
           </div>
-          <div class='flex space-x-3'>
-            <button type='submit' class='flex-1 bg-navy text-white py-2 rounded-md font-medium'>Guardar</button>
-            <button type='button' id='cancelEdit' class='flex-1 bg-gray-200 text-darkGray py-2 rounded-md font-medium'>Cancelar</button>
+          
+          <!-- Precio y Tipo -->
+          <div class='grid grid-cols-2 gap-4'>
+            <div class='group'>
+              <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+                <i class="fas fa-dollar-sign text-navy mr-2"></i>
+                Precio ($) <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input id='editPrice' type='number' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white' placeholder="500000" required min="0">
+              <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+                <i class="fas fa-exclamation-circle mr-1"></i>
+                <span>Ingresa un precio válido</span>
+              </div>
+            </div>
+            <div class='group'>
+              <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+                <i class="fas fa-building text-navy mr-2"></i>
+                Tipo <span class="text-red-500 ml-1">*</span>
+              </label>
+              <select id='editType' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer' required>
+                <option value="">Selecciona un tipo</option>
+                <option value="Casa">Casa</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Oficina">Oficina</option>
+                <option value="Edificio">Edificio</option>
+              </select>
+              <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+                <i class="fas fa-exclamation-circle mr-1"></i>
+                <span>Selecciona un tipo de propiedad</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Características físicas -->
+          <div class='grid grid-cols-3 gap-4'>
+            <div class='group'>
+              <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+                <i class="fas fa-bed text-navy mr-2"></i>
+                Habitaciones
+              </label>
+              <select id='editBedrooms' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer'>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10+</option>
+              </select>
+            </div>
+            <div class='group'>
+              <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+                <i class="fas fa-bath text-navy mr-2"></i>
+                Baños
+              </label>
+              <select id='editBathrooms' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer'>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10+</option>
+              </select>
+            </div>
+            <div class='group'>
+              <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+                <i class="fas fa-ruler-combined text-navy mr-2"></i>
+                Área (m²) <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input id='editArea' type='text' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white' placeholder="150" required>
+              <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+                <i class="fas fa-exclamation-circle mr-1"></i>
+                <span>Ingresa el área de la propiedad</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Características -->
+          <div class='group'>
+            <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+              <i class="fas fa-star text-navy mr-2"></i>
+              Características especiales
+            </label>
+            <textarea id='editFeatures' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white resize-none' rows="3" placeholder="Estacionamiento privado&#10;Jardín&#10;Piscina&#10;Seguridad 24/7"></textarea>
+            <p class='text-xs text-mediumGray mt-2 flex items-center'>
+              <i class="fas fa-info-circle mr-1"></i>
+              Escribe cada característica en una línea separada
+            </p>
+          </div>
+          
+          <!-- Ubicación -->
+          <div class='group'>
+            <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+              <i class="fas fa-map-marker-alt text-navy mr-2"></i>
+              Ubicación <span class="text-red-500 ml-1">*</span>
+            </label>
+            <input id='editLocation' type='text' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white' placeholder="San Salvador, El Salvador" required>
+            <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+              <i class="fas fa-exclamation-circle mr-1"></i>
+              <span>Este campo es obligatorio</span>
+            </div>
+          </div>
+          
+          <!-- Imágenes actuales (solo visualización) -->
+          <div class='group'>
+            <label class='block text-darkGray text-sm font-semibold mb-3 flex items-center'>
+              <i class="fas fa-images text-navy mr-2"></i>
+              Imágenes actuales
+            </label>
+            <div class='p-4 bg-gray-50 border-2 border-gray-200 rounded-xl'>
+              <p class='text-sm text-gray-600 mb-3'>La propiedad tiene ${property.images ? property.images.length : 1} imagen${property.images && property.images.length !== 1 ? 'es' : ''}</p>
+              <div class='grid grid-cols-4 gap-2'>
+                ${(property.images || [property.image]).slice(0, 4).map((img, i) => `
+                  <div class='relative'>
+                    <img src="${img}" alt="Imagen ${i + 1}" class='w-full h-20 object-cover rounded-lg'>
+                    <div class='absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all rounded-lg flex items-center justify-center'>
+                      <span class='text-white text-xs font-medium opacity-0 hover:opacity-100'>Imagen ${i + 1}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+              <p class='text-xs text-gray-500 mt-2'>
+                <i class="fas fa-info-circle mr-1"></i>
+                Las imágenes no se pueden editar desde aquí. Para cambiar las imágenes, elimina la propiedad y créala nuevamente.
+              </p>
+            </div>
           </div>
         </form>
       </div>
-    `;
+      
+      <!-- Footer con botones -->
+      <div class='p-6 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3'>
+        <button type='button' onclick="closeEditModal()" class='px-6 py-3 bg-gray-200 hover:bg-gray-300 text-darkGray rounded-xl text-sm font-semibold transition-all duration-200 transform hover:scale-105'>
+          <i class="fas fa-times mr-2"></i> Cancelar
+        </button>
+        <button type='button' onclick="saveEditChanges()" class='px-6 py-3 bg-gradient-to-r from-navy to-blue-600 hover:from-blue-700 hover:to-navy text-white rounded-xl text-sm font-semibold transition-all duration-200 transform hover:scale-105'>
+          <i class="fas fa-save mr-2"></i> Guardar Cambios
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Mostrar modal
+  modal.classList.remove('hidden');
+  
+  // Rellenar datos del formulario
+  fillEditFormData(property);
+  
+  // Configurar event listeners para limpiar errores
+  setupEditFormValidation();
+}
+
+// Modal de visualización de propiedades
+function openViewModal(id) {
+  const property = allProperties.find(p => p.id === id);
+  if (!property) return;
+
+  let modal = document.getElementById('viewModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'viewModal';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50';
     document.body.appendChild(modal);
   }
-  // Rellenar datos
-  document.getElementById('editIdx').value = idx;
-  document.getElementById('editTitulo').value = property.title;
-  document.getElementById('editPrecio').value = property.priceDisplay;
-  document.getElementById('editUbicacion').value = property.location;
+  
+  // Crear contenido del modal con carrusel de imágenes
+  const hasMultipleImages = property.images && property.images.length > 1;
+  const images = property.images || [property.image];
+  
+  modal.innerHTML = `
+    <div class='bg-white rounded-xl max-w-6xl w-full h-[90vh] flex flex-col mx-4'>
+      <!-- Header con imagen principal -->
+      <div class='relative h-80 bg-gray-200 rounded-t-xl overflow-hidden'>
+        <img src="${images[0]}" alt="${property.title}" class="w-full h-full object-cover" id="mainViewImage">
+        
+        <!-- Controles del carrusel si hay múltiples imágenes -->
+        ${hasMultipleImages ? `
+          <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-70 transition-all" id="prevViewImage">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-70 transition-all" id="nextViewImage">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        ` : ''}
+      </div>
+      
+      <!-- Contenido principal -->
+      <div class='p-6 flex-1 flex flex-col overflow-y-auto'>
+        <div class='flex justify-between items-start mb-4'>
+          <h2 class='text-navy font-bold text-2xl'>${property.title}</h2>
+          <span class="${property.archived ? 'bg-gray-100 text-gray-800' : 'bg-green-100 text-green-800'} text-xs font-medium px-2.5 py-0.5 rounded">${property.archived ? 'Archivada' : 'Activo'}</span>
+        </div>
+        
+        <p class='text-darkGray text-lg mb-4'>${property.description || 'Sin descripción disponible'}</p>
+        
+        <div class='flex justify-between items-center text-terracotta font-bold text-2xl mb-4'>
+          <span>${property.priceDisplay}</span>
+          <span class='text-mediumGray text-lg'>${property.type}</span>
+        </div>
+        
+        <div class='grid grid-cols-1 md:grid-cols-3 gap-4 mb-4'>
+          <div class='text-darkGray text-lg'>
+            <i class="fas fa-map-marker-alt text-mediumGray mr-2"></i> ${property.location}
+          </div>
+          <div class='text-darkGray text-lg'>
+            <i class="fas fa-bed text-mediumGray mr-2"></i> ${property.bedrooms ? property.bedrooms + ' Habitaciones' : 'N/A'}
+          </div>
+          <div class='text-darkGray text-lg'>
+            <i class="fas fa-bath text-mediumGray mr-2"></i> ${property.bathrooms ? property.bathrooms + ' Baños' : 'N/A'}
+          </div>
+        </div>
+        
+        <div class='mb-4'>
+          <h3 class='text-darkGray font-semibold text-lg mb-2'>Características:</h3>
+          <div class='flex flex-wrap gap-2'>
+            ${property.features && property.features.length > 0 ? 
+              property.features.map(f => `<span class="bg-lightGray text-mediumGray px-3 py-1 rounded-full text-sm">${f}</span>`).join('') : 
+              '<span class="text-mediumGray">Sin características especificadas</span>'
+            }
+          </div>
+        </div>
+        
+        <div class='flex justify-between items-center text-darkGray text-lg mt-auto'>
+          <div>
+            <i class="fas fa-area-chart text-mediumGray mr-2"></i> ${property.area || 'N/A'}
+          </div>
+          <div>
+            <i class="fas fa-link text-mediumGray mr-2"></i> 
+            <a href="${property.page}" target="_blank" class="text-navy underline hover:text-opacity-80">Ver en página pública</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer con botones -->
+      <div class='p-6 flex justify-end space-x-3 border-t border-gray-200'>
+        <button class='px-6 py-2 bg-gray-200 hover:bg-gray-300 text-darkGray rounded-md text-sm font-medium' onclick="closeViewModal()">
+          <i class="fas fa-times mr-2"></i> Cerrar
+        </button>
+        <button class='px-6 py-2 bg-navy hover:bg-opacity-90 text-white rounded-md text-sm font-medium' onclick="editPropertyFromView('${id}')">
+          <i class="fas fa-edit mr-2"></i> Editar
+        </button>
+        <button class='px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md text-sm font-medium' onclick="deletePropertyFromView('${id}')">
+          <i class="fas fa-trash mr-2"></i> Eliminar
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Mostrar modal
   modal.classList.remove('hidden');
-
-  // Guardar cambios
-  document.getElementById('editForm').onsubmit = function(e) {
-    e.preventDefault();
-    const i = document.getElementById('editIdx').value;
-    allProperties[i].title = document.getElementById('editTitulo').value;
-    allProperties[i].priceDisplay = document.getElementById('editPrecio').value;
-    allProperties[i].location = document.getElementById('editUbicacion').value;
-    // Guardar en localStorage para efecto inmediato
-    try {
-      const id = allProperties[i].id;
-      const saved = localStorage.getItem('propertyOverrides');
-      const ov = saved ? JSON.parse(saved) : {};
-      ov[id] = {
-        title: allProperties[i].title,
-        priceDisplay: allProperties[i].priceDisplay,
-        location: allProperties[i].location
-      };
-      localStorage.setItem('propertyOverrides', JSON.stringify(ov));
-      overridesState = ov;
-      // Sincronizar en background a Firestore
-      if (typeof firebase !== 'undefined' && firebase.firestore) {
-        const db = firebase.firestore();
-        const payload = {};
-        payload[id] = ov[id];
-        db.collection('config').doc('overrides').set({ data: payload, updatedAt: new Date() }, { merge: true }).catch(() => {});
+  
+  // Configurar carrusel si hay múltiples imágenes
+  if (hasMultipleImages) {
+    let currentImageIndex = 0;
+    const mainImage = modal.querySelector('#mainViewImage');
+    const prevBtn = modal.querySelector('#prevViewImage');
+    const nextBtn = modal.querySelector('#nextViewImage');
+    
+    function updateMainImage() {
+      mainImage.src = images[currentImageIndex];
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      updateMainImage();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      updateMainImage();
+    });
+    
+    // Navegación con teclado
+    const handleKeydown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevBtn.click();
+      } else if (e.key === 'ArrowRight') {
+        nextBtn.click();
+      } else if (e.key === 'Escape') {
+        closeViewModal();
       }
-    } catch (_) {}
-    modal.classList.add('hidden');
-    renderProperties();
-  };
-  document.getElementById('cancelEdit').onclick = function() {
-    modal.classList.add('hidden');
+    };
+    
+    document.addEventListener('keydown', handleKeydown);
+    
+    // Limpiar event listener cuando se cierre el modal
+    modal.addEventListener('close', () => {
+      document.removeEventListener('keydown', handleKeydown);
+    });
+  }
+  
+  // Cerrar al hacer clic fuera
+  modal.onclick = (e) => {
+    if (e.target === modal) {
+      closeViewModal();
+    }
   };
 }
+
+// Función para cerrar el modal de visualización
+function closeViewModal() {
+  const modal = document.getElementById('viewModal');
+  if (modal) {
+    modal.classList.add('hidden');
+  }
+}
+
+// Función para editar desde el modal de visualización
+function editPropertyFromView(id) {
+  closeViewModal();
+  const idx = allProperties.findIndex(p => p.id === id);
+  if (idx !== -1) {
+    openEditModal(idx);
+  }
+}
+
+// Función para eliminar desde el modal de visualización
+function deletePropertyFromView(id) {
+  closeViewModal();
+  const idx = allProperties.findIndex(p => p.id === id);
+  if (idx !== -1) {
+    showDeleteConfirmation(id, idx);
+  }
+}
+
+        // Botón para limpiar todas las imágenes
+        const clearAllImagesBtn = document.getElementById('clearAllImages');
+        if (clearAllImagesBtn) {
+            clearAllImagesBtn.addEventListener('click', () => {
+                if (confirm('¿Estás seguro de que quieres eliminar todas las imágenes?')) {
+                    uploadedImages = [];
+                    imageGrid.innerHTML = '';
+                    imageCarousel.innerHTML = '';
+                    carouselIndicators.innerHTML = '';
+                    currentCarouselIndex = 0;
+                    imagePreview.classList.add('hidden');
+                    updateImageCounter();
+                    updateCarouselControls();
+                    showImageUploadMessage('🗑️ Se eliminaron todas las imágenes', 'info');
+                }
+            });
+        }
+
+        // Función para mostrar mensajes de estado de la subida de imágenes
+        function showImageUploadMessage(message, type = 'info') {
+            // Crear o reutilizar el contenedor de mensajes
+            let messageContainer = document.getElementById('imageMessageContainer');
+            if (!messageContainer) {
+                messageContainer = document.createElement('div');
+                messageContainer.id = 'imageMessageContainer';
+                messageContainer.className = 'fixed top-4 right-4 z-50';
+                document.body.appendChild(messageContainer);
+            }
+            
+            // Crear el mensaje
+            const messageElement = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+            messageElement.className = `${bgColor} text-white px-4 py-2 rounded-lg shadow-lg mb-2 transform translate-x-full transition-all duration-300`;
+            messageElement.innerHTML = `
+                <div class="flex items-center">
+                    <span class="mr-2">${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            messageContainer.appendChild(messageElement);
+            
+            // Animar entrada
+            setTimeout(() => {
+                messageElement.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto-remover después de 5 segundos
+            setTimeout(() => {
+                if (messageElement.parentElement) {
+                    messageElement.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        if (messageElement.parentElement) {
+                            messageElement.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+        
+        // Función para cerrar el modal de visualización
+        function closeViewModal() {
+            const modal = document.getElementById('viewModal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+        
+        // Función para mostrar el modal de éxito
+        function showSuccessModal(message = '¡Propiedad Eliminada!', description = 'La propiedad ha sido eliminada exitosamente de la base de datos.') {
+            const modal = document.getElementById('successModal');
+            const title = modal.querySelector('h3');
+            const desc = modal.querySelector('p');
+            
+            // Personalizar mensaje si se proporciona
+            title.textContent = message;
+            desc.textContent = description;
+            
+            // Mostrar modal
+            modal.classList.remove('hidden');
+            
+            // Animar entrada
+            setTimeout(() => {
+                const content = modal.querySelector('.bg-white');
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 100);
+        }
+        
+        // Función para cerrar el modal de éxito
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            const content = modal.querySelector('.bg-white');
+            
+            // Animar salida
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            // Ocultar modal después de la animación
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+        
+        // Event listener para cerrar modal de éxito al hacer clic fuera
+        document.addEventListener('DOMContentLoaded', function() {
+            const successModal = document.getElementById('successModal');
+            if (successModal) {
+                successModal.addEventListener('click', function(e) {
+                    if (e.target === successModal) {
+                        closeSuccessModal();
+                    }
+                });
+            }
+        });
+        
+        // Event listener para cerrar modal de éxito con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const successModal = document.getElementById('successModal');
+                if (successModal && !successModal.classList.contains('hidden')) {
+                    closeSuccessModal();
+                }
+                
+                const editModal = document.getElementById('editModal');
+                if (editModal && !editModal.classList.contains('hidden')) {
+                    closeEditModal();
+                }
+            }
+        });
+
+        // Event listener para cerrar modal de edición al hacer clic fuera
+        document.addEventListener('DOMContentLoaded', function() {
+            const editModal = document.getElementById('editModal');
+            if (editModal) {
+                editModal.addEventListener('click', function(e) {
+                    if (e.target === editModal) {
+                        closeEditModal();
+                    }
+                });
+            }
+        });
+
+        // Event listener para prevenir envíos accidentales del formulario
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('propertyForm');
+            
+            // Prevenir envío con Enter en campos de texto
+            form.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    console.log('⚠️ Enter presionado, envío prevenido');
+                }
+            });
+            
+            // Prevenir envío accidental con doble clic
+            let submitInProgress = false;
+            form.addEventListener('submit', function(e) {
+                if (submitInProgress) {
+                    e.preventDefault();
+                    console.log('⚠️ Envío en progreso, doble clic prevenido');
+                    return;
+                }
+                
+                submitInProgress = true;
+                
+                // Resetear después de 3 segundos
+                setTimeout(() => {
+                    submitInProgress = false;
+                }, 3000);
+            });
+        });
+
+        // Función para rellenar los datos del formulario de edición
+        function fillEditFormData(property) {
+          document.getElementById('editTitle').value = property.title || '';
+          document.getElementById('editDescription').value = property.description || '';
+          document.getElementById('editPrice').value = property.price || 0;
+          document.getElementById('editType').value = property.type || '';
+          document.getElementById('editBedrooms').value = property.bedrooms || 0;
+          document.getElementById('editBathrooms').value = property.bathrooms || 0;
+          document.getElementById('editArea').value = property.area || '';
+          document.getElementById('editLocation').value = property.location || '';
+          
+          // Procesar características (convertir array a texto)
+          if (property.features && Array.isArray(property.features)) {
+            document.getElementById('editFeatures').value = property.features.join('\n');
+          } else {
+            document.getElementById('editFeatures').value = '';
+          }
+        }
+
+        // Función para configurar la validación del formulario de edición
+        function setupEditFormValidation() {
+          // Event listeners para limpiar errores al escribir
+          document.getElementById('editTitle').addEventListener('input', () => clearEditFieldError('editTitle'));
+          document.getElementById('editDescription').addEventListener('input', () => clearEditFieldError('editDescription'));
+          document.getElementById('editPrice').addEventListener('input', () => clearEditFieldError('editPrice'));
+          document.getElementById('editType').addEventListener('change', () => clearEditFieldError('editType'));
+          document.getElementById('editArea').addEventListener('input', () => clearEditFieldError('editArea'));
+          document.getElementById('editLocation').addEventListener('input', () => clearEditFieldError('editLocation'));
+        }
+
+        // Función para mostrar error en un campo específico del formulario de edición
+        function showEditFieldError(fieldId, message) {
+          const field = document.getElementById(fieldId);
+          const errorDiv = field.parentNode.querySelector('.error-message');
+          if (errorDiv) {
+            errorDiv.querySelector('span').textContent = message;
+            errorDiv.classList.remove('hidden');
+          }
+          
+          // Agregar borde rojo al campo
+          field.classList.add('border-red-500');
+          field.classList.remove('border-gray-200');
+        }
+
+        // Función para limpiar error de un campo del formulario de edición
+        function clearEditFieldError(fieldId) {
+          const field = document.getElementById(fieldId);
+          const errorDiv = field.parentNode.querySelector('.error-message');
+          if (errorDiv) {
+            errorDiv.classList.add('hidden');
+          }
+          
+          // Restaurar borde normal
+          field.classList.remove('border-red-500');
+          field.classList.add('border-gray-200');
+        }
+
+        // Función para validar el formulario de edición
+        function validateEditForm() {
+          let isValid = true;
+          
+          // Limpiar todos los mensajes de error
+          document.querySelectorAll('#editForm .error-message').forEach(msg => {
+            msg.classList.add('hidden');
+          });
+          
+          // Validar título
+          const title = document.getElementById('editTitle').value.trim();
+          if (!title) {
+            showEditFieldError('editTitle', 'Este campo es obligatorio');
+            isValid = false;
+          }
+          
+          // Validar descripción
+          const description = document.getElementById('editDescription').value.trim();
+          if (!description) {
+            showEditFieldError('editDescription', 'Este campo es obligatorio');
+            isValid = false;
+          }
+          
+          // Validar precio
+          const price = document.getElementById('editPrice').value;
+          if (!price || price <= 0) {
+            showEditFieldError('editPrice', 'Ingresa un precio válido');
+            isValid = false;
+          }
+          
+          // Validar tipo
+          const type = document.getElementById('editType').value;
+          if (!type) {
+            showEditFieldError('editType', 'Selecciona un tipo de propiedad');
+            isValid = false;
+          }
+          
+          // Validar área
+          const area = document.getElementById('editArea').value.trim();
+          if (!area) {
+            showEditFieldError('editArea', 'Ingresa el área de la propiedad');
+            isValid = false;
+          }
+          
+          // Validar ubicación
+          const location = document.getElementById('editLocation').value.trim();
+          if (!location) {
+            showEditFieldError('editLocation', 'Este campo es obligatorio');
+            isValid = false;
+          }
+          
+          return isValid;
+        }
+
+        // Función para cerrar el modal de edición
+        function closeEditModal() {
+          const modal = document.getElementById('editModal');
+          if (modal) {
+            modal.classList.add('hidden');
+          }
+        }
+
+        // Función para guardar los cambios de edición
+        async function saveEditChanges() {
+          console.log('💾 Guardando cambios de edición...');
+          
+          // Validar formulario antes de continuar
+          if (!validateEditForm()) {
+            console.log('❌ Validación fallida, cambios no guardados');
+            // Hacer scroll al primer error
+            const firstError = document.querySelector('#editForm .error-message:not(.hidden)');
+            if (firstError) {
+              firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+          }
+          
+          console.log('✅ Validación exitosa, guardando cambios...');
+          
+          // Obtener índice de la propiedad
+          const idx = document.getElementById('editIdx').value;
+          const property = allProperties[idx];
+          
+          if (!property) {
+            console.error('❌ Propiedad no encontrada');
+            return;
+          }
+          
+          // Obtener valores del formulario
+          const updatedData = {
+            title: document.getElementById('editTitle').value.trim(),
+            description: document.getElementById('editDescription').value.trim(),
+            price: Number(document.getElementById('editPrice').value),
+            type: document.getElementById('editType').value,
+            bedrooms: Number(document.getElementById('editBedrooms').value),
+            bathrooms: Number(document.getElementById('editBathrooms').value),
+            area: document.getElementById('editArea').value.trim(),
+            location: document.getElementById('editLocation').value.trim(),
+            features: document.getElementById('editFeatures').value.trim().split('\n').filter(f => f.trim().length > 0)
+          };
+          
+          // Actualizar precioDisplay
+          updatedData.priceDisplay = updatedData.price > 0 ? `$${updatedData.price.toLocaleString('en-US')}` : '$0';
+          
+          // Actualizar página según el tipo
+          let page = 'oficinas.html';
+          if (updatedData.type === 'Casa') page = 'casas.html';
+          else if (updatedData.type === 'Apartamento') page = 'apartamentos.html';
+          else if (updatedData.type === 'Edificio') page = 'edificios.html';
+          updatedData.page = page;
+          
+          console.log('📝 Datos actualizados:', updatedData);
+          
+          try {
+            // Actualizar en memoria
+            Object.assign(allProperties[idx], updatedData);
+            
+            // Actualizar en Firestore
+            if (typeof firebase !== 'undefined' && firebase.firestore) {
+              const db = firebase.firestore();
+              await db.collection('properties').doc(property.id).update(updatedData);
+              console.log('✅ Propiedad actualizada en Firestore');
+            }
+            
+            // Actualizar en localStorage como respaldo
+            try {
+              const local = getCreatedLocal();
+              const localIdx = local.findIndex(p => p.id === property.id);
+              if (localIdx !== -1) {
+                Object.assign(local[localIdx], updatedData);
+                setCreatedLocal(local);
+                console.log('✅ Propiedad actualizada en localStorage');
+              }
+            } catch (err) {
+              console.warn('⚠️ Error actualizando localStorage:', err);
+            }
+            
+            // Cerrar modal
+            closeEditModal();
+            
+            // Actualizar UI
+            renderProperties();
+            
+            // Mostrar mensaje de éxito
+            showSuccessModal('¡Propiedad Actualizada!', 'Los cambios han sido guardados exitosamente en la base de datos.');
+            
+            console.log('🎉 Edición completada exitosamente');
+            
+          } catch (err) {
+            console.error('❌ Error guardando cambios:', err);
+            
+            // Mostrar mensaje de error
+            showImageUploadMessage('❌ Error al guardar los cambios. Intenta nuevamente.', 'error');
+          }
+        }
 </script>
 </body>
 </html> 

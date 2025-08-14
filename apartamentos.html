@@ -537,6 +537,10 @@
 
   <!-- Property Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Propiedades estáticas hardcodeadas -->
+    
+    <!-- Contenedor para propiedades remotas (Firestore) -->
+    <div id="remotePropertiesContainer" class="contents"></div>
     <!-- Apartamento en Residencial Privado Santa Elena -->
     <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
       <div class="relative">
@@ -847,27 +851,29 @@
     }
   };
 
-  // Sincronizar y aplicar filtros/overrides
+  // Sincronizar y aplicar filtros/overrides, traer remotas y fusionar
   let activeProperties = applyArchiveFilter(properties);
-  function syncAndApply() {
+  async function syncAndApply() {
     if (typeof syncRemoteState === 'function') {
-      syncRemoteState().then(() => {
-        activeProperties = applyArchiveFilter(properties);
-        applyOverridesToObject(activeProperties);
-        hideArchivedCards();
-        applyOverridesToStaticCards?.();
-      }).catch(() => {
-        activeProperties = applyArchiveFilter(properties);
-        applyOverridesToObject(activeProperties);
-        hideArchivedCards();
-        applyOverridesToStaticCards?.();
-      });
-    } else {
-      activeProperties = applyArchiveFilter(properties);
-      applyOverridesToObject(activeProperties);
-      hideArchivedCards();
-      applyOverridesToStaticCards?.();
+      try { await syncRemoteState(); } catch(_) {}
     }
+    // Traer remotas y fusionar si son del tipo Apartamento
+    if (typeof fetchRemoteProperties === 'function' && typeof mergeRemoteIntoArray === 'function') {
+      try {
+        const rem = await fetchRemoteProperties();
+        const apartments = rem.filter(p => p.type === 'Apartamento');
+        const asArray = Object.keys(properties).map(id => ({ id, ...properties[id] }));
+        mergeRemoteIntoArray(asArray, apartments);
+        // reconstruir diccionario
+        const merged = {};
+        asArray.forEach(p => { merged[p.id] = p; });
+        Object.assign(properties, merged);
+      } catch(_){}
+    }
+    activeProperties = applyArchiveFilter(properties);
+    applyOverridesToObject(activeProperties);
+    hideArchivedCards();
+    applyOverridesToStaticCards?.();
   }
   document.addEventListener('DOMContentLoaded', syncAndApply);
 
@@ -1134,6 +1140,122 @@
     document.head.appendChild(style);
 
     console.log('🚀 Modern Navbar initialized successfully!');
+  });
+  
+  // ================= Sincronización con Firestore para apartamentos =================
+  
+  // Función para renderizar propiedades remotas
+  function renderRemoteProperties(remoteProperties) {
+    console.log('🎨 Iniciando renderRemoteProperties en apartamentos.html');
+    const container = document.getElementById('remotePropertiesContainer');
+    if (!container) {
+      console.error('❌ No se encontró el contenedor remotePropertiesContainer');
+      return;
+    }
+    
+    // Limpiar contenedor
+    container.innerHTML = '';
+    
+    // Filtrar solo apartamentos
+    const apartamentos = remoteProperties.filter(p => p.type === 'Apartamento');
+    console.log('🏢 Apartamentos filtrados para renderizar:', apartamentos);
+    
+    if (apartamentos.length === 0) {
+      console.log('⚠️ No se encontraron apartamentos para renderizar');
+      return;
+    }
+    
+    apartamentos.forEach(property => {
+      const propertyCard = `
+        <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300" data-prop-id="${property.id}">
+          <div class="relative">
+            <img src="${property.image || 'img/random/logoNuevo .jpg'}" alt="${property.title}" class="w-full h-64 object-cover">
+            <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
+              <button onclick="openModal('${property.id}')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
+                Ver detalles
+              </button>
+            </div>
+            <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+              DISPONIBLE
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-1">${property.title}</h3>
+            <p class="text-blue-600 font-semibold mb-2">${property.priceDisplay || property.price}</p>
+            <p class="text-gray-600 text-sm mb-4">${property.location} | ${property.bedrooms || 0} habitaciones | ${property.bathrooms || 0} baños | ${property.area || 'N/A'}</p>
+            <p class="text-gray-500 text-sm">${property.description || 'Apartamento disponible'}</p>
+            ${property.features && property.features.length > 0 ? `
+            <div class="mt-3">
+              <div class="flex flex-wrap gap-1">
+                ${property.features.slice(0, 3).map(feature => `
+                  <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">${feature}</span>
+                `).join('')}
+                ${property.features.length > 3 ? `<span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">+${property.features.length - 3} más</span>` : ''}
+              </div>
+            </div>
+            ` : ''}
+            <div class="mt-4 flex justify-between items-center">
+              <button onclick="openModal('${property.id}')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                Más detalles <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+              <div class="flex items-center text-yellow-400">
+                <i class="fas fa-star"></i>
+                <span class="text-gray-600 ml-1 text-sm">4.8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      container.innerHTML += propertyCard;
+    });
+  }
+  
+  // Sincronizar, traer remotas (tipo Apartamento) y aplicar
+  async function syncAndApply() {
+    console.log('🔍 Iniciando syncAndApply en apartamentos.html');
+    if (typeof syncRemoteState === 'function') {
+      try { 
+        console.log('📡 Sincronizando estado remoto...');
+        await syncRemoteState(); 
+        console.log('✅ Estado remoto sincronizado');
+      } catch(e) {
+        console.error('❌ Error sincronizando estado remoto:', e);
+      }
+    }
+    if (typeof fetchRemoteProperties === 'function' && typeof mergeRemoteIntoArray === 'function') {
+      try {
+        console.log('🏠 Buscando propiedades remotas...');
+        console.log('🔧 fetchRemoteProperties es función:', typeof fetchRemoteProperties);
+        console.log('🔧 mergeRemoteIntoArray es función:', typeof mergeRemoteIntoArray);
+        const rem = await fetchRemoteProperties();
+        console.log('📋 Propiedades remotas encontradas:', rem);
+        console.log('📋 Tipo de rem:', typeof rem);
+        console.log('📋 Longitud de rem:', rem ? rem.length : 'undefined');
+        
+        // Renderizar propiedades remotas
+        console.log('🚀 Llamando a renderRemoteProperties...');
+        renderRemoteProperties(rem);
+        
+        const asArray = Object.keys(properties).map(id => ({ id, ...properties[id] }));
+        console.log('🏘️ Propiedades locales:', asArray);
+        mergeRemoteIntoArray(asArray, rem.filter(p => p.type === 'Apartamento'));
+        const merged = {}; asArray.forEach(p => { merged[p.id] = p; });
+        Object.assign(properties, merged);
+        console.log('🔄 Propiedades fusionadas:', properties);
+      } catch(e) {
+        console.error('❌ Error procesando propiedades remotas:', e);
+      }
+    }
+    activeProperties = properties;
+    console.log('🎯 Propiedades activas después del filtro:', activeProperties);
+    console.log('✅ syncAndApply completado');
+  }
+  
+  // Ejecutar sincronización cuando se carga la página
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 DOMContentLoaded ejecutado en apartamentos.html');
+    console.log('🔍 Contenedor remotePropertiesContainer:', document.getElementById('remotePropertiesContainer'));
+    syncAndApply();
   });
 </script>
 </body>

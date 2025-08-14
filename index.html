@@ -1083,7 +1083,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       <!-- Apartamentos -->
       <a href="apartamentos.html" class="category-card p-8 text-center animate-fade-in-up delay-300 group">
         <div class="category-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -1132,17 +1132,6 @@
         </div>
       </a>
 
-      <!-- Terrenos y más -->
-      <a href="terrenos.html" class="category-card p-8 text-center animate-fade-in-up delay-700 group md:col-span-3 lg:col-span-1">
-        <div class="category-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <i class="fas fa-map-marked-alt text-blue-500 text-3xl"></i>
-        </div>
-        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">Terrenos y más</h3>
-        <p class="text-gray-600 text-lg font-medium">5 Propiedades</p>
-        <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <i class="fas fa-arrow-right text-blue-500 text-lg"></i>
-        </div>
-      </a>
     </div>
   </div>
 </section>
@@ -1910,41 +1899,41 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     initializeSearchListeners();
     initModernNavbar();
     // Sincronizar estados remotos y aplicar filtros/overrides
-    if (typeof syncRemoteState === 'function') {
-      syncRemoteState().then(() => {
-        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
-        if (typeof hideArchivedCards === 'function') hideArchivedCards();
-        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
-      }).catch(() => {
-        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
-        if (typeof hideArchivedCards === 'function') hideArchivedCards();
-        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
-      });
-    } else {
+    const run = async () => {
+      if (typeof syncRemoteState === 'function') {
+        try { await syncRemoteState(); } catch(_) {}
+      }
+      if (typeof fetchRemoteProperties === 'function' && typeof mergeRemoteIntoArray === 'function') {
+        try {
+          const rem = await fetchRemoteProperties();
+          mergeRemoteIntoArray(allProperties, rem);
+        } catch(_) {}
+      }
       if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
       if (typeof hideArchivedCards === 'function') hideArchivedCards();
       if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
-    }
+    };
+    run();
   });
 
   document.addEventListener('DOMContentLoaded', () => {
     initializeSearchListeners();
     initModernNavbar();
-    if (typeof syncRemoteState === 'function') {
-      syncRemoteState().then(() => {
-        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
-        if (typeof hideArchivedCards === 'function') hideArchivedCards();
-        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
-      }).catch(() => {
-        if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
-        if (typeof hideArchivedCards === 'function') hideArchivedCards();
-        if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
-      });
-    } else {
+    const run2 = async () => {
+      if (typeof syncRemoteState === 'function') {
+        try { await syncRemoteState(); } catch(_) {}
+      }
+      if (typeof fetchRemoteProperties === 'function' && typeof mergeRemoteIntoArray === 'function') {
+        try {
+          const rem = await fetchRemoteProperties();
+          mergeRemoteIntoArray(allProperties, rem);
+        } catch(_) {}
+      }
       if (typeof applyOverridesToArray === 'function') applyOverridesToArray(allProperties);
       if (typeof hideArchivedCards === 'function') hideArchivedCards();
       if (typeof applyOverridesToStaticCards === 'function') applyOverridesToStaticCards();
-    }
+    };
+    run2();
   });
 
   // Close modals when clicking outside

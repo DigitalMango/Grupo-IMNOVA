@@ -198,6 +198,33 @@ window.applyOverridesToArray = applyOverridesToArray;
 window.applyOverridesToStaticCards = applyOverridesToStaticCards;
 window.tagCardsWithPropId = tagCardsWithPropId;
 
+// ====== Propiedades remotas (creadas desde el Dashboard) ======
+async function fetchRemoteProperties() {
+  try {
+    if (typeof firebase === 'undefined' || !firebase.firestore) return [];
+    const db = firebase.firestore();
+    const snap = await db.collection('properties').get();
+    const list = [];
+    snap.forEach(doc => {
+      const p = doc.data();
+      if (p && p.id) list.push(p);
+    });
+    return list;
+  } catch (_) {
+    return [];
+  }
+}
+
+function mergeRemoteIntoArray(localArray, remoteArray) {
+  if (!Array.isArray(localArray) || !Array.isArray(remoteArray)) return localArray || [];
+  const seen = new Set(localArray.map(p => p.id));
+  remoteArray.forEach(p => { if (p && p.id && !seen.has(p.id)) localArray.push(p); });
+  return localArray;
+}
+
+window.fetchRemoteProperties = fetchRemoteProperties;
+window.mergeRemoteIntoArray = mergeRemoteIntoArray;
+
 // Ejecución proactiva para páginas estáticas: intenta ocultar/actualizar varias veces al cargar
 (function bootstrapStaticSync() {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
