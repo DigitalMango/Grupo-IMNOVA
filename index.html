@@ -209,20 +209,7 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    /* Enhanced Search Box */
-    .search-box {
-      background: rgba(255, 255, 255, 0.98);
-      border: 1px solid rgba(59, 130, 246, 0.1);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
-      transition: all 0.3s ease;
-    }
 
-    .search-box:hover {
-      box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.2);
-      transform: translateY(-2px);
-    }
 
     @keyframes slideUp {
       from {
@@ -876,76 +863,27 @@
       </div>
     </div>
 
-    <!-- Enhanced Search Box -->
-    <div class="search-box mx-auto w-full max-w-6xl p-8 mb-16 animate-fade-in-up delay-300">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-      <div>
-          <label class="block text-gray-700 text-sm font-bold mb-3">📍 Ubicación</label>
-          <select id="searchLocation" class="form-input w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-          <option value="">Todas las ubicaciones</option>
-          <option value="San Salvador">San Salvador</option>
-          <option value="Santa Elena">Santa Elena</option>
-          <option value="Santa Tecla">Santa Tecla</option>
-          <option value="Col. Maquilishuat">Col. Maquilishuat</option>
-          <option value="Col. Escalón">Col. Escalón</option>
-          <option value="Centro Histórico">Centro Histórico</option>
-          <option value="Sonsonate">Sonsonate</option>
-          <option value="Zona Premium">Zona Premium</option>
-        </select>
-      </div>
-      <div>
-          <label class="block text-gray-700 text-sm font-bold mb-3">🏠 Tipo de Propiedad</label>
-          <select id="searchType" class="form-input w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-          <option value="">Todos los tipos</option>
-          <option value="Casa">Casa</option>
-          <option value="Apartamento">Apartamento</option>
-          <option value="Oficina">Oficina</option>
-          <option value="Edificio">Edificio</option>
-          <option value="Local">Local Comercial</option>
-          <option value="Terreno">Terreno</option>
-          <option value="Finca">Finca</option>
-        </select>
-      </div>
-      <div>
-          <label class="block text-gray-700 text-sm font-bold mb-3">💰 Rango de Precio</label>
-          <select id="searchPrice" class="form-input w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-          <option value="">Cualquier precio</option>
-          <option value="0-200000">$0 - $200,000</option>
-          <option value="200000-400000">$200,000 - $400,000</option>
-          <option value="400000-600000">$400,000 - $600,000</option>
-          <option value="600000-1000000">$600,000 - $1,000,000</option>
-          <option value="1000000+">$1,000,000+</option>
-          <option value="rent">Solo Alquiler</option>
-        </select>
-      </div>
-      <div class="flex items-end">
-          <button onclick="searchProperties()" class="btn-primary w-full py-4 px-6 text-lg">
-            <i class="fas fa-search mr-2"></i>Buscar
-        </button>
-      </div>
-    </div>
-  </div>
-
+  
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <!-- Inmueble en Col. Maquilishuat -->
-      <div class="property-card animate-fade-in-up delay-300">
+      <!-- Casa en Col. Maquilishuat -->
+      <div class="property-card bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-500 animate-fade-in-up delay-300">
         <div class="relative overflow-hidden">
-          <img src="img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg" alt="Inmueble en Col. Maquilishuat" class="w-full h-72 object-cover">
-          <div class="absolute top-4 right-4 glass px-4 py-2 rounded-full text-sm font-semibold text-white">
+          <img src="img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg" alt="Casa en Col. Maquilishuat" class="w-full h-72 object-cover">
+          <div class="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
             <i class="fas fa-tag mr-1"></i>En Venta
         </div>
-          <div class="absolute bottom-4 left-4 glass px-4 py-2 rounded-full text-sm font-semibold text-white">
+          <div class="absolute bottom-4 left-4 bg-white text-blue-600 px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-blue-200">
             <i class="fas fa-dollar-sign mr-1"></i>$1,200,000
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button onclick="openModal('casa-maquilishuat')" class="btn-primary">
+            <button onclick="openModal('casa-maquilishuat')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
               <i class="fas fa-eye mr-2"></i>Ver Detalles
             </button>
           </div>
         </div>
         <div class="p-8">
           <h3 class="text-2xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors duration-300">
-            Inmueble en Col. Maquilishuat
+            Casa en Col. Maquilishuat
           </h3>
           <p class="text-gray-600 mb-4 flex items-center">
             <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 
@@ -953,33 +891,33 @@
           </p>
           <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-6">
             <span class="flex items-center">
-              <i class="fas fa-home text-blue-500 mr-2"></i> 2 casas + 2 aptos
+              <i class="fas fa-bed text-blue-500 mr-2"></i> 3 Habitaciones
             </span>
             <span class="flex items-center">
-              <i class="fas fa-bath text-blue-500 mr-2"></i> Múltiples
+              <i class="fas fa-bath text-blue-500 mr-2"></i> 2 Baños
             </span>
             <span class="flex items-center">
-              <i class="fas fa-vector-square text-blue-500 mr-2"></i> 1,638.95v²
+              <i class="fas fa-vector-square text-blue-500 mr-2"></i> 120m²
             </span>
           </div>
-          <button onclick="openModal('casa-maquilishuat')" class="btn-primary w-full">
+          <button onclick="openModal('casa-maquilishuat')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
             <i class="fas fa-info-circle mr-2"></i>Ver Detalles
           </button>
         </div>
       </div>
 
-      <!-- Apartamento en Residencial Privado -->
-      <div class="property-card animate-fade-in-up delay-400">
+      <!-- Apartamento en Residencial Privado Santa Elena -->
+      <div class="property-card bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-500 animate-fade-in-up delay-400">
         <div class="relative overflow-hidden">
-          <img src="img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg" alt="Apartamento en Residencial Privado" class="w-full h-72 object-cover">
-          <div class="absolute top-4 right-4 glass px-4 py-2 rounded-full text-sm font-semibold text-white" style="background: rgba(34, 197, 94, 0.9);">
+          <img src="img/propiedades/apto. En residencial privado en Santa Elena/img/IMG-20250628-WA0063.jpg" alt="Apartamento en Residencial Privado Santa Elena" class="w-full h-72 object-cover">
+          <div class="absolute top-4 right-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
             <i class="fas fa-key mr-1"></i>En Alquiler
         </div>
-          <div class="absolute bottom-4 left-4 glass px-4 py-2 rounded-full text-sm font-semibold text-white">
+          <div class="absolute bottom-4 left-4 bg-white text-green-600 px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-green-200">
             <i class="fas fa-dollar-sign mr-1"></i>$1,200/mes
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button onclick="openModal('apartamento-santa-elena')" class="btn-primary">
+            <button onclick="openModal('apartamento-santa-elena')" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
               <i class="fas fa-eye mr-2"></i>Ver Detalles
             </button>
           </div>
@@ -1003,48 +941,48 @@
               <i class="fas fa-vector-square text-blue-500 mr-2"></i> 85m²
             </span>
           </div>
-          <button onclick="openModal('apartamento-santa-elena')" class="btn-primary w-full">
+          <button onclick="openModal('apartamento-santa-elena')" class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
             <i class="fas fa-info-circle mr-2"></i>Ver Detalles
           </button>
         </div>
       </div>
 
-      <!-- Inmueble Premium -->
-      <div class="property-card animate-fade-in-up delay-500">
+      <!-- Apartamento Premium -->
+      <div class="property-card bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-500 animate-fade-in-up delay-500">
         <div class="relative overflow-hidden">
-          <img src="img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg" alt="Inmueble Premium" class="w-full h-72 object-cover">
-          <div class="absolute top-4 right-4 glass px-4 py-2 rounded-full text-sm font-semibold text-white" style="background: rgba(249, 115, 22, 0.9);">
-            <i class="fas fa-crown mr-1"></i>Premium
+          <img src="img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg" alt="Apartamento Premium" class="w-full h-72 object-cover">
+          <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+            <i class="fas fa-tag mr-1"></i>En Venta
         </div>
-          <div class="absolute bottom-4 left-4 glass px-4 py-2 rounded-full text-sm font-semibold text-white">
-            <i class="fas fa-dollar-sign mr-1"></i>$2,300,000
+          <div class="absolute bottom-4 left-4 bg-white text-purple-600 px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-purple-200">
+            <i class="fas fa-dollar-sign mr-1"></i>$220,000
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button onclick="openModal('inmueble-premium')" class="btn-primary">
+            <button onclick="openModal('apartamento-premium')" class="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
               <i class="fas fa-eye mr-2"></i>Ver Detalles
             </button>
           </div>
         </div>
         <div class="p-8">
           <h3 class="text-2xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors duration-300">
-            Inmueble Premium sobre Paseo Escalón
+            Apartamento Premium
           </h3>
           <p class="text-gray-600 mb-4 flex items-center">
             <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> 
-            Paseo Escalón, San Salvador
+            San Salvador
           </p>
           <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-6">
             <span class="flex items-center">
-              <i class="fas fa-building text-blue-500 mr-2"></i> Comercial
+              <i class="fas fa-bed text-blue-500 mr-2"></i> 3 Habitaciones
             </span>
             <span class="flex items-center">
-              <i class="fas fa-bath text-blue-500 mr-2"></i> Múltiples
+              <i class="fas fa-bath text-blue-500 mr-2"></i> 2.5 Baños
             </span>
             <span class="flex items-center">
-              <i class="fas fa-vector-square text-blue-500 mr-2"></i> 1,569.44v²
+              <i class="fas fa-vector-square text-blue-500 mr-2"></i> 120m²
             </span>
           </div>
-          <button onclick="openModal('inmueble-premium')" class="btn-primary w-full">
+          <button onclick="openModal('apartamento-premium')" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
             <i class="fas fa-info-circle mr-2"></i>Ver Detalles
           </button>
         </div>
@@ -1052,7 +990,7 @@
     </div>
 
     <div class="text-center mt-16 animate-fade-in-up delay-600">
-      <a href="view_all.html" class="inline-flex items-center btn-primary text-lg px-10 py-4">
+      <a href="view_all.html" class="inline-flex items-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold text-lg px-10 py-4 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105">
         <i class="fas fa-th-large mr-3"></i>
         Ver Todas las Propiedades
         <i class="fas fa-arrow-right ml-3"></i>
@@ -1896,7 +1834,6 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   window.addEventListener('load', () => {
     updateScrollProgress();
     toggleBackToTop();
-    initializeSearchListeners();
     initModernNavbar();
     // Sincronizar estados remotos y aplicar filtros/overrides
     const run = async () => {
@@ -1917,7 +1854,6 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   });
 
   document.addEventListener('DOMContentLoaded', () => {
-    initializeSearchListeners();
     initModernNavbar();
     const run2 = async () => {
       if (typeof syncRemoteState === 'function') {
@@ -1939,13 +1875,9 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   // Close modals when clicking outside
   document.addEventListener('click', function(e) {
     const propertyModal = document.getElementById('propertyModal');
-    const searchModal = document.getElementById('searchResultsModal');
     
     if (e.target === propertyModal) {
       closeModal();
-    }
-    if (e.target === searchModal) {
-      closeSearchResults();
     }
   });
 
@@ -1953,7 +1885,6 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeModal();
-      closeSearchResults();
     }
   });
 
@@ -2101,18 +2032,20 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     }
   };
 
-  // All properties data for search functionality
+  // All properties data for featured properties
+  // Estas son las tres propiedades más recientes añadidas por el dashboard
+  // que se muestran en la página principal
   const allProperties = [
     {
       id: 'casa-maquilishuat',
-      title: 'Inmueble en Col. Maquilishuat',
+      title: 'Casa en Col. Maquilishuat',
       price: 1200000,
       priceDisplay: '$1,200,000',
-      location: 'Col. Maquilishuat',
+      location: 'Col. Maquilishuat, San Salvador',
       type: 'Casa',
-      bedrooms: 4,
-      bathrooms: 4,
-      area: '1,638.95v²',
+      bedrooms: 3,
+      bathrooms: 2,
+      area: '120m²',
       image: 'img/propiedades/Casa  en Col. Maquilishuat/img/IMG-20250627-WA0023.jpg',
       page: 'casas.html'
     },
@@ -2131,97 +2064,17 @@ document.getElementById("login-btn").addEventListener("click", async () => {
       isRent: true
     },
     {
-      id: 'inmueble-premium',
-      title: 'Inmueble Premium sobre Paseo Escalón',
-      price: 2300000,
-      priceDisplay: '$2,300,000',
-      location: 'Paseo Escalón',
-      type: 'Oficina',
-      bedrooms: 0,
-      bathrooms: 0,
-      area: '1,569.44v²',
+      id: 'apartamento-premium',
+      title: 'Apartamento Premium',
+      price: 220000,
+      priceDisplay: '$220,000',
+      location: 'San Salvador',
+      type: 'Apartamento',
+      bedrooms: 3,
+      bathrooms: 2.5,
+      area: '120m²',
       image: 'img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg',
-      page: 'oficinas.html'
-    },
-    {
-      id: 'casa-moderna-rabida',
-      title: 'Casa Habitacional Col. La Rábida',
-      price: 350000,
-      priceDisplay: '$350,000',
-      location: 'Col. La Rábida, San Salvador',
-      type: 'Casa',
-      bedrooms: 8,
-      bathrooms: 8,
-      area: '222m²',
-      image: 'img/propiedades/moderna casa habitacional/img/IMG-20250628-WA0036.jpg',
-      page: 'casas.html'
-    },
-    {
-      id: 'finca-cafe-santiago',
-      title: 'Finca de Café Santiago de María',
-      price: 525000,
-      priceDisplay: '$525,000',
-      location: 'Santiago de María',
-      type: 'Finca',
-      bedrooms: 0,
-      bathrooms: 0,
-      area: '106 manzanas',
-      image: 'img/propiedades/finca de café/img/IMG-20250628-WA0027.jpg',
-      page: 'casas.html'
-    },
-    {
-      id: 'terreno-escalon-carmen',
-      title: 'Terreno en Col. Escalón - Cantón El Carmen',
-      price: 1065000,
-      priceDisplay: '$1,065,000',
-      location: 'Col. Escalón',
-      type: 'Terreno',
-      bedrooms: 0,
-      bathrooms: 0,
-      area: '2,972.75m²',
-      image: 'img/propiedades/terreno en Col. Escalón, ubicado en Cantón El Carmen/img/IMG-20250628-WA0091.jpg',
-      page: 'casas.html'
-    },
-    {
-      id: 'local-antiguo-cuscatlan',
-      title: 'Local Comercial Antiguo Cuscatlán',
-      price: 0,
-      priceDisplay: '$850/mes',
-      location: 'Antiguo Cuscatlán',
-      type: 'Local',
-      bedrooms: 0,
-      bathrooms: 1,
-      area: '30m²',
-      image: 'img/propiedades/Local disponibles para alquiler/img/IMG-20250628-WA0120.jpg',
-      page: 'oficinas.html',
-      isRent: true
-    },
-    {
-      id: 'edificio-centro-historico',
-      title: 'Edificio Centro Histórico San Salvador',
-      price: 1200000,
-      priceDisplay: '$1,200,000',
-      location: 'Centro Histórico',
-      type: 'Edificio',
-      bedrooms: 0,
-      bathrooms: 0,
-      area: '189.80m²',
-      image: 'img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0082.jpg',
-      page: 'edificios.html'
-    },
-    {
-      id: 'edificio-sonsonate',
-      title: 'Edificio de 3 Niveles Sonsonate',
-      price: 0,
-      priceDisplay: '$8,000/mes',
-      location: 'Sonsonate',
-      type: 'Edificio',
-      bedrooms: 0,
-      bathrooms: 0,
-      area: '348.47v²',
-      image: 'img/propiedades/Alquiler en Sonsonate, edificio de 3 niveles/img/IMG-20250628-WA0125.jpg',
-      page: 'edificios.html',
-      isRent: true
+      page: 'apartamentos.html'
     }
   ];
 
@@ -2236,50 +2089,56 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     
     const modalContent = document.getElementById('modalContent');
     modalContent.innerHTML = `
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div>
-          <img src="${property.images[0]}" alt="${property.title}" class="w-full h-64 object-cover rounded-lg mb-4">
-          <div class="image-gallery grid grid-cols-4 gap-2">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="animate-fade-in-left">
+          <img src="${property.images[0]}" alt="${property.title}" class="w-full h-80 object-cover rounded-xl mb-6 shadow-lg">
+          <div class="image-gallery grid grid-cols-4 gap-3">
             ${property.images.slice(1, 5).map(img => `
-              <img src="${img}" alt="${property.title}" class="w-full h-20 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity" onclick="changeMainImage('${img}')">
+              <img src="${img}" alt="${property.title}" class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75 transition-all duration-300 shadow-md" onclick="changeMainImage('${img}')">
             `).join('')}
           </div>
         </div>
-        <div>
-          <div class="mb-4">
-            <h3 class="text-3xl font-bold text-blue-600 mb-2">${property.price}</h3>
-            <p class="text-gray-600 mb-4">
-              <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>${property.location}
+        <div class="animate-fade-in-right">
+          <div class="mb-6">
+            <h3 class="text-4xl font-bold text-blue-600 mb-4">${property.price}</h3>
+            <p class="text-gray-600 mb-6 flex items-center text-lg">
+              <i class="fas fa-map-marker-alt text-blue-500 mr-3 text-xl"></i>${property.location}
             </p>
-            <div class="flex space-x-4 text-sm text-gray-600 mb-4">
-              <span><i class="fas fa-bed text-blue-500 mr-1"></i>${property.bedrooms} habitaciones</span>
-              <span><i class="fas fa-bath text-blue-500 mr-1"></i>${property.bathrooms} baños</span>
-              <span><i class="fas fa-vector-square text-blue-500 mr-1"></i>${property.area}</span>
+            <div class="flex space-x-6 text-sm text-gray-600 mb-6">
+              <span class="flex items-center">
+                <i class="fas fa-bed text-blue-500 mr-2 text-lg"></i>${property.bedrooms} habitaciones
+              </span>
+              <span class="flex items-center">
+                <i class="fas fa-bath text-blue-500 mr-2 text-lg"></i>${property.bathrooms} baños
+              </span>
+              <span class="flex items-center">
+                <i class="fas fa-vector-square text-blue-500 mr-2 text-lg"></i>${property.area}
+              </span>
             </div>
           </div>
           
-          <div class="mb-6">
-            <h4 class="font-semibold text-gray-800 mb-2">Descripción</h4>
-            <p class="text-gray-600">${property.description}</p>
+          <div class="mb-8">
+            <h4 class="text-xl font-bold text-gray-800 mb-4">Descripción</h4>
+            <p class="text-gray-600 leading-relaxed">${property.description}</p>
           </div>
           
-          <div class="mb-6">
-            <h4 class="font-semibold text-gray-800 mb-2">Características</h4>
-            <ul class="grid grid-cols-1 gap-2">
+          <div class="mb-8">
+            <h4 class="text-xl font-bold text-gray-800 mb-4">Características</h4>
+            <ul class="grid grid-cols-1 gap-3">
               ${property.features.map(feature => `
                 <li class="flex items-center text-gray-600">
-                  <i class="fas fa-check text-green-500 mr-2"></i>${feature}
+                  <i class="fas fa-check text-green-500 mr-3 text-lg"></i>${feature}
                 </li>
               `).join('')}
             </ul>
           </div>
           
           <div class="flex space-x-4">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
-              <i class="fas fa-phone mr-2"></i>Contactar
+            <button class="btn-primary px-8 py-4 text-lg">
+              <i class="fas fa-phone mr-3"></i>Contactar
             </button>
-            <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
-              <i class="fas fa-heart mr-2"></i>Favorito
+            <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-8 py-4 rounded-full font-medium transition-all duration-300 text-lg">
+              <i class="fas fa-heart mr-3"></i>Favorito
             </button>
           </div>
         </div>
@@ -2302,175 +2161,13 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     }
   }
 
-  function searchProperties() {
-    const location = document.getElementById('searchLocation').value;
-    const type = document.getElementById('searchType').value;
-    const priceRange = document.getElementById('searchPrice').value;
-    const archivedState = (typeof getArchivedState === 'function') ? getArchivedState() : {};
-
-    // Show loading state
-    const searchButton = document.querySelector('#searchLocation').closest('.search-box').querySelector('button');
-    const originalText = searchButton.innerHTML;
-    searchButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Buscando...';
-    searchButton.disabled = true;
-
-    // Simulate search delay for better UX
-    setTimeout(() => {
-    // Filter properties based on search criteria (excluding archived)
-    let filteredProperties = allProperties
-      .filter(p => !archivedState[p.id])
-      .filter(property => {
-        let matches = true;
-
-        // Location filter
-        if (location && !property.location.toLowerCase().includes(location.toLowerCase())) {
-          matches = false;
-        }
-
-        // Type filter
-        if (type && property.type !== type) {
-          matches = false;
-        }
-
-        // Price filter
-        if (priceRange) {
-          if (priceRange === 'rent') {
-            if (!property.isRent) {
-              matches = false;
-            }
-          } else {
-            const [min, max] = priceRange.split('-').map(Number);
-            if (property.isRent || property.price < min || (max && property.price > max)) {
-              matches = false;
-            }
-          }
-        }
-
-        return matches;
-      });
-
-      // Reset button
-      searchButton.innerHTML = originalText;
-      searchButton.disabled = false;
-
-    // Show search results
-    showSearchResults(filteredProperties);
-    }, 800);
-  }
-
-  // Add real-time search functionality
-  function initializeSearchListeners() {
-    const searchInputs = ['searchLocation', 'searchType', 'searchPrice'];
-    
-    searchInputs.forEach(inputId => {
-      const element = document.getElementById(inputId);
-      if (element) {
-        element.addEventListener('change', function() {
-          // Auto-search when user changes any filter
-          if (this.value) {
-            searchProperties();
-          }
-        });
-      }
-    });
-  }
-
-  function showSearchResults(properties) {
-    // Create a modal to show search results
-    const modalContent = `
-      <div class="p-8">
-        <div class="flex justify-between items-center mb-8">
-          <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-2">Resultados de Búsqueda</h2>
-            <p class="text-gray-600">Se encontraron <span class="font-bold text-blue-600">${properties.length}</span> propiedades</p>
-          </div>
-          <button onclick="closeSearchResults()" class="text-gray-400 hover:text-gray-600 text-2xl transition-colors duration-300">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        
-        ${properties.length === 0 ? 
-          `<div class="text-center py-12">
-            <i class="fas fa-search text-gray-300 text-6xl mb-4"></i>
-            <h3 class="text-xl font-semibold text-gray-700 mb-2">No se encontraron propiedades</h3>
-            <p class="text-gray-600">Intenta ajustar tus criterios de búsqueda</p>
-            <button onclick="closeSearchResults()" class="btn-primary mt-6">
-              <i class="fas fa-arrow-left mr-2"></i>Volver a Buscar
-            </button>
-          </div>` :
-          `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            ${properties.map(property => `
-              <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative">
-                  <img src="${property.image}" alt="${property.title}" class="w-full h-56 object-cover">
-                  <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-sm font-semibold text-white">
-                    ${property.isRent ? '<i class="fas fa-key mr-1"></i>Alquiler' : '<i class="fas fa-tag mr-1"></i>Venta'}
-                  </div>
-                </div>
-                <div class="p-6">
-                  <h3 class="font-bold text-xl mb-3 text-gray-800 hover:text-blue-600 transition-colors duration-300">${property.title}</h3>
-                  <p class="text-blue-600 font-bold text-lg mb-3">${property.priceDisplay}</p>
-                  <p class="text-gray-600 mb-4 flex items-center">
-                    <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>${property.location}
-                  </p>
-                  <div class="flex justify-between text-sm text-gray-500 mb-6 border-b border-gray-200 pb-4">
-                    <span class="flex items-center"><i class="fas fa-bed text-blue-500 mr-2"></i>${property.bedrooms}</span>
-                    <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-2"></i>${property.bathrooms}</span>
-                    <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-2"></i>${property.area}</span>
-                  </div>
-                  <div class="flex space-x-3">
-                    <button onclick="openModal('${property.id}')" class="flex-1 btn-primary text-sm py-3">
-                      <i class="fas fa-eye mr-2"></i>Ver Detalles
-                    </button>
-                    <a href="${property.page}" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm py-3 px-4 rounded-full text-center transition-all duration-300 font-medium">
-                      <i class="fas fa-external-link-alt mr-2"></i>Ver Más
-                    </a>
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>`
-        }
-      </div>
-    `;
-
-    // Create or update search results modal
-    let searchModal = document.getElementById('searchResultsModal');
-    if (!searchModal) {
-      searchModal = document.createElement('div');
-      searchModal.id = 'searchResultsModal';
-      searchModal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
-      document.body.appendChild(searchModal);
-    }
-
-    searchModal.innerHTML = `
-      <div class="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-        ${modalContent}
-      </div>
-    `;
-    
-    searchModal.classList.remove('hidden');
-    document.body.classList.add('modal-open');
-  }
-
-  function closeSearchResults() {
-    const searchModal = document.getElementById('searchResultsModal');
-    if (searchModal) {
-      searchModal.classList.add('hidden');
-    }
-    document.body.classList.remove('modal-open');
-  }
 
   // Close modals when clicking outside
   document.addEventListener('click', function(e) {
     const propertyModal = document.getElementById('propertyModal');
-    const searchModal = document.getElementById('searchResultsModal');
     
     if (e.target === propertyModal) {
       closeModal();
-    }
-    if (e.target === searchModal) {
-      closeSearchResults();
     }
   });
 
@@ -2478,7 +2175,6 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeModal();
-      closeSearchResults();
     }
   });
 

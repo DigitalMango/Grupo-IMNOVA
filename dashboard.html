@@ -465,6 +465,35 @@
                         </div>
                     </div>
                     
+                    <!-- Departamento -->
+                    <div class="group">
+                        <label class="block text-darkGray text-sm font-semibold mb-2 flex items-center">
+                            <i class="fas fa-globe-americas text-navy mr-2"></i>
+                            Departamento <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <select id="newDepartment" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer" required>
+                            <option value="">Selecciona un departamento</option>
+                            <option value="Ahuachapán">Ahuachapán</option>
+                            <option value="Santa Ana">Santa Ana</option>
+                            <option value="Sonsonate">Sonsonate</option>
+                            <option value="La Libertad">La Libertad</option>
+                            <option value="Chalatenango">Chalatenango</option>
+                            <option value="Cuscatlán">Cuscatlán</option>
+                            <option value="San Salvador">San Salvador</option>
+                            <option value="La Paz">La Paz</option>
+                            <option value="Cabañas">Cabañas</option>
+                            <option value="San Vicente">San Vicente</option>
+                            <option value="Usulután">Usulután</option>
+                            <option value="San Miguel">San Miguel</option>
+                            <option value="Morazán">Morazán</option>
+                            <option value="La Unión">La Unión</option>
+                        </select>
+                        <div class="error-message hidden text-red-500 text-sm mt-1 flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            <span>Este campo es obligatorio</span>
+                        </div>
+                    </div>
+                    
                     <!-- Sección de Imágenes -->
                     <div class="group">
                         <label class="block text-darkGray text-sm font-semibold mb-3 flex items-center">
@@ -1140,6 +1169,13 @@
                 isValid = false;
             }
             
+            // Validar departamento
+            const department = document.getElementById('newDepartment').value;
+            if (!department) {
+                showFieldError('newDepartment', 'Selecciona un departamento');
+                isValid = false;
+            }
+            
             // Validar imágenes
             if (uploadedImages.length === 0) {
                 document.getElementById('imageError').classList.remove('hidden');
@@ -1188,6 +1224,7 @@
         document.getElementById('newType').addEventListener('change', () => clearFieldError('newType'));
         document.getElementById('newArea').addEventListener('input', () => clearFieldError('newArea'));
         document.getElementById('newLocation').addEventListener('input', () => clearFieldError('newLocation'));
+        document.getElementById('newDepartment').addEventListener('change', () => clearFieldError('newDepartment'));
         
         // Event listener para limpiar error de imágenes cuando se suban
         function clearImageError() {
@@ -1229,6 +1266,7 @@
             const priceNum = Number(document.getElementById('newPrice').value || 0);
             const type = document.getElementById('newType').value;
             const location = document.getElementById('newLocation').value.trim();
+            const department = document.getElementById('newDepartment').value;
             // imagePath ya no se usa, se maneja en la sección de imágenes múltiples
             const bedrooms = Number(document.getElementById('newBedrooms').value || 0);
             const bathrooms = Number(document.getElementById('newBathrooms').value || 0);
@@ -1236,7 +1274,7 @@
             const featuresText = document.getElementById('newFeatures').value.trim();
             
             console.log('📝 Campos del formulario:', {
-                title, description, priceNum, type, location, 
+                title, description, priceNum, type, location, department,
                 bedrooms, bathrooms, area, featuresText
             });
             
@@ -1318,6 +1356,7 @@
               price: priceNum,
               priceDisplay,
               location,
+              department,
               type,
               bedrooms,
               bathrooms,
@@ -1405,6 +1444,8 @@
             
             console.log('🧹 Limpiando formulario...');
             propertyForm.reset();
+            // Limpiar manualmente el campo departamento ya que reset() no funciona con select
+            document.getElementById('newDepartment').value = '';
             imagePreview.classList.add('hidden');
             imageGrid.innerHTML = '';
             imageCarousel.innerHTML = '';
@@ -2140,6 +2181,35 @@ function openEditModal(idx) {
             </div>
           </div>
           
+          <!-- Departamento -->
+          <div class='group'>
+            <label class='block text-darkGray text-sm font-semibold mb-2 flex items-center'>
+              <i class="fas fa-globe-americas text-navy mr-2"></i>
+              Departamento <span class="text-red-500 ml-1">*</span>
+            </label>
+            <select id='editDepartment' class='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-all duration-200 bg-gray-50 focus:bg-white cursor-pointer' required>
+              <option value="">Selecciona un departamento</option>
+              <option value="Ahuachapán">Ahuachapán</option>
+              <option value="Santa Ana">Santa Ana</option>
+              <option value="Sonsonate">Sonsonate</option>
+              <option value="La Libertad">La Libertad</option>
+              <option value="Chalatenango">Chalatenango</option>
+              <option value="Cuscatlán">Cuscatlán</option>
+              <option value="San Salvador">San Salvador</option>
+              <option value="La Paz">La Paz</option>
+              <option value="Cabañas">Cabañas</option>
+              <option value="San Vicente">San Vicente</option>
+              <option value="Usulután">Usulután</option>
+              <option value="San Miguel">San Miguel</option>
+              <option value="Morazán">Morazán</option>
+              <option value="La Unión">La Unión</option>
+            </select>
+            <div class='error-message hidden text-red-500 text-sm mt-1 flex items-center'>
+              <i class="fas fa-exclamation-circle mr-1"></i>
+              <span>Este campo es obligatorio</span>
+            </div>
+          </div>
+          
           <!-- Imágenes actuales (solo visualización) -->
           <div class='group'>
             <label class='block text-darkGray text-sm font-semibold mb-3 flex items-center'>
@@ -2547,6 +2617,7 @@ function deletePropertyFromView(id) {
           document.getElementById('editBathrooms').value = property.bathrooms || 0;
           document.getElementById('editArea').value = property.area || '';
           document.getElementById('editLocation').value = property.location || '';
+          document.getElementById('editDepartment').value = property.department || '';
           
           // Procesar características (convertir array a texto)
           if (property.features && Array.isArray(property.features)) {
@@ -2565,6 +2636,7 @@ function deletePropertyFromView(id) {
           document.getElementById('editType').addEventListener('change', () => clearEditFieldError('editType'));
           document.getElementById('editArea').addEventListener('input', () => clearEditFieldError('editArea'));
           document.getElementById('editLocation').addEventListener('input', () => clearEditFieldError('editLocation'));
+          document.getElementById('editDepartment').addEventListener('change', () => clearEditFieldError('editDepartment'));
         }
 
         // Función para mostrar error en un campo específico del formulario de edición
@@ -2645,6 +2717,13 @@ function deletePropertyFromView(id) {
             isValid = false;
           }
           
+          // Validar departamento
+          const department = document.getElementById('editDepartment').value;
+          if (!department) {
+            showEditFieldError('editDepartment', 'Selecciona un departamento');
+            isValid = false;
+          }
+          
           return isValid;
         }
 
@@ -2692,6 +2771,7 @@ function deletePropertyFromView(id) {
             bathrooms: Number(document.getElementById('editBathrooms').value),
             area: document.getElementById('editArea').value.trim(),
             location: document.getElementById('editLocation').value.trim(),
+            department: document.getElementById('editDepartment').value,
             features: document.getElementById('editFeatures').value.trim().split('\n').filter(f => f.trim().length > 0)
           };
           

@@ -22,11 +22,28 @@
       --text-light: #6b7280;
       --bg-light: #f9fafb;
       --bg-white: #ffffff;
+      --navy: #1e3a8a;
+      --terracotta: #f97316;
+      --lightGray: #f8fafc;
+      --darkGray: #334155;
+      --mediumGray: #64748b;
     }
 
     * {
       box-sizing: border-box;
     }
+    
+    /* Custom color classes */
+    .text-navy { color: var(--navy); }
+    .bg-navy { background-color: var(--navy); }
+    .text-darkGray { color: var(--darkGray); }
+    .bg-darkGray { background-color: var(--darkGray); }
+    .text-mediumGray { color: var(--mediumGray); }
+    .bg-mediumGray { background-color: var(--mediumGray); }
+    .text-lightGray { color: var(--lightGray); }
+    .bg-lightGray { background-color: var(--lightGray); }
+    .text-terracotta { color: var(--terracotta); }
+    .bg-terracotta { background-color: var(--terracotta); }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -472,66 +489,179 @@
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <!-- Page Header -->
-  <div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Edificios Disponibles</h1>
-    <p class="text-gray-600">Descubre edificios completos para inversión o desarrollo en las mejores ubicaciones</p>
+  <div class="mb-12 text-center">
+    <!-- Título principal "Edificios" estilo iOS -->
+    <h1 class="text-7xl md:text-8xl lg:text-9xl font-black mb-8 leading-none">
+      <span class="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
+        Edificios
+      </span>
+    </h1>
+    
+    <!-- Subtítulo moderno -->
+    <p class="text-lg md:text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed font-light">
+      Descubre edificios completos para <span class="font-medium text-navy">inversión y desarrollo</span> en las mejores ubicaciones
+    </p>
+    
+    <!-- Estadísticas rápidas -->
+    <div class="flex justify-center items-center space-x-8 mt-8 text-sm text-gray-400">
+      <div class="flex items-center">
+        <i class="fas fa-map-marker-alt text-navy mr-2"></i>
+        <span>+15 ubicaciones</span>
+      </div>
+      <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+      <div class="flex items-center">
+        <i class="fas fa-building text-navy mr-2"></i>
+        <span>Edificios verificados</span>
+      </div>
+      <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+      <div class="flex items-center">
+        <i class="fas fa-shield-alt text-navy mr-2"></i>
+        <span>100% seguros</span>
+      </div>
+    </div>
   </div>
 
   <!-- Filters -->
-  <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <!-- Location Filter -->
-      <div>
-        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Ubicación</label>
-        <select id="location" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>Todas las ubicaciones</option>
-          <option>Centro Histórico</option>
-          <option>Sonsonate</option>
-          <option>San Salvador</option>
-          <option>Santa Tecla</option>
-        </select>
+  <div class="bg-gradient-to-br from-white via-blue-50 to-indigo-50 rounded-2xl shadow-2xl border border-blue-100 p-8 mb-8">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mb-4 shadow-lg">
+        <i class="fas fa-filter text-white text-2xl"></i>
+      </div>
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Filtros de Búsqueda</h2>
+      <p class="text-gray-600 mt-2">Encuentra tu edificio ideal</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Department Filter -->
+      <div class="group transform hover:scale-105 transition-all duration-300">
+        <div class="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300">
+          <label for="department" class="block text-gray-700 text-sm font-semibold mb-3 flex items-center">
+            <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-3 shadow-md">
+              <i class="fas fa-globe-americas text-white text-sm"></i>
+            </div>
+            Departamento
+          </label>
+          <select id="department" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-400 transition-all duration-300 bg-white cursor-pointer text-gray-700 text-sm font-medium shadow-sm hover:border-green-300">
+            <option value="">Todos los departamentos</option>
+            <option value="Ahuachapán">Ahuachapán</option>
+            <option value="Santa Ana">Santa Ana</option>
+            <option value="Sonsonate">Sonsonate</option>
+            <option value="La Libertad">La Libertad</option>
+            <option value="Chalatenango">Chalatenango</option>
+            <option value="Cuscatlán">Cuscatlán</option>
+            <option value="San Salvador">San Salvador</option>
+            <option value="La Paz">La Paz</option>
+            <option value="Cabañas">Cabañas</option>
+            <option value="San Vicente">San Vicente</option>
+            <option value="Usulután">Usulután</option>
+            <option value="San Miguel">San Miguel</option>
+            <option value="Morazán">Morazán</option>
+            <option value="La Unión">La Unión</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Price Filter -->
-      <div>
-        <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Rango de Precio</label>
-        <select id="price" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>Cualquier precio</option>
-          <option>$0 - $500,000</option>
-          <option>$500,000 - $1,000,000</option>
-          <option>$1,000,000 - $2,000,000</option>
-          <option>$2,000,000+</option>
-        </select>
+      <!-- Price Range Filter -->
+      <div class="group transform hover:scale-105 transition-all duration-300">
+        <div class="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300">
+          <label for="priceRange" class="block text-gray-700 text-sm font-semibold mb-3 flex items-center">
+            <div class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center mr-3 shadow-md">
+              <i class="fas fa-dollar-sign text-white text-sm"></i>
+            </div>
+            Precio
+          </label>
+          <select id="priceRange" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-yellow-100 focus:border-yellow-400 transition-all duration-300 bg-white cursor-pointer text-gray-700 text-sm font-medium shadow-sm hover:border-yellow-300">
+            <option value="">Cualquier precio</option>
+            <option value="0-500000">$0 - $500k</option>
+            <option value="500000-1000000">$500k - $1M</option>
+            <option value="1000000-2000000">$1M - $2M</option>
+            <option value="2000000+">$2M+</option>
+          </select>
+          <button id="clearPriceFilter" class="text-xs text-blue-600 hover:text-blue-800 mt-2 font-medium transition-colors duration-200 flex items-center px-3 py-1 rounded-lg hover:bg-blue-50 hidden">
+            <i class="fas fa-times mr-1"></i>
+            Limpiar filtro
+          </button>
+        </div>
       </div>
 
       <!-- Size Filter -->
-      <div>
-        <label for="size" class="block text-sm font-medium text-gray-700 mb-1">Tamaño</label>
-        <select id="size" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>Cualquier tamaño</option>
-          <option>0 - 500m²</option>
-          <option>500 - 1,000m²</option>
-          <option>1,000 - 2,000m²</option>
-          <option>2,000m²+</option>
-        </select>
+      <div class="group transform hover:scale-105 transition-all duration-300">
+        <div class="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300">
+          <label for="size" class="block text-gray-700 text-sm font-semibold mb-3 flex items-center">
+            <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-md">
+              <i class="fas fa-vector-square text-white text-sm"></i>
+            </div>
+            Tamaño
+          </label>
+          <select id="size" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-100 focus:border-purple-400 transition-all duration-300 bg-white cursor-pointer text-gray-700 text-sm font-medium shadow-sm hover:border-purple-300">
+            <option value="">Cualquier tamaño</option>
+            <option value="0-500">0 - 500m²</option>
+            <option value="500-1000">500 - 1,000m²</option>
+            <option value="1000-2000">1,000 - 2,000m²</option>
+            <option value="2000+">2,000m²+</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Property Type -->
-      <div>
-        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Propiedad</label>
-        <select id="type" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm">
-          <option>Todos los tipos</option>
-          <option>Edificio Residencial</option>
-          <option>Edificio Comercial</option>
-          <option>Edificio Mixto</option>
-          <option>Edificio Industrial</option>
-        </select>
+      <!-- Sort Order -->
+      <div class="group transform hover:scale-105 transition-all duration-300">
+        <div class="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300">
+          <label for="sortOrder" class="block text-gray-700 text-sm font-semibold mb-3 flex items-center">
+            <div class="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-md">
+              <i class="fas fa-sort text-white text-sm"></i>
+            </div>
+            Ordenar
+          </label>
+          <select id="sortOrder" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-pink-100 focus:border-pink-400 transition-all duration-300 bg-white cursor-pointer text-gray-700 text-sm font-medium shadow-sm hover:border-pink-300">
+            <option value="newest">Más recientes</option>
+            <option value="price-low">Precio ↑</option>
+            <option value="price-high">Precio ↓</option>
+            <option value="size">Tamaño</option>
+          </select>
+        </div>
       </div>
     </div>
-    <div class="mt-4 flex justify-end">
-      <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-        Aplicar Filtros
-      </button>
+    
+
+    
+
+    
+    <!-- Active Filters Display -->
+    <div id="activeFilters" class="mt-8 hidden">
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+        <div class="flex flex-wrap gap-3 items-center">
+          <span class="text-sm text-blue-700 font-semibold flex items-center">
+            <i class="fas fa-filter mr-2"></i>
+            Filtros activos:
+          </span>
+          <div id="activeFiltersList" class="flex flex-wrap gap-2"></div>
+          <button id="clearAllFiltersBtn" class="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors duration-200 flex items-center px-4 py-2 rounded-lg hover:bg-blue-100 ml-2 bg-white border border-blue-200 hover:border-blue-300">
+            <i class="fas fa-times mr-2"></i>
+            Limpiar todos
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Counter and Grid -->
+  <div class="mb-6">
+    <div id="resultsCounter" class="bg-white rounded-xl shadow-lg border border-gray-100 p-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-navy to-blue-600 rounded-xl flex items-center justify-center">
+            <i class="fas fa-building text-white"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-navy">Resultados de Búsqueda</h3>
+            <p id="resultsText" class="text-sm text-darkGray">Mostrando todas las propiedades disponibles</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <div id="resultsCount" class="text-2xl font-bold text-navy">0</div>
+          <div class="text-sm text-darkGray">propiedades</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -545,21 +675,21 @@
     <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg">
       <div class="relative">
         <img src="img/propiedades/Edificio Centro Historico/img/IMG-20250628-WA0082.jpg" alt="Edificio Centro Histórico" class="w-full h-64 object-cover">
-        <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">En Venta</div>
-        <div class="absolute bottom-4 left-4 bg-white text-blue-500 px-3 py-1 rounded-full text-sm font-semibold">$1,200,000</div>
+        <div class="absolute top-4 right-4 bg-navy text-white px-3 py-1 rounded-full text-sm font-semibold">En Venta</div>
+        <div class="absolute bottom-4 left-4 bg-white text-navy px-3 py-1 rounded-full text-sm font-semibold">$1,200,000</div>
       </div>
       <div class="p-6">
         <h3 class="text-xl font-bold text-gray-800 mb-2">Edificio Centro Histórico San Salvador</h3>
         <p class="text-gray-600 mb-4 flex items-center">
-          <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> Centro Histórico, San Salvador
+          <i class="fas fa-map-marker-alt text-navy mr-2"></i> Centro Histórico, San Salvador
         </p>
         <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-4">
-          <span class="flex items-center"><i class="fas fa-building text-blue-500 mr-1"></i> 4 plantas + terraza</span>
-          <span class="flex items-center"><i class="fas fa-store text-blue-500 mr-1"></i> 3 locales</span>
-          <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> 189.80m²</span>
+          <span class="flex items-center"><i class="fas fa-building text-navy mr-1"></i> 4 plantas + terraza</span>
+          <span class="flex items-center"><i class="fas fa-store text-navy mr-1"></i> 3 locales</span>
+          <span class="flex items-center"><i class="fas fa-vector-square text-navy mr-1"></i> 189.80m²</span>
         </div>
-        <button onclick="openModal('edificio-centro-historico')" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
-          Ver Detalles
+        <button onclick="openModal('edificio-centro-historico')" class="w-full bg-white hover:bg-gray-50 text-black font-medium py-3 px-6 rounded-xl transition-all duration-200 border-2 border-black hover:border-gray-700 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          <i class="fas fa-eye mr-2"></i>Ver Detalles
         </button>
       </div>
     </div>
@@ -1157,10 +1287,343 @@
     console.log('✅ syncAndApply completado');
   }
   
+  // ================= Sistema de Filtrado Moderno =================
+  
+  // Variables del sistema de filtrado
+  let currentFilters = {
+    department: '',
+    priceRange: '',
+    size: '',
+    sortOrder: 'newest'
+  };
+
+  let filteredProperties = [];
+  let allProperties = [];
+
+  // Funciones de filtrado moderno
+  function applyFilters() {
+    console.log('🔍 Aplicando filtros:', currentFilters);
+    
+    // Combinar propiedades locales y remotas
+    const allProps = Object.values(properties);
+    
+    // Aplicar filtros
+    filteredProperties = allProps.filter(property => {
+      // Filtro de departamento
+      if (currentFilters.department && property.department && property.department !== currentFilters.department) {
+        return false;
+      }
+      
+      // Filtro de rango de precio
+      if (currentFilters.priceRange && currentFilters.priceRange !== '') {
+        const price = parseFloat(property.price?.replace(/[$,]/g, '')) || 0;
+        const [min, max] = currentFilters.priceRange.split('-').map(p => p === '+' ? Infinity : parseFloat(p));
+        
+        if (currentFilters.priceRange.includes('+')) {
+          if (price < min) return false;
+        } else {
+          if (price < min || price > max) return false;
+        }
+      }
+      
+      // Filtro de tamaño
+      if (currentFilters.size && currentFilters.size !== '') {
+        const size = parseFloat(property.area?.replace(/[m²]/g, '')) || 0;
+        const [min, max] = currentFilters.size.split('-').map(p => p === '+' ? Infinity : parseFloat(p));
+        
+        if (currentFilters.size.includes('+')) {
+          if (size < min) return false;
+        } else {
+          if (size < min || size > max) return false;
+        }
+      }
+      
+      return true;
+    });
+    
+    // Aplicar ordenamiento
+    sortProperties();
+    
+    // Renderizar propiedades filtradas
+    renderFilteredProperties();
+    
+    // Mostrar filtros activos
+    showActiveFilters();
+    
+    console.log('✅ Filtros aplicados. Propiedades encontradas:', filteredProperties.length);
+  }
+  
+  function sortProperties() {
+    switch (currentFilters.sortOrder) {
+      case 'price-low':
+        filteredProperties.sort((a, b) => {
+          const priceA = parseFloat(a.price?.replace(/[$,]/g, '')) || 0;
+          const priceB = parseFloat(b.price?.replace(/[$,]/g, '')) || 0;
+          return priceA - priceB;
+        });
+        break;
+      case 'price-high':
+        filteredProperties.sort((a, b) => {
+          const priceA = parseFloat(a.price?.replace(/[$,]/g, '')) || 0;
+          const priceB = parseFloat(b.price?.replace(/[$,]/g, '')) || 0;
+          return priceB - priceA;
+        });
+        break;
+      case 'size':
+        filteredProperties.sort((a, b) => {
+          const sizeA = parseFloat(a.area?.replace(/[m²]/g, '')) || 0;
+          const sizeB = parseFloat(b.area?.replace(/[m²]/g, '')) || 0;
+          return sizeB - sizeA;
+        });
+        break;
+      default: // newest
+        // Mantener orden original
+        break;
+    }
+  }
+  
+  function renderFilteredProperties() {
+    // Ocultar las propiedades hardcodeadas estáticas
+    const staticProperties = document.querySelectorAll('.property-card:not([data-prop-id])');
+    staticProperties.forEach(card => {
+      card.style.display = 'none';
+    });
+    
+    // Mostrar solo las propiedades filtradas
+    if (filteredProperties.length === 0) {
+      // Mostrar mensaje de no resultados
+      const noResultsMessage = `
+        <div class="col-span-full text-center py-12">
+          <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-search text-gray-400 text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-600 mb-2">No se encontraron propiedades</h3>
+          <p class="text-gray-500">Intenta ajustar los filtros de búsqueda</p>
+        </div>
+      `;
+      
+      // Insertar mensaje después del contador de resultados
+      const resultsCounter = document.getElementById('resultsCounter');
+      if (resultsCounter) {
+        const existingMessage = document.querySelector('.no-results-message');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'no-results-message col-span-full';
+        messageDiv.innerHTML = noResultsMessage;
+        resultsCounter.parentNode.insertBefore(messageDiv, resultsCounter.nextSibling);
+      }
+      return;
+    }
+    
+    // Remover mensaje de no resultados si existe
+    const existingMessage = document.querySelector('.no-results-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+    
+    // Mostrar propiedades filtradas reemplazando las estáticas
+    const propertyGrid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3');
+    if (propertyGrid) {
+      // Limpiar grid
+      propertyGrid.innerHTML = '';
+      
+      // Renderizar propiedades filtradas
+      filteredProperties.forEach(property => {
+        const propertyCard = `
+          <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg" data-prop-id="${property.id}">
+            <div class="relative">
+              <img src="${property.image || property.images?.[0] || 'img/random/logoNuevo .jpg'}" alt="${property.title}" class="w-full h-64 object-cover">
+              <div class="absolute top-4 right-4 bg-navy text-white px-3 py-1 rounded-full text-sm font-semibold">En Venta</div>
+              <div class="absolute bottom-4 left-4 bg-white text-navy px-3 py-1 rounded-full text-sm font-semibold">${property.priceDisplay || property.price}</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">${property.title}</h3>
+              <p class="text-gray-600 mb-4 flex items-center">
+                <i class="fas fa-map-marker-alt text-navy mr-2"></i> ${property.location}
+              </p>
+              <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-4">
+                <span class="flex items-center"><i class="fas fa-building text-navy mr-1"></i> ${property.bedrooms || 0} plantas</span>
+                <span class="flex items-center"><i class="fas fa-store text-navy mr-1"></i> ${property.bathrooms || 0} locales</span>
+                <span class="flex items-center"><i class="fas fa-vector-square text-navy mr-1"></i> ${property.area || 'N/A'}</span>
+            </div>
+              ${property.features && property.features.length > 0 ? `
+              <div class="mb-4">
+                <div class="flex flex-wrap gap-2">
+                  ${property.features.slice(0, 3).map(feature => `
+                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">${feature}</span>
+                  `).join('')}
+                  ${property.features.length > 3 ? `<span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">+${property.features.length - 3} más</span>` : ''}
+                </div>
+              </div>
+              ` : ''}
+              <button onclick="openModal('${property.id}')" class="w-full bg-white hover:bg-gray-50 text-black font-medium py-3 px-6 rounded-xl transition-all duration-200 border-2 border-black hover:border-gray-700 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                <i class="fas fa-eye mr-2"></i>Ver Detalles
+              </button>
+            </div>
+          </div>
+        `;
+        
+        propertyGrid.innerHTML += propertyCard;
+      });
+    }
+    
+    // Actualizar contador de resultados
+    updateResultsCounter();
+  }
+  
+  function showActiveFilters() {
+    const activeFiltersContainer = document.getElementById('activeFilters');
+    const activeFiltersList = document.getElementById('activeFiltersList');
+    
+    if (!activeFiltersContainer || !activeFiltersList) return;
+    
+    // Filtrar solo filtros que tienen valor (excluyendo sortOrder ya que es solo ordenamiento)
+    const activeFilters = Object.entries(currentFilters).filter(([key, value]) => 
+      value && value !== '' && key !== 'sortOrder'
+    );
+    
+    if (activeFilters.length === 0) {
+      activeFiltersContainer.classList.add('hidden');
+      return;
+    }
+    
+    // Mostrar contenedor
+    activeFiltersContainer.classList.remove('hidden');
+    
+    // Generar chips de filtros activos
+    activeFiltersList.innerHTML = activeFilters.map(([key, value]) => `
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-navy text-white">
+        ${getFilterLabel(key, value)}
+        <button onclick="removeFilter('${key}')" class="ml-2 hover:bg-blue-700 rounded-full p-1 transition-colors">
+          <i class="fas fa-times text-xs"></i>
+        </button>
+      </span>
+    `).join('');
+  }
+  
+  function getFilterLabel(key, value) {
+    const labels = {
+      department: `🌍 ${value}`,
+      priceRange: `💰 ${value}`,
+      size: `📏 ${value}`,
+      sortOrder: `🔄 ${value}`
+    };
+    return labels[key] || value;
+  }
+  
+  function removeFilter(key) {
+    currentFilters[key] = '';
+    document.getElementById(key).value = '';
+    applyFilters();
+  }
+  
+  function updateResultsCounter() {
+    const resultsCount = document.getElementById('resultsCount');
+    const resultsText = document.getElementById('resultsText');
+    
+    if (resultsCount && resultsText) {
+      resultsCount.textContent = filteredProperties.length;
+      
+      if (filteredProperties.length === 0) {
+        resultsText.textContent = 'No se encontraron propiedades con los filtros aplicados';
+      } else if (filteredProperties.length === allProperties.length) {
+        resultsText.textContent = 'Mostrando todas las propiedades disponibles';
+      } else {
+        const activeFiltersCount = Object.entries(currentFilters).filter(([key, value]) => value && value !== '' && key !== 'sortOrder').length;
+        resultsText.textContent = `Mostrando ${filteredProperties.length} de ${allProperties.length} propiedades (${activeFiltersCount} filtros aplicados)`;
+      }
+    }
+  }
+  
+  function clearAllFilters() {
+    currentFilters = {
+      department: '',
+      priceRange: '',
+      size: '',
+      sortOrder: 'newest'
+    };
+    
+    // Resetear todos los selects
+    Object.keys(currentFilters).forEach(key => {
+      const element = document.getElementById(key);
+      if (element) element.value = '';
+    });
+    
+    // Resetear sortOrder a newest
+    document.getElementById('sortOrder').value = 'newest';
+    
+    // Mostrar todas las propiedades
+    showAllProperties();
+  }
+  
+  function showAllProperties() {
+    // Limpiar filtros activos
+    currentFilters = {
+      department: '',
+      priceRange: '',
+      size: '',
+      sortOrder: 'newest'
+    };
+    
+    // Resetear todos los selects
+    Object.keys(currentFilters).forEach(key => {
+      const element = document.getElementById(key);
+      if (element) element.value = '';
+    });
+    
+    // Resetear sortOrder a newest
+    document.getElementById('sortOrder').value = 'newest';
+    
+    // Ocultar filtros activos
+    const activeFiltersContainer = document.getElementById('activeFilters');
+    if (activeFiltersContainer) {
+      activeFiltersContainer.innerHTML = '';
+    }
+    
+    // Actualizar contador de resultados
+    updateResultsCounter();
+    
+    // Mostrar todas las propiedades (hardcodeadas + remotas)
+    const allProps = Object.values(properties);
+    filteredProperties = [...allProps];
+    
+    // Renderizar todas las propiedades
+    renderFilteredProperties();
+    
+    console.log('✅ Todas las propiedades mostradas:', filteredProperties.length);
+  }
+
   // Ejecutar sincronización cuando se carga la página
   document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 DOMContentLoaded ejecutado en edificios.html');
     console.log('🔍 Contenedor remotePropertiesContainer:', document.getElementById('remotePropertiesContainer'));
+    
+    // Inicializar sistema de filtrado
+    allProperties = Object.values(properties);
+    filteredProperties = [...allProperties];
+    updateResultsCounter();
+    
+    // Event listeners para cambios automáticos en filtros
+    const filterInputs = ['department', 'priceRange', 'size', 'sortOrder'];
+    filterInputs.forEach(filterId => {
+      const element = document.getElementById(filterId);
+      if (element) {
+        element.addEventListener('change', (e) => {
+          currentFilters[filterId] = e.target.value;
+          applyFilters();
+        });
+      }
+    });
+    
+    // Event listener para limpiar todos los filtros
+    const clearAllFiltersBtn = document.getElementById('clearAllFiltersBtn');
+    if (clearAllFiltersBtn) {
+      clearAllFiltersBtn.addEventListener('click', clearAllFilters);
+    }
+    
     syncAndApply();
   });
 </script>
