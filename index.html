@@ -487,66 +487,7 @@
       100% { background-position: -200% 0; }
     }
 
-    /* Floating Action Button */
-    .fab {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 24px;
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-      transition: all 0.3s ease;
-      z-index: 1000;
-      cursor: pointer;
-    }
-
-    .fab:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
-    }
-
-    /* Back to Top Button */
-    .back-to-top {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: rgba(59, 130, 246, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 18px;
-      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-      transition: all 0.3s ease;
-      z-index: 1000;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .back-to-top:hover {
-      background: var(--primary-blue);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-    }
+    /* Floating action/back-to-top styles removed per request */
 
     /* Enhanced Modal */
     .modal-overlay {
@@ -755,7 +696,7 @@
               Propiedades
               <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
             </button>
-            <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 glass rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+            <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 bg-white">
               <div class="p-2">
                 <a href="casas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
                   <i class="fas fa-home text-blue-500 mr-3"></i>
@@ -914,8 +855,8 @@
             <i class="fas fa-dollar-sign mr-1"></i>$1,200/mes
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button onclick="openModal('apartamento-santa-elena')" class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
-              <i class="fas fa-eye mr-2"></i>Ver Detalles
+            <button onclick="openModal('apartamento-santa-elena')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+              Ver Detalles
             </button>
           </div>
         </div>
@@ -938,8 +879,8 @@
               <i class="fas fa-vector-square text-blue-500 mr-2"></i> 85m²
             </span>
           </div>
-          <button onclick="openModal('apartamento-santa-elena')" class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            <i class="fas fa-info-circle mr-2"></i>Ver Detalles
+          <button onclick="openModal('apartamento-santa-elena')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Ver Detalles
           </button>
         </div>
       </div>
@@ -955,8 +896,8 @@
             <i class="fas fa-dollar-sign mr-1"></i>$220,000
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <button onclick="openModal('apartamento-premium')" class="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
-              <i class="fas fa-eye mr-2"></i>Ver Detalles
+            <button onclick="openModal('apartamento-premium')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+              Ver Detalles
             </button>
           </div>
         </div>
@@ -979,8 +920,8 @@
               <i class="fas fa-vector-square text-blue-500 mr-2"></i> 120m²
             </span>
           </div>
-          <button onclick="openModal('apartamento-premium')" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            <i class="fas fa-info-circle mr-2"></i>Ver Detalles
+          <button onclick="openModal('apartamento-premium')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Ver Detalles
           </button>
         </div>
       </div>
@@ -1121,15 +1062,8 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
             </div>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="text-gray-700 font-medium">
-            Cámara de Bienes Raíces
-          </span>
-          <a href="https://www.camarabienesraices.com.sv" target="_blank" rel="noopener" class="bg-white border border-blue-500 text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition duration-300">
-            Buscar más
-          </a>
-        </div>
-      </div>
+        
+    </div>
     </div>
   </div>
 </section>
@@ -1141,29 +1075,22 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
     <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
       <div class="md:flex">
         <div class="md:w-1/2 bg-blue-500 text-white p-12">
-          <h2 class="text-3xl font-bold mb-6">¿Listo para encontrar tu propiedad ideal?</h2>
-          <p class="mb-8">
-            Contáctanos hoy para una consulta gratuita y descubre cómo podemos ayudarte a encontrar el inmueble perfecto.
-          </p>
-          <div class="mb-6 flex items-center">
-            <i class="fas fa-phone-alt mr-4 text-xl"></i>
-            <div>
-              <h4 class="font-semibold">Teléfono</h4>
-              <p>7870-2954</p>
+          <div class="h-full flex flex-col items-center justify-center text-center space-y-6">
+            <h2 class="text-3xl font-bold">¿Listo para encontrar tu propiedad ideal?</h2>
+            <p class="opacity-90 max-w-md">Contáctanos por WhatsApp, Instagram o Facebook. Respuesta rápida y asesoría personalizada.</p>
+            <div class="flex flex-col items-center gap-4 w-full">
+              <a href="https://wa.me/50378702954" target="_blank" rel="noopener" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition duration-300 inline-flex items-center">
+                <i class="fab fa-whatsapp text-2xl mr-3"></i> WhatsApp
+              </a>
+              <a href="https://www.facebook.com/share/1BNXqRtbHa/?mibextid=wwXIfr" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition duration-300 inline-flex items-center">
+                <i class="fab fa-facebook-f text-2xl mr-3"></i> Facebook
+              </a>
+              <a href="#" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition duration-300 inline-flex items-center">
+                <i class="fab fa-instagram text-2xl mr-3"></i> Instagram
+              </a>
             </div>
-          </div>
-          <div class="mb-6 flex items-center">
-            <i class="fas fa-envelope mr-4 text-xl"></i>
-            <div>
-              <h4 class="font-semibold">Correo Electrónico</h4>
-              <p>info@grupoimnova.com</p>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <i class="fas fa-map-marker-alt mr-4 text-xl"></i>
-            <div>
-              <h4 class="font-semibold">Oficina</h4>
-              <p>Av. Las Palmas #123, Col. San Benito<br>San Salvador, El Salvador</p>
+            <div class="text-sm opacity-80 inline-flex items-center">
+              <i class="fas fa-shield-alt mr-2"></i>Atención inmediata y confiable
             </div>
           </div>
         </div>
@@ -1198,15 +1125,8 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
 </section>
 
 
-<!-- Floating Action Button -->
-<div class="fab" onclick="scrollToTop()" title="Ir al inicio">
-  <i class="fas fa-home"></i>
-</div>
-
-<!-- Back to Top Button -->
-<div class="back-to-top" id="backToTop" onclick="scrollToTop()" title="Volver arriba">
-  <i class="fas fa-chevron-up"></i>
-</div>
+<!-- Floating Action Button removed per request -->
+<!-- Back to Top Button removed per request -->
 
 <!-- Footer -->
 <footer class="bg-gray-800 text-white py-12">
@@ -1220,20 +1140,7 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
         <p class="text-gray-400 mb-4">
           Tu socio perfecto si buscas un inmueble.
         </p>
-        <div class="flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
+        
       </div>
 
       <div>
@@ -1266,6 +1173,14 @@ Ya sea que estés buscando invertir, mudarte o rentar, estamos aquí para ayudar
           <li class="flex items-center">
             <i class="fas fa-envelope mr-3 text-blue-400"></i>
             <span>info@grupoimnova.com</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fab fa-facebook-f mr-3 text-blue-400"></i>
+            <a href="https://www.facebook.com/share/1BNXqRtbHa/?mibextid=wwXIfr" class="hover:text-white transition duration-300">Facebook</a>
+          </li>
+          <li class="flex items-center">
+            <i class="fab fa-instagram mr-3 text-blue-400"></i>
+            <a href="#" class="hover:text-white transition duration-300">Instagram</a>
           </li>
         </ul>
       </div>

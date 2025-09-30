@@ -369,7 +369,7 @@
             Propiedades
             <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
           </button>
-          <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 glass rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+          <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 bg-white">
             <div class="p-2">
               <a href="casas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
                 <i class="fas fa-home text-blue-500 mr-3"></i>
@@ -406,9 +406,7 @@
         <a href="index.html#about" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
           <i class="fas fa-info-circle mr-2"></i>Sobre Nosotros
         </a>
-        <a href="index.html#testimonials" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
-          <i class="fas fa-star mr-2"></i>Testimonios
-        </a>
+        
 
       </div>
 
@@ -688,8 +686,8 @@
           <span class="flex items-center"><i class="fas fa-bath text-navy mr-1"></i> 1 Baño</span>
           <span class="flex items-center"><i class="fas fa-car text-navy mr-1"></i> Estacionamiento</span>
         </div>
-        <button onclick="openModal('local-antiguo-cuscatlan')" class="w-full bg-white hover:bg-gray-50 text-black font-medium py-3 px-6 rounded-xl transition-all duration-200 border-2 border-black hover:border-gray-700 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-          <i class="fas fa-eye mr-2"></i>Ver Detalles
+        <button onclick="openModal('local-antiguo-cuscatlan')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          Ver Detalles
         </button>
       </div>
     </div>
@@ -699,8 +697,8 @@
       <div class="relative">
         <img src="img/propiedades/Inmueble Premium/img/IMG-20250628-WA0092.jpg" alt="Inmueble Premium" class="w-full h-64 object-cover">
         <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('inmueble-premium')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            Ver detalles
+          <button onclick="openModal('inmueble-premium')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-6 py-2 rounded-full transition-colors duration-300">
+            Ver Detalles
           </button>
         </div>
         <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -713,8 +711,8 @@
         <p class="text-gray-600 text-sm mb-4">Paseo Escalón | 1,569.44v² | Múltiples baños | Estacionamiento</p>
         <p class="text-gray-500 text-sm">Inmueble Premium sobre el Paseo Escalón, parte alta, zona de gran movimiento comercial y alta plusvalía. Con 1,569.44v² y 1,070.04m² construidos. Excelente para restaurante, bancos u otros usos comerciales.</p>
         <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('inmueble-premium')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            Más detalles <i class="fas fa-arrow-right ml-1"></i>
+          <button onclick="openModal('inmueble-premium')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold text-sm py-2 px-4 rounded-full transition-all duration-300">
+            Ver Detalles
           </button>
           <div class="flex items-center text-yellow-400">
             <i class="fas fa-star"></i>
@@ -729,8 +727,8 @@
       <div class="relative">
         <img src="img/propiedades/terreno en Col. Escalón, ubicado en Cantón El Carmen/img/IMG-20250628-WA0091.jpg" alt="Terreno Comercial" class="w-full h-64 object-cover">
         <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('terreno-comercial')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            Ver detalles
+          <button onclick="openModal('terreno-comercial')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-6 py-2 rounded-full transition-colors duration-300">
+            Ver Detalles
           </button>
         </div>
         <div class="absolute top-4 right-4 bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -743,8 +741,8 @@
         <p class="text-gray-600 text-sm mb-4">Col. Escalón | 800m² | Zona Comercial</p>
         <p class="text-gray-500 text-sm">Terreno comercial en excelente ubicación con alto potencial de desarrollo. Ideal para construcción de edificios comerciales o centros empresariales.</p>
         <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('terreno-comercial')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            Más detalles <i class="fas fa-arrow-right ml-1"></i>
+          <button onclick="openModal('terreno-comercial')" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold text-sm py-2 px-4 rounded-full transition-all duration-300">
+            Ver Detalles
           </button>
           <div class="flex items-center text-yellow-400">
             <i class="fas fa-star"></i>
