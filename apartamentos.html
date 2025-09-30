@@ -342,17 +342,15 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       <!-- Logo -->
-      <div class="flex items-center animate-fade-in-left">
+      <div class="flex items-center">
         <div class="flex items-center space-x-3">
-          <div class="relative">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-              <i class="fas fa-home text-white text-xl"></i>
+          <div class="relative flex items-center justify-center">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <img src="img/random/logoNuevo .jpg" alt="Logo Grupo Imnova Nuevo" class="w-full h-full object-contain rounded-xl shadow-lg">
             </div>
-            <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
           </div>
-          <div>
-            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Grupo IMNOVA</span>
-            <p class="text-xs text-gray-500 -mt-1"></p>
+          <div class="flex flex-col justify-center">
+            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent leading-tight">Grupo IMNOVA</span>
           </div>
         </div>
       </div>
@@ -980,6 +978,12 @@
     applyOverridesToStaticCards?.();
   }
   document.addEventListener('DOMContentLoaded', syncAndApply);
+  document.addEventListener('click', (e) => {
+    if (e.target && (e.target.id === 'contactOptionsBtn' || e.target.closest('#contactOptionsBtn'))) {
+      const opts = document.getElementById('contactOptions');
+      if (opts) opts.classList.toggle('hidden');
+    }
+  });
 
   function openModal(propertyId) {
     const property = (activeProperties || {})[propertyId];
@@ -1027,13 +1031,18 @@
             </ul>
           </div>
           
-          <div class="flex space-x-4">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button id="contactOptionsBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">
               <i class="fas fa-phone mr-2"></i>Contactar
             </button>
             <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
               <i class="fas fa-heart mr-2"></i>Favorito
             </button>
+          </div>
+          <div id="contactOptions" class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 hidden">
+            <a href="https://wa.me/50378702954" target="_blank" rel="noopener" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center"><i class="fab fa-whatsapp mr-2"></i>WhatsApp</a>
+            <a href="https://www.facebook.com/share/1BNXqRtbHa/?mibextid=wwXIfr" target="_blank" rel="noopener" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center"><i class="fab fa-facebook-f mr-2"></i>Facebook</a>
+            <a href="https://www.instagram.com/imnova_inmobiliariasv?igsh=amJnYXMyYTk2N2k1" target="_blank" rel="noopener" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center"><i class="fab fa-instagram mr-2"></i>Instagram</a>
           </div>
         </div>
       </div>
