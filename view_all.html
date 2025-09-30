@@ -74,9 +74,9 @@
 
     /* Sticky Navigation with Blur */
     .sticky-nav {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 1) !important;
+      backdrop-filter: none !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
       transition: all 0.3s ease;
     }
 
@@ -273,6 +273,84 @@
 
     /* Responsive Enhancements */
     @media (max-width: 768px) {
+      .hero {
+        height: 100vh;
+        padding: 0 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .btn-hero {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      /* Mobile Navigation */
+      #navbar {
+        padding: 0 1rem;
+      }
+      
+      #navbar .flex-1 {
+        display: none;
+      }
+      
+      /* Mobile Menu */
+      #mobile-menu {
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      /* Properties Grid Mobile */
+      .properties-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+      }
+      
+      .property-card {
+        margin: 0;
+      }
+      
+      /* Modal Mobile */
+      .modal-content {
+        margin: 1rem;
+        max-height: 90vh;
+        overflow-y: auto;
+        width: calc(100% - 2rem);
+      }
+      
+      .modal-content .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .modal-content img {
+        height: 200px;
+        object-fit: cover;
+      }
+      
+      /* Contact Options Mobile */
+      #contactOptions {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      
+      #contactOptions a {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+      
       .fab {
         bottom: 20px;
         right: 20px;
@@ -289,6 +367,30 @@
         font-size: 16px;
       }
     }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .btn-hero {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+      
+      .property-card {
+        margin: 0 0.5rem 1rem 0.5rem;
+      }
+      
+      .modal-content {
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+      }
+    }
   </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -296,21 +398,20 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- Modern Navigation with Glassmorphism -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       <!-- Logo -->
-      <div class="flex items-center animate-fade-in-left">
-        <div class="flex items-center space-x-3">
-          <div class="relative">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-              <i class="fas fa-home text-white text-xl"></i>
+      <div class="flex items-center space-x-3 animate-fade-in-left flex-shrink-0 mr-2" style="min-width:220px;">
+        <div class="flex items-center space-x-2">
+          <div class="relative flex items-center justify-center">
+            <div class="w-12 h-12 flex items-center justify-center">
+              <img src="img/random/logoNuevo .jpg" alt="Logo Grupo Imnova Nuevo" class="w-full h-full object-contain rounded-xl shadow-lg">
             </div>
             <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
           </div>
-          <div>
-            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Grupo IMNOVA</span>
-            <p class="text-xs text-gray-500 -mt-1">Inmobiliaria Premium</p>
+          <div class="flex flex-col justify-center">
+            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent leading-tight">Grupo IMNOVA</span>
           </div>
         </div>
       </div>
@@ -328,7 +429,7 @@
             Propiedades
             <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
           </button>
-          <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 glass rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+          <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-56 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 bg-white">
             <div class="p-2">
               <a href="casas.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 rounded-xl transition-all duration-200 hover:translate-x-2">
                 <i class="fas fa-home text-blue-500 mr-3"></i>
@@ -365,18 +466,15 @@
         <a href="#" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
           <i class="fas fa-info-circle mr-2"></i>Sobre Nosotros
         </a>
-        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 font-medium rounded-lg transition-all duration-300 hover:bg-blue-50">
-          <i class="fas fa-star mr-2"></i>Testimonios
-        </a>
 
       </div>
 
       <!-- CTA Button -->
       <div class="hidden lg:flex items-center animate-fade-in-right delay-200">
-        <button class="btn-primary flex items-center space-x-2">
+        <a href="index.html#contact" class="btn-primary flex items-center space-x-2">
           <i class="fas fa-phone"></i>
           <span>Contactar</span>
-        </button>
+        </a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -393,8 +491,8 @@
     <div class="flex flex-col h-full">
       <div class="flex justify-between items-center p-6 border-b border-white/20">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-            <i class="fas fa-home text-white"></i>
+          <div class="w-10 h-10 flex items-center justify-center">
+            <img src="img/random/logoNuevo .jpg" alt="Logo Grupo Imnova Nuevo" class="w-full h-full object-contain rounded-lg">
           </div>
           <span class="text-xl font-bold text-white">Grupo IMNOVA</span>
         </div>
@@ -427,16 +525,13 @@
         <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
           <i class="fas fa-info-circle mr-3"></i>Sobre Nosotros
         </a>
-        <a href="#" class="flex items-center px-4 py-3 text-white hover:bg-white/20 rounded-xl transition-all duration-300">
-          <i class="fas fa-star mr-3"></i>Testimonios
-        </a>
 
       </div>
       
       <div class="p-6 border-t border-white/20">
-        <button class="w-full btn-primary">
+        <a href="index.html#contact" class="w-full btn-primary flex items-center justify-center">
           <i class="fas fa-phone mr-2"></i>Contactar Ahora
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -519,7 +614,7 @@
   </div>
 
   <!-- Property Grid -->
-  <div id="propertyGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  <div id="propertyGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 px-4 md:px-0"></div>
 
   <!-- Pagination -->
   <div id="pagination" class="flex justify-center items-center mt-8 space-x-2"></div>
@@ -543,72 +638,65 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-gray-800 text-white mt-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<footer class="bg-gray-800 text-white py-12">
+  <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Grupo IMNOVA</h3>
-        <p class="text-gray-300 text-sm">
-          Tu socio perfecto si buscas un inmueble. Servicios inmobiliarios de calidad para encontrar tu propiedad ideal.
+        <div class="flex items-center mb-4">
+          <i class="fas fa-home text-blue-400 text-2xl mr-2"></i>
+          <span class="text-xl font-bold">GRUPO<span class="text-blue-400">IMNOVA</span></span>
+        </div>
+        <p class="text-gray-400 mb-4">
+          Tu socio perfecto si buscas un inmueble.
         </p>
+        
       </div>
+
       <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Enlaces Rápidos</h3>
+        <h3 class="text-lg font-semibold mb-4">Accesos</h3>
         <ul class="space-y-2">
-          <li><a href="index.html" class="text-gray-300 hover:text-white text-sm">Inicio</a></li>
-          <li><a href="view_all.html" class="text-gray-300 hover:text-white text-sm">Propiedades</a></li>
-          <li><a href="casas.html" class="text-gray-300 hover:text-white text-sm">Casas</a></li>
-          <li><a href="apartamentos.html" class="text-gray-300 hover:text-white text-sm">Apartamentos</a></li>
+          <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Inicio</a></li>
+          <li><a href="view_all.html" class="text-gray-400 hover:text-white transition duration-300">Propiedades</a></li>
+          <li><a href="index.html#about" class="text-gray-400 hover:text-white transition duration-300">Sobre Nosotros</a></li>
         </ul>
       </div>
+
       <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Contacto</h3>
-        <ul class="space-y-2 text-gray-300 text-sm">
+        <h3 class="text-lg font-semibold mb-4">Tipos de propiedades</h3>
+        <ul class="space-y-2">
+          <li><a href="apartamentos.html" class="text-gray-400 hover:text-white transition duration-300">Apartamentos</a></li>
+          <li><a href="casas.html" class="text-gray-400 hover:text-white transition duration-300">Casas</a></li>
+          <li><a href="edificios.html" class="text-gray-400 hover:text-white transition duration-300">Edificios</a></li>
+          <li><a href="oficinas.html" class="text-gray-400 hover:text-white transition duration-300">Oficinas</a></li>
+          <li><a href="view_all.html" class="text-gray-400 hover:text-white transition duration-300">Todos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Informacion de contacto</h3>
+        <ul class="space-y-2 text-gray-400">
           <li class="flex items-center">
-            <i class="fas fa-map-marker-alt mr-2"></i>
-            <span>Av. Las Palmas #123, Col. San Benito<br>San Salvador, El Salvador</span>
+            <i class="fas fa-phone-alt mr-3 text-blue-400"></i>
+            <span>7870-2954</span>
           </li>
           <li class="flex items-center">
-            <i class="fas fa-phone-alt mr-2"></i>
-            <span>(503) 7870-2954</span>
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-envelope mr-2"></i>
+            <i class="fas fa-envelope mr-3 text-blue-400"></i>
             <span>info@grupoimnova.com</span>
           </li>
+          <li class="flex items-center">
+            <i class="fab fa-facebook-f mr-3 text-blue-400"></i>
+            <a href="https://www.facebook.com/share/1BNXqRtbHa/?mibextid=wwXIfr" class="hover:text-white transition duration-300">Facebook</a>
+          </li>
+          <li class="flex items-center">
+            <i class="fab fa-instagram mr-3 text-blue-400"></i>
+            <a href="https://www.instagram.com/imnova_inmobiliariasv?igsh=amJnYXMyYTk2N2k1" class="hover:text-white transition duration-300" target="_blank" rel="noopener">Instagram</a>
+          </li>
         </ul>
       </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wider uppercase mb-4">Newsletter</h3>
-        <p class="text-gray-300 text-sm mb-4">
-          Suscríbete a nuestro newsletter para las últimas propiedades y actualizaciones del mercado.
-        </p>
-        <div class="flex">
-          <input type="email" placeholder="Tu email" class="px-3 py-2 text-sm rounded-l-md focus:outline-none text-gray-800 w-full">
-          <button class="bg-blue-600 text-white px-3 py-2 text-sm rounded-r-md hover:bg-blue-700 focus:outline-none">
-            Suscribirse
-          </button>
-        </div>
-      </div>
     </div>
-    <div class="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
-      <p class="text-gray-400 text-sm">
-        &copy; 2025 Grupo IMNOVA. Todos los derechos reservados.
-      </p>
-      <div class="flex space-x-6 mt-4 md:mt-0">
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="text-gray-400 hover:text-gray-300">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
+
+    <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+      <p>&copy; 2025 DigitalMango. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -990,26 +1078,29 @@ function renderProperties(properties, page = 1) {
   const end = start + propertiesPerPage;
   const pageProperties = properties.slice(start, end);
   grid.innerHTML = pageProperties.map(property => `
-    <div class="property-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300">
+    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-500">
       <div class="relative">
         <img src="${property.image}" alt="${property.title}" class="w-full h-64 object-cover">
-        <div class="property-overlay absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 transition-opacity duration-300">
-          <button onclick="openModal('${property.id}')" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition-colors duration-300">
-            <span class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-2 px-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
-              Ver Detalles
-            </span>
-          </button>
+        <div class="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+          ${property.isRent ? 'En Alquiler' : 'En Venta'}
+        </div>
+        <div class="absolute bottom-4 left-4 bg-white text-blue-600 px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-blue-200">
+          ${property.priceDisplay}
         </div>
       </div>
       <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-900 mb-1">${property.title}</h3>
-        <p class="text-blue-600 font-semibold mb-2">${property.priceDisplay}</p>
-        <p class="text-gray-600 text-sm mb-4">${property.location} | ${property.bedrooms} hab | ${property.bathrooms} baños | ${property.area}</p>
-        <div class="mt-4 flex justify-between items-center">
-          <button onclick="openModal('${property.id}')" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            Más detalles <i class="fas fa-arrow-right ml-1"></i>
-          </button>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">${property.title}</h3>
+        <p class="text-gray-600 mb-4 flex items-center">
+          <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> ${property.location}
+        </p>
+        <div class="flex justify-between text-sm text-gray-500 border-b border-gray-200 pb-4 mb-4">
+          <span class="flex items-center"><i class="fas fa-bed text-blue-500 mr-1"></i> ${property.bedrooms} Habitaciones</span>
+          <span class="flex items-center"><i class="fas fa-bath text-blue-500 mr-1"></i> ${property.bathrooms} Baños</span>
+          <span class="flex items-center"><i class="fas fa-vector-square text-blue-500 mr-1"></i> ${property.area}</span>
         </div>
+        <button onclick="openModal('${property.id}')" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          Ver Detalles
+        </button>
       </div>
     </div>
   `).join('');
@@ -1115,19 +1206,38 @@ function openModal(propertyId) {
             `).join('')}
           </ul>
         </div>
-        <div class="flex space-x-4">
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
-            <i class="fas fa-phone mr-2"></i>Contactar
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button id="contactOptionsBtn" class="btn-primary flex-1">
+            <i class="fas fa-phone mr-2"></i>
+            Contactar
           </button>
-          <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition duration-300">
+          <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-full font-medium transition duration-300">
             <i class="fas fa-heart mr-2"></i>Favorito
           </button>
+        </div>
+        <div id="contactOptions" class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 hidden">
+          <a href="https://wa.me/50378702954" target="_blank" rel="noopener" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center"><i class="fab fa-whatsapp mr-2"></i>WhatsApp</a>
+          <a href="https://www.facebook.com/share/1BNXqRtbHa/?mibextid=wwXIfr" target="_blank" rel="noopener" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center"><i class="fab fa-facebook-f mr-2"></i>Facebook</a>
+          <a href="https://www.instagram.com/imnova_inmobiliariasv?igsh=amJnYXMyYTk2N2k1" target="_blank" rel="noopener" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center"><i class="fab fa-instagram mr-2"></i>Instagram</a>
         </div>
       </div>
     </div>
   `;
   document.getElementById('propertyModal').classList.remove('hidden');
   document.body.classList.add('modal-open');
+  
+  // Agregar event listener específico para el botón Contactar
+  setTimeout(() => {
+    const contactBtn = document.getElementById('contactOptionsBtn');
+    if (contactBtn) {
+      contactBtn.addEventListener('click', function() {
+        const opts = document.getElementById('contactOptions');
+        if (opts) {
+          opts.classList.toggle('hidden');
+        }
+      });
+    }
+  }, 100);
 }
 function closeModal() {
   document.getElementById('propertyModal').classList.add('hidden');
@@ -1137,6 +1247,9 @@ function changeMainImage(src) {
   const mainImage = document.querySelector('#modalContent img');
   if (mainImage) mainImage.src = src;
 }
+
+
+// (Eliminado modal de redes sociales tipo overlay para usar opciones inline como en casas)
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
   // Sincronizar estados desde Firestore, cargar propiedades remotas y aplicar filtros/overrides
@@ -1212,26 +1325,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuClose = document.getElementById('mobile-menu-close');
   const scrollProgress = document.getElementById('scrollProgress');
 
-  // Sticky navbar with glassmorphism effect
+  // Update scroll progress bar
   window.addEventListener('scroll', function() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Add sticky class and glassmorphism effect
-    if (scrollTop > 50) {
-      navbar.classList.add('sticky-nav');
-      navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-      navbar.style.backdropFilter = 'blur(20px)';
-      navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
-      navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-      navbar.classList.remove('sticky-nav');
-      navbar.style.background = 'transparent';
-      navbar.style.backdropFilter = 'none';
-      navbar.style.borderBottom = 'none';
-      navbar.style.boxShadow = 'none';
-    }
-
-    // Update scroll progress bar
     const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = (scrollTop / windowHeight) * 100;
     scrollProgress.style.width = progress + '%';
@@ -1386,6 +1482,16 @@ document.addEventListener('DOMContentLoaded', function() {
   document.head.appendChild(style);
 
   console.log('🚀 Modern Navbar initialized successfully!');
+  
+  // Toggle contact options inside modal (igual que casas)
+  document.addEventListener('click', function(e) {
+    if (e.target && (e.target.id === 'contactOptionsBtn' || e.target.closest('#contactOptionsBtn'))) {
+      const opts = document.getElementById('contactOptions');
+      if (opts) {
+        opts.classList.toggle('hidden');
+      }
+    }
+  });
 });
 </script>
 </body>

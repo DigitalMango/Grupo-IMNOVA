@@ -315,6 +315,84 @@
 
     /* Responsive Enhancements */
     @media (max-width: 768px) {
+      .hero {
+        height: 100vh;
+        padding: 0 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .btn-hero {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      /* Mobile Navigation */
+      #navbar {
+        padding: 0 1rem;
+      }
+      
+      #navbar .flex-1 {
+        display: none;
+      }
+      
+      /* Mobile Menu */
+      #mobile-menu {
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      /* Properties Grid Mobile */
+      .properties-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+      }
+      
+      .property-card {
+        margin: 0;
+      }
+      
+      /* Modal Mobile */
+      .modal-content {
+        margin: 1rem;
+        max-height: 90vh;
+        overflow-y: auto;
+        width: calc(100% - 2rem);
+      }
+      
+      .modal-content .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .modal-content img {
+        height: 200px;
+        object-fit: cover;
+      }
+      
+      /* Contact Options Mobile */
+      #contactOptions {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      
+      #contactOptions a {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+      
       .fab {
         bottom: 20px;
         right: 20px;
@@ -329,6 +407,30 @@
         width: 45px;
         height: 45px;
         font-size: 16px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .btn-hero {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+      
+      .property-card {
+        margin: 0 0.5rem 1rem 0.5rem;
+      }
+      
+      .modal-content {
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
       }
     }
   </style>
@@ -666,7 +768,7 @@
   </div>
 
   <!-- Property Grid -->
-  <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+  <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-12 px-4 md:px-0">
     <!-- Propiedades estáticas hardcodeadas -->
     
     <!-- Contenedor para propiedades remotas (Firestore) -->
